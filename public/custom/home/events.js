@@ -8,12 +8,13 @@ var Events = function(){
         console.log('events created');
 	country_select();
 	province_select();
-	fetch_course_category();
-        fetch_category_subject();
+	//fetch_course_category();
+        //fetch_category_subject();
 	insert_form_submit();
 	delete_some_data();
 	add_another();
 	add_another_d();
+        add_another_expenses();
     };
     
     // -------------------------------------------------------------------------
@@ -42,6 +43,36 @@ var Events = function(){
     };
     // -------------------------------------------------------------------------
     
+    var add_another_expenses = function(){
+	
+	$('#add_another_expenses').on('click',function(e){
+	    e.preventDefault();
+	    var $i = $('#number').val();
+	    $i++;
+	    var $output  = '<div class="row ">';
+                $output += '<div class="form-group col-sm-5">';
+		$output += '<label >Description</label>';
+                $output += '<select  name="item_name_' + $i + '" class="form-control" style="background:#444D53; color:white;">';
+		$output += '<option>Select desired option</option>';
+                $output += '<option value="Rent">Rent</option>';
+                $output += '<option value="Utility Bills">Utility Bills</option>';
+                $output += '<option value="Stationary">Stationary</option>';
+		$output += '<option value="Tax">Tax</option>';
+		$output += '<option value="Others">Others</option>';
+		$output += '</select>';
+		$output += '</div>';		
+		$output += '<div class="form-group col-sm-2">';
+		$output += '<label class="margin_left">Amount</label>';
+		$output += '<input type="text" name="item_amount_' + $i + '" style="color: white" class="form-control" placeholder="Amount" >';
+		$output += '</div>';
+		$output += '</div>';
+	    $('#add-another-one_func').append($output);	
+	    $('#number').val($i);
+	});
+	
+    }; 
+    // -------------------------------------------------------------------------
+    
     var add_another = function(){
 	
 	$('#add-another').on('click',function(e){
@@ -54,33 +85,19 @@ var Events = function(){
 		$output += '<label >Description</label>';
                 $output += '<select  name="item_name_' + $i + '" class="form-control" style="background:#444D53; color:white;">';
 		$output += '<option>Select desired option</option>';
-                $output += '<option value="Intermediate Series">Intermediate Series</option>';
-                $output += '<option value="Higher Series">Higher Series</option>';
-                $output += '<option value="Starter Series">Starter Series</option>';
-		$output += '<option value="Pre-Starter Series">Pre-Starter Series</option>';
-		$output += '<option value="Elementary">Elementary</option>';
-		$output += '<option value="C.PEL">C.PEL</option>';
-		$output += '<option value="IELTS">IELTS</option>';
-		$output += '<option value="Grammar">Grammar</option>';
-		$output += '<option value="Information Technology">Information Technology</option>';
-		$output += '<option value="Monthly Fee of IT/EL">Monthly Fee of IT/EL</option>';
-		$output += '<option value="Certificate Fee of IT/EL">Certificate Fee of IT/EL</option>';
-		$output += '<option value="Old Balance of IT/EL">Old Balance of IT/EL</option>';
-		$output += '<option value="ID Card Fee">ID Card Fee</option>';
-		$output += '<option value="D.I.T Exam Fee">D.I.T Exam Fee</option>';
-		$output += '<option value="Entry Test Fee">Entry Test Fee</option>';
-		$output += '<option value="Promotion Fee">Promotion Fee</option>';
-                $output += '<option value="ECC">ECC</option>';
-                $output += '<option value="Photostate">photostat</option>';
-		$output += '<option value="Unit 001">Unit 001</option>';
-		$output += '<option value="Unit 002">Unit 002</option>';
-		$output += '<option value="Unit 003">Unit 003</option>';
+                $output += '<option value="Security(Refundable)">Security(Refundable)</option>';
+                $output += '<option value="Tuition Fee(Extra)">Tuition Fee(Extra)</option>';
+                $output += '<option value="Stationary">Stationary</option>';
+		$output += '<option value="Absence Fee">Absence Fee</option>';
+		$output += '<option value="Special Fee">Special Fee</option>';
+		$output += '<option value="Late/Non-Payment">Late/Non-Payment</option>';
+		$output += '<option value="Examination Fee">Examination Fee</option>';
+		$output += '<option value="Promotion/Annual Fee">Promotion/Annual Fee</option>';
+		$output += '<option value="Sports/Science Fee">Sports/Science Fee</option>';
+		$output += '<option value="S.T.C Fee">S.T.C Fee</option>';
+		$output += '<option value="Medical/Transport Fee">Medical/Transport Fee</option>';
 		$output += '</select>';
-		$output += '</div>';
-		$output += '<div class="form-group col-sm-4">';
-		$output += '<label>V.No</label>';
-		$output += '<input type="text" name="v_number_' + $i + '" style="color: white" class="form-control" placeholder="V.No" >';
-		$output += '</div>';
+		$output += '</div>';		
 		$output += '<div class="form-group col-sm-2">';
 		$output += '<label class="margin_left">Amount</label>';
 		$output += '<input type="text" name="item_amount_' + $i + '" style="color: white" class="form-control" placeholder="Amount" >';
@@ -92,65 +109,15 @@ var Events = function(){
 	
     }; 
     
-    // -------------------------------------------------------------------------
 
-    var fetch_course_category = function(){
-	$('#coursename_dropdown').on('change',
-		function(){
-		    $( '#subcategory_dropdown' ).html('<option>Select Course Category</option>');
-		    var data = $(this).val();
-		    var href = window.location.href;
-		    href = href.replace('courses/subject_add','');
-                    href = href.replace('admin/student_add','');
-                    href = href.replace('admin/new_courses/' + $('#id').val() ,'');
-		    var url = href + 'courses/fetch_courses/' + $(this).val();
-		    $.get(url, '',
-		    
-			function(data){
-			    var $output = Template.fetch_course_category( data['data'] );
-			    $( '#subcategory_dropdown' ).append($output);
-			}
-			    
-		    ,'json');
-		}
-	    );
-    };
-    
-    //--------------------------------------------------------------------------
-    
-    var fetch_category_subject = function(){
-	$('#subcategory_dropdown').on('change',
-		function(){
-		    $( '#subjectname_dropdown' ).html('<option>Select Category Subject</option>');
-		    var data = $(this).val();
-		    var href = window.location.href;
-		    href = href.replace('courses/subject_add','');
-                    href = href.replace('admin/student_add','');
-                    href = href.replace('admin/new_courses/' + $('#id').val() ,'');
-		    var url = href + 'courses/fetch_coursescategory/' + $(this).val();
-		    $.get(url, '',
-		    
-			function( data ){
-                            console.log(data);
-			    var $output = Template.fetch_category_subject( data['data'] );
-			    $( '#subjectname_dropdown' ).append($output);
-			}
-			    
-		    ,'json');
-		}
-	    );
-    };
-    
     // -------------------------------------------------------------------------
 
     var country_select = function(){
 	$('#country').on('change',function(){
 	    $( '#province' ).html('<option>Select Province</option>');
 	    var href = window.location.href;
-	        href = href.replace('admin/teacher_add','');
-	        href = href.replace('admin/student_add','');
-	        href = href.replace('reception/visitor_add','');
-	    var url = href + '/fetch_per_select/fetch_country/' + $(this).val();
+	        href = href.replace('visitorcontroller/add_visitor','');
+	    var url = href + '/visitorcontroller/fetch_country/' + $(this).val();
 	    $.get( url , '', 
 		function( data ){
 		    var $output = Template.fetch_states( data['data'] , data['role'] );
@@ -167,10 +134,8 @@ var Events = function(){
 	$('#province').on('change',function(){
 	    $( '#city' ).html('<option>Select City</option>');
 	    var href = window.location.href;
-	    var href = href.replace('admin/teacher_add','');
-	    var href = href.replace('admin/student_add','');	    
-	    var href = href.replace('reception/visitor_add','');
-	    var url = href + '/fetch_per_select/fetch_city/' + $(this).val();
+	     href = href.replace('visitorcontroller/add_visitor','');
+	    var url = href + '/visitorcontroller/fetch_city/' + $(this).val();
 	    $.get( url , '', 
 		function( data ){
 		    var $output = Template.fetch_cities( data['data'] );
