@@ -1,8 +1,5 @@
 <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.0
-    </div>
-    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2016-2017 <a href="">SS Technologies</a>.</strong> All rights reserved.
 </footer>
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
@@ -45,6 +42,8 @@
     <script src="<?=base_url();?>public/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- datepicker -->
     <script src="<?=base_url();?>public/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <script src="<?=base_url();?>public/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?=base_url();?>public/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?=base_url();?>public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <!-- Slimscroll -->

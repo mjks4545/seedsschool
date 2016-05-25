@@ -2,15 +2,7 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-          <div class="user-panel">
-            <div class="pull-left image">
-              <img src="../../seeds_school/public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-            </div>
-            <div class="pull-left info">
-              <p>Admin</p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-          </div>
+          
           <!-- search form -->
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
@@ -30,7 +22,7 @@
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="<?= site_url()?>visitorcontroller/add_visitor"><i class="fa fa-circle-o"></i> Add Visitor</a></li>
-                <li><a href="<?= site_url()?>/visitorcontroller/add_visitor"><i class="fa fa-circle-o"></i> View Visitors</a></li>
+                <li><a href="<?= site_url()?>/visitorcontroller/view_visitor"><i class="fa fa-circle-o"></i> View Visitors</a></li>
               </ul>
             </li>
           

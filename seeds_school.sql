@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2016 at 05:20 PM
+-- Generation Time: May 25, 2016 at 12:15 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -31364,19 +31364,19 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
 (31309, 'Zehri', 2723),
 (31310, 'Zhob', 2723),
 (31311, 'Ziarat', 2723),
-(31312, '''Abdul Hakim', 2728),
-(31313, 'Ahmadpur East', 2728),
-(31314, 'Ahmadpur Lumma', 2728),
-(31315, 'Ahmadpur Sial', 2728),
-(31316, 'Ahmedabad', 2728),
-(31317, 'Alipur', 2728),
-(31318, 'Alipur Chatha', 2728),
-(31319, 'Arifwala', 2728),
-(31320, 'Attock', 2728),
-(31321, 'Baddomalhi', 2728),
-(31322, 'Bagh', 2728),
-(31323, 'Bahawalnagar', 2728),
-(31324, 'Bahawalpur', 2728),
+(31312, 'Abbottabad', 2726),
+(31313, 'Akora Khattak', 2726),
+(31314, 'Mardan', 2726),
+(31315, 'Ayubia', 2726),
+(31316, 'karak', 2726),
+(31317, 'Bannu', 2726),
+(31318, 'Batkhela', 2726),
+(31319, 'Peshawar', 2726),
+(31320, 'Kohat', 2726),
+(31321, 'Nowshera', 2726),
+(31322, 'Swabi', 2726),
+(31323, 'Swat', 2726),
+(31324, 'Risalpur', 2728),
 (31325, 'Bai Pheru', 2728),
 (31326, 'Basirpur', 2728),
 (31327, 'Begowala', 2728),
@@ -32291,10 +32291,10 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
 (32236, 'Baguio', 2844),
 (32237, 'Bangued', 2844),
 (32238, 'Davao', 2845),
-(32239, 'Dagupan', 2848);
-INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
+(32239, 'Dagupan', 2848),
 (32240, 'Laoag', 2848),
-(32241, 'Manaoag', 2848),
+(32241, 'Manaoag', 2848);
+INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
 (32242, 'Mangaldan', 2848),
 (32243, 'San Fernando', 2848),
 (32244, 'Urdaneta', 2848),
@@ -34249,9 +34249,9 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
 (34193, 'Buciumeni', 2950),
 (34194, 'Bucsani', 2950),
 (34195, 'Butimanu', 2950),
-(34196, 'Candesti', 2950);
+(34196, 'Candesti', 2950),
+(34197, 'Ciocanesti', 2950);
 INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
-(34197, 'Ciocanesti', 2950),
 (34198, 'Cobia', 2950),
 (34199, 'Cojasca', 2950),
 (34200, 'Comisani', 2950),
@@ -36216,9 +36216,9 @@ INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
 (36159, 'Novozybkov', 2986),
 (36160, 'Pochjop', 2986),
 (36161, 'Pogar', 2986),
-(36162, 'Selco', 2986);
+(36162, 'Selco', 2986),
+(36163, 'Starodub', 2986);
 INSERT INTO `cities` (`id`, `city_name`, `state_id`) VALUES
-(36163, 'Starodub', 2986),
 (36164, 'Surazh', 2986),
 (36165, 'Suzjomka', 2986),
 (36166, 'Trubchjovsk', 2986),
@@ -50646,7 +50646,7 @@ INSERT INTO `states` (`id`, `state_name`, `country_id`) VALUES
 (2723, 'Baluchistan', 166),
 (2724, 'Federal Capital Area', 166),
 (2725, 'Federally administered Tribal ', 166),
-(2726, 'North-West Frontier', 166),
+(2726, 'Khyber PakhtunKhwa ', 166),
 (2727, 'Northern Areas', 166),
 (2728, 'Punjab', 166),
 (2729, 'Sind', 166),
@@ -52059,7 +52059,15 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`u_id`, `name`, `father_name`, `contact`, `fkcountry_id`, `fkstate_id`, `fkcity_id`, `created_at`, `updated_at`) VALUES
+(7, 'Saddam Hussain', 'Sardar Hussain', '034569874544', '166', '2726', '31314', '16-05-25', ''),
+(8, 'Alam Saeed', 'Shamshad', '03159594030', '1', '42', '5910', '16-05-25', '');
 
 -- --------------------------------------------------------
 
@@ -52072,10 +52080,19 @@ CREATE TABLE IF NOT EXISTS `visitors` (
   `fkuser_id` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `purpose` varchar(255) NOT NULL,
+  `note` varchar(1000) NOT NULL,
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`v_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `visitors`
+--
+
+INSERT INTO `visitors` (`v_id`, `fkuser_id`, `address`, `purpose`, `note`, `created_at`, `updated_at`) VALUES
+(7, '7', 'Sher Garh', 'Any', 'something', '16-05-25', ''),
+(8, '8', 'something', 'Check Results', 'something', '16-05-25', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
