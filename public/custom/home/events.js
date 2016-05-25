@@ -117,11 +117,11 @@ var Events = function(){
 	    $( '#province' ).html('<option>Select Province</option>');
 	    var href = window.location.href;
 	        href = href.replace('visitorcontroller/add_visitor','');
+	        href = href.replace('studentcontroller/add_student','');
 	    var url = href + '/visitorcontroller/fetch_country/' + $(this).val();
 	    $.get( url , '', 
 		function( data ){
 		    var $output = Template.fetch_states( data['data'] , data['role'] );
-		    //console.log($output);
 		    $( '#province' ).append($output);
 		}
 	    ,'json');
@@ -135,11 +135,11 @@ var Events = function(){
 	    $( '#city' ).html('<option>Select City</option>');
 	    var href = window.location.href;
 	     href = href.replace('visitorcontroller/add_visitor','');
+	     href = href.replace('studentcontroller/add_student','');
 	    var url = href + '/visitorcontroller/fetch_city/' + $(this).val();
 	    $.get( url , '', 
 		function( data ){
 		    var $output = Template.fetch_cities( data['data'] );
-		    console.log($output);
 		    $( '#city' ).append($output);
 		}
 	    ,'json');
@@ -238,7 +238,6 @@ var Events = function(){
 		    data += '<input type="text" name="price_'+counter+'" id="price_'+counter+'" class="form-control">';
 		    data += '</div>';
 		$('#sale_view_add').append(data);
-		console.log(counter);
 	    }
 	);
 
@@ -700,7 +699,6 @@ var Events = function(){
 	$('.delete-some-data-data').on('click',function(e){
 	    e.preventDefault();
 	    var url  = $(this).attr('href');
-	    console.log(url);
 	});
 	
     };

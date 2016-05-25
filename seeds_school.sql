@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2016 at 12:15 PM
+-- Generation Time: May 25, 2016 at 05:05 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -52045,6 +52045,57 @@ INSERT INTO `states` (`id`, `state_name`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `students`
+--
+
+CREATE TABLE IF NOT EXISTS `students` (
+  `s_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fkuser_id` varchar(255) NOT NULL,
+  `date_of_birth` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `facebook_id` varchar(255) NOT NULL,
+  `institute` varchar(255) NOT NULL,
+  `gender` varchar(32) NOT NULL,
+  `course` varchar(255) NOT NULL,
+  `created_at` varchar(255) NOT NULL,
+  `updated_at` varchar(255) NOT NULL,
+  PRIMARY KEY (`s_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`s_id`, `fkuser_id`, `date_of_birth`, `address`, `facebook_id`, `institute`, `gender`, `course`, `created_at`, `updated_at`) VALUES
+(7, '15', '2007-07-13', 'Sher Garh', 'numan_khan', 'SPS', 'Male', 'O Level', '16-05-25', '16-05-25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_subjects`
+--
+
+CREATE TABLE IF NOT EXISTS `student_subjects` (
+  `subject_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fkstudent_id` varchar(255) NOT NULL,
+  `subject_name` varchar(255) NOT NULL,
+  `subject_teacher` varchar(255) NOT NULL,
+  `starting_date` varchar(255) NOT NULL,
+  `created_at` varchar(255) NOT NULL,
+  `updated_at` varchar(255) NOT NULL,
+  PRIMARY KEY (`subject_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `student_subjects`
+--
+
+INSERT INTO `student_subjects` (`subject_id`, `fkstudent_id`, `subject_name`, `subject_teacher`, `starting_date`, `created_at`, `updated_at`) VALUES
+(7, '7', 'Advance English', 'Saddam', '2016-06-01', '16-05-25', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -52059,7 +52110,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
 
 --
 -- Dumping data for table `users`
@@ -52067,7 +52118,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`u_id`, `name`, `father_name`, `contact`, `fkcountry_id`, `fkstate_id`, `fkcity_id`, `created_at`, `updated_at`) VALUES
 (7, 'Saddam Hussain', 'Sardar Hussain', '034569874544', '166', '2726', '31314', '16-05-25', ''),
-(8, 'Alam Saeed', 'Shamshad', '03159594030', '1', '42', '5910', '16-05-25', '');
+(8, 'Alam Saeed', 'Shamshad', '03159594030', '1', '42', '5910', '16-05-25', ''),
+(15, 'Numan khan ', 'Mukammil Shah', '65478932', '166', '2726', '31314', '16-05-25', '16-05-25');
 
 -- --------------------------------------------------------
 

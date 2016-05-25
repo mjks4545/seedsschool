@@ -42,13 +42,13 @@
                     <div class="col-md-12">
                         <div class="form-group col-md-6">
                           <label for="exampleInputEmail1">Country</label>
-                          <select  name="country"  id="country" readonly disabled class="form-control" >
+                          <select  name="country"  id="country" readonly class="form-control" >
                              <option value="<?php echo $result->country_id ?>" selected="selected"><?= $result->country_name?><option>
                           </select>
                         </div>
                         <div class="form-group col-md-6">
                           <label for="exampleInputEmail1">Province</label>
-                          <select name="province"  id="province" disabled class="form-control" >
+                          <select name="province"  id="province" readonly class="form-control" >
                               <option value="<?php echo $result->state_id ?>" selected="selected"><?= $result->state_name?><option>
                           </select>
                         </div>
@@ -56,7 +56,7 @@
                     <div class="col-md-12">
                         <div class="form-group col-md-6">
                           <label for="exampleInputEmail1">City</label>
-                          <select  name="city"  id="city" disabled class="form-control" >
+                          <select  name="city"  id="city" readonly class="form-control" >
                                 <option value="<?php echo $result->id ?>"  selected="selected"><?= $result->city_name?><option>
 			     </select>
                         </div>
@@ -72,7 +72,7 @@
                    
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary col-sm-1">Submit</button>
+                  <button type="submit" class="btn btn-primary col-sm-1">Update</button>
                 </div>
              </form>
           </div><!-- /.box -->

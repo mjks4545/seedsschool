@@ -69,7 +69,7 @@ class VisitorController extends CI_Controller {
 
     //--------------------------------------------------------------------------
     
-    public function edit_visitor( $v_id = null ){
+    public function edit_visitor( $v_id = null, $u_id = null ){
         
         $this->db->select('*');
         $this->db->from('visitors');
@@ -78,6 +78,8 @@ class VisitorController extends CI_Controller {
         $this->db->join('states','states.id = users.fkstate_id');
         $this->db->join('cities','cities.id = users.fkcity_id');
         $this->db->where('visitors.v_id',$v_id);
+        $this->db->where('visitors.fkuser_id',$u_id);
+        
         $query            = $this->db->get();
         $result           = $query->result();
         $result['result'] = $result[0];
@@ -137,7 +139,7 @@ class VisitorController extends CI_Controller {
     public function update_visitor_after_post( $v_id = null , $u_id = null){
         
         if($v_id = null || $u_id = null){
-            
+            redirect(site_url() . 'visitorcontroller/edit_visitor');
         }else{
         $name           = $this->input->post('name');
         $father_name    = $this->input->post('father_name');
@@ -170,9 +172,6 @@ class VisitorController extends CI_Controller {
                 'updated_at'     => $updated_at
             ],['v_id'            => $v_id]
         );
-//        echo '<pre>';
-//        print_r($update_visitors_table);
-//        die();
     }
     redirect(site_url() . 'visitorcontroller/view_visitor');
   }
@@ -186,6 +185,8 @@ class VisitorController extends CI_Controller {
 
         redirect(site_url() . 'visitorcontroller/view_visitor');
     }
-
+    
+    //--------------------------------------------------------------------------
+   
 }
 

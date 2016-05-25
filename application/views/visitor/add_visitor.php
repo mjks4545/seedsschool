@@ -75,7 +75,7 @@
                    
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-primary col-sm-1">Submit</button>
+                  <button type="submit" class="btn btn-primary col-sm-1">Save</button>
                 </div>
              </form>
           </div><!-- /.box -->
