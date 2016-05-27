@@ -118,6 +118,7 @@ var Events = function(){
 	    var href = window.location.href;
 	        href = href.replace('visitorcontroller/add_visitor','');
 	        href = href.replace('studentcontroller/add_student','');
+	        href = href.replace('teachercontroller/add_teacher','');
 	    var url = href + '/visitorcontroller/fetch_country/' + $(this).val();
 	    $.get( url , '', 
 		function( data ){
@@ -136,6 +137,7 @@ var Events = function(){
 	    var href = window.location.href;
 	     href = href.replace('visitorcontroller/add_visitor','');
 	     href = href.replace('studentcontroller/add_student','');
+	     href = href.replace('teachercontroller/add_teacher','');
 	    var url = href + '/visitorcontroller/fetch_city/' + $(this).val();
 	    $.get( url , '', 
 		function( data ){

@@ -43,13 +43,13 @@
                         <div class="form-group col-md-6">
                           <label for="exampleInputEmail1">Country</label>
                           <select  name="country"  id="country" readonly class="form-control" >
-                             <option value="<?php echo $result->country_id ?>" selected="selected"><?= $result->country_name?><option>
+                              <option value="<?php echo $result->country_id ?>" selected="selected"><?= $result->country_name?></option>
                           </select>
                         </div>
                         <div class="form-group col-md-6">
                           <label for="exampleInputEmail1">Province</label>
                           <select name="province"  id="province" readonly class="form-control" >
-                              <option value="<?php echo $result->state_id ?>" selected="selected"><?= $result->state_name?><option>
+                              <option value="<?php echo $result->state_id ?>" selected="selected"><?= $result->state_name?></option>
                           </select>
                         </div>
                     </div> 
@@ -57,7 +57,7 @@
                         <div class="form-group col-md-6">
                           <label for="exampleInputEmail1">City</label>
                           <select  name="city"  id="city" readonly class="form-control" >
-                                <option value="<?php echo $result->id ?>"  selected="selected"><?= $result->city_name?><option>
+                              <option value="<?php echo $result->id ?>"  selected="selected"><?= $result->city_name?></option>
 			     </select>
                         </div>
                         <div class="form-group col-md-6">

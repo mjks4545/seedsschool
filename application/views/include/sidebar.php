@@ -18,6 +18,16 @@
             <li class="header">SEEDS SCHOOL OF EXCELLENCE</li>
             <li>
               <a href="#">
+                <i class="fa fa-users"></i> <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="<?= site_url()?>directorcontroller/director_index"><i class="fa fa-circle-o"></i> Director</a></li>
+                <li><a href="<?= site_url()?>/receptionistcontroller/reception_index"><i class="fa fa-circle-o"></i> Receptionist</a></li>
+                <li><a href="<?= site_url()?>/gatekeepercontroller/gatekeeper_index"><i class="fa  fa-male"></i> Gate Keeper</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">
                 <i class="fa fa-user"></i> <span>Visitors</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -32,6 +42,15 @@
               <ul class="treeview-menu">
                 <li class="active"><a href="<?= site_url()?>studentcontroller/add_student"><i class="fa fa-circle-o"></i> Add Students</a></li>
                 <li><a href="<?= site_url()?>studentcontroller/view_student"><i class="fa fa-circle-o"></i> View Students</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fa fa-user"></i> <span>Teachers</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="<?= site_url()?>teachercontroller/add_teacher"><i class="fa fa-circle-o"></i> Add Teachers</a></li>
+                <li><a href="<?= site_url()?>teachercontroller/view_teacher"><i class="fa fa-circle-o"></i> View Teachers</a></li>
               </ul>
             </li>
           

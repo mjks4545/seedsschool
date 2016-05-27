@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2016 at 05:05 PM
+-- Generation Time: May 27, 2016 at 09:35 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -52060,14 +52060,14 @@ CREATE TABLE IF NOT EXISTS `students` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`s_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `students`
 --
 
 INSERT INTO `students` (`s_id`, `fkuser_id`, `date_of_birth`, `address`, `facebook_id`, `institute`, `gender`, `course`, `created_at`, `updated_at`) VALUES
-(7, '15', '2007-07-13', 'Sher Garh', 'numan_khan', 'SPS', 'Male', 'O Level', '16-05-25', '16-05-25');
+(7, '15', '2007-07-13', 'Sher Garh', 'numan_khan', 'SPS', 'Male', 'O Level', '16-05-25', '16-05-26');
 
 -- --------------------------------------------------------
 
@@ -52084,7 +52084,7 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `student_subjects`
@@ -52092,6 +52092,33 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
 
 INSERT INTO `student_subjects` (`subject_id`, `fkstudent_id`, `subject_name`, `subject_teacher`, `starting_date`, `created_at`, `updated_at`) VALUES
 (7, '7', 'Advance English', 'Saddam', '2016-06-01', '16-05-25', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teachers`
+--
+
+CREATE TABLE IF NOT EXISTS `teachers` (
+  `t_id` int(11) NOT NULL AUTO_INCREMENT,
+  `fkuser_id` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `cnic` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `percentage` varchar(255) NOT NULL,
+  `created_at` varchar(255) NOT NULL,
+  `updated_at` varchar(255) NOT NULL,
+  PRIMARY KEY (`t_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`t_id`, `fkuser_id`, `subject`, `cnic`, `address`, `percentage`, `created_at`, `updated_at`) VALUES
+(1, '16', 'oop23', '1234546789723', 'town23', '7023', '16-05-26', '16-05-26'),
+(5, '20', 'Object ', '', '', '', '16-05-26', ''),
+(6, '21', 'Object Oriented', '012365478', 'Hari Chand', '70', '16-05-26', '');
 
 -- --------------------------------------------------------
 
@@ -52110,7 +52137,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`u_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `users`
@@ -52119,7 +52146,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`u_id`, `name`, `father_name`, `contact`, `fkcountry_id`, `fkstate_id`, `fkcity_id`, `created_at`, `updated_at`) VALUES
 (7, 'Saddam Hussain', 'Sardar Hussain', '034569874544', '166', '2726', '31314', '16-05-25', ''),
 (8, 'Alam Saeed', 'Shamshad', '03159594030', '1', '42', '5910', '16-05-25', ''),
-(15, 'Numan khan ', 'Mukammil Shah', '65478932', '166', '2726', '31314', '16-05-25', '16-05-25');
+(15, 'numan khan ', 'Mukammil Shah', '65478932', '166', '2726', '31314', '16-05-25', '16-05-26'),
+(16, 'junaid ', 'khan', '12345548723', '166', '2726', '31319', '16-05-26', '16-05-26'),
+(20, 'Hazrat Bilal', 'Zahir Shah', '', '#', '#', '#', '16-05-26', ''),
+(21, 'Hazrat Bilal', 'Zahir Shah', '03365511147', '166', '2726', '31314', '16-05-26', '');
 
 -- --------------------------------------------------------
 

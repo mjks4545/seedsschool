@@ -152,7 +152,7 @@ class VisitorController extends CI_Controller {
         $note           = $this->input->post('note');
         $updated_at     = mdate("%y-%m-%d");
         
-        $update_users_table = $this->db->update('users',
+         $update_users_table = $this->db->update('users',
             [
                 'name'           => $name,
                 'father_name'    => $father_name,
