@@ -22,6 +22,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Add New Teacher</h3>
+                  <a href="<?= site_url()?>teachercontroller/view_teacher" type="button" class="btn btn-primary glyphicon glyphicon pull-right"> Back</a>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="<?= site_url()?>teachercontroller/create_teacher_after_post" method="post">

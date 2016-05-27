@@ -44,7 +44,7 @@
                         <div class="icon">
                           <i class="fa ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                          <a href="<?= site_url()?>teachercontroller/view_teacher" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
                       </div>
@@ -59,7 +59,7 @@
                         <div class="icon">
                           <i class="fa ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">
+                          <a href="<?= site_url()?>visitorcontroller/view_visitor" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
                       </div>

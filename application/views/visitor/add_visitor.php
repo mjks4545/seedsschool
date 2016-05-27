@@ -15,6 +15,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Add New Visitor</h3>
+                  <a href="<?= site_url()?>visitorcontroller/view_visitor" type="button" class="btn btn-primary glyphicon glyphicon pull-right"> Back</a>
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="<?= site_url()?>visitorcontroller/create_visitor_after_post" method="post">

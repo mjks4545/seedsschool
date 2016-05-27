@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2016 at 09:35 AM
+-- Generation Time: May 27, 2016 at 05:01 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -47906,6 +47906,29 @@ INSERT INTO `countries` (`id`, `sortname`, `country_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE IF NOT EXISTS `expenses` (
+  `expense_id` int(11) NOT NULL AUTO_INCREMENT,
+  `expense_name` varchar(255) NOT NULL,
+  `expense_amount` varchar(255) NOT NULL,
+  `created_at` varchar(255) NOT NULL,
+  `updated_at` varchar(255) NOT NULL,
+  PRIMARY KEY (`expense_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`expense_id`, `expense_name`, `expense_amount`, `created_at`, `updated_at`) VALUES
+(1, 'any', '50', '16-05-27', ''),
+(2, 'any number', '100', '16-05-27', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `states`
 --
 
@@ -52144,8 +52167,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`u_id`, `name`, `father_name`, `contact`, `fkcountry_id`, `fkstate_id`, `fkcity_id`, `created_at`, `updated_at`) VALUES
-(7, 'Saddam Hussain', 'Sardar Hussain', '034569874544', '166', '2726', '31314', '16-05-25', ''),
-(8, 'Alam Saeed', 'Shamshad', '03159594030', '1', '42', '5910', '16-05-25', ''),
+(7, 'Saddam Hussain ', 'Sardar Hussain', '034569874544', '166', '2726', '31314', '16-05-25', '16-05-27'),
 (15, 'numan khan ', 'Mukammil Shah', '65478932', '166', '2726', '31314', '16-05-25', '16-05-26'),
 (16, 'junaid ', 'khan', '12345548723', '166', '2726', '31319', '16-05-26', '16-05-26'),
 (20, 'Hazrat Bilal', 'Zahir Shah', '', '#', '#', '#', '16-05-26', ''),
@@ -52173,8 +52195,7 @@ CREATE TABLE IF NOT EXISTS `visitors` (
 --
 
 INSERT INTO `visitors` (`v_id`, `fkuser_id`, `address`, `purpose`, `note`, `created_at`, `updated_at`) VALUES
-(7, '7', 'Sher Garh', 'Any', 'something', '16-05-25', ''),
-(8, '8', 'something', 'Check Results', 'something', '16-05-25', '');
+(7, '7', 'Sher Garh', 'Any', 'something', '16-05-25', '16-05-27');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

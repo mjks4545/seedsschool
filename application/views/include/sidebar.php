@@ -27,31 +27,25 @@
               </ul>
             </li>
             <li>
-              <a href="#">
-                <i class="fa fa-user"></i> <span>Visitors</span> <i class="fa fa-angle-left pull-right"></i>
+                <a href="">
+                  <i class="fa fa-user"></i> <span>Expanses</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="<?= site_url()?>visitorcontroller/add_visitor"><i class="fa fa-circle-o"></i> Add Visitor</a></li>
-                <li><a href="<?= site_url()?>/visitorcontroller/view_visitor"><i class="fa fa-circle-o"></i> View Visitors</a></li>
+                <li class="active"><a href="<?=  site_url()?>expensecontroller/add_expenses"><i class="fa fa-circle-o"></i> Add Expenses</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> View Expenses</a></li>
               </ul>
             </li>
             <li>
               <a href="#">
-                <i class="fa fa-user"></i> <span>Students</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-user"></i> <span>Attendance</span>
               </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="<?= site_url()?>studentcontroller/add_student"><i class="fa fa-circle-o"></i> Add Students</a></li>
-                <li><a href="<?= site_url()?>studentcontroller/view_student"><i class="fa fa-circle-o"></i> View Students</a></li>
-              </ul>
+              
             </li>
             <li>
               <a href="#">
-                <i class="fa fa-user"></i> <span>Teachers</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-user"></i> <span>Payments</span> 
               </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="<?= site_url()?>teachercontroller/add_teacher"><i class="fa fa-circle-o"></i> Add Teachers</a></li>
-                <li><a href="<?= site_url()?>teachercontroller/view_teacher"><i class="fa fa-circle-o"></i> View Teachers</a></li>
-              </ul>
+              
             </li>
           
           </ul>

@@ -138,7 +138,7 @@ class VisitorController extends CI_Controller {
     
     public function update_visitor_after_post( $v_id = null , $u_id = null){
         
-        if($v_id = null || $u_id = null){
+        if($v_id == null || $u_id == null){
             redirect(site_url() . 'visitorcontroller/edit_visitor');
         }else{
         $name           = $this->input->post('name');
@@ -151,7 +151,7 @@ class VisitorController extends CI_Controller {
         $address        = $this->input->post('address');
         $note           = $this->input->post('note');
         $updated_at     = mdate("%y-%m-%d");
-        
+       
          $update_users_table = $this->db->update('users',
             [
                 'name'           => $name,

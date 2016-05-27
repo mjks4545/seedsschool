@@ -22,6 +22,8 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Add New Student</h3>
+                  <a href="<?= site_url()?>studentcontroller/view_student" type="button" class="btn btn-primary glyphicon glyphicon pull-right"> Back</a>
+
                 </div><!-- /.box-header -->
                 <!-- form start -->
                 <form role="form" action="<?= site_url()?>studentcontroller/create_student_after_post" method="post">
