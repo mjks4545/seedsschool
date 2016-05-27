@@ -138,21 +138,22 @@ class VisitorController extends CI_Controller {
     
     public function update_visitor_after_post( $v_id = null , $u_id = null){
         
-        if($v_id = null || $u_id = null){
+        if( empty( $v_id ) || empty( $u_id ) ){
             redirect(site_url() . 'visitorcontroller/edit_visitor');
         }else{
-        $name           = $this->input->post('name');
-        $father_name    = $this->input->post('father_name');
-        $purpose        = $this->input->post('purpose');
-        $contact        = $this->input->post('contact');
-        $country        = $this->input->post('country');
-        $province       = $this->input->post('province');
-        $city           = $this->input->post('city');
-        $address        = $this->input->post('address');
-        $note           = $this->input->post('note');
-        $updated_at     = mdate("%y-%m-%d");
-        
-         $update_users_table = $this->db->update('users',
+
+	    $name           = $this->input->post('name');
+	    $father_name    = $this->input->post('father_name');
+	    $purpose        = $this->input->post('purpose');
+	    $contact        = $this->input->post('contact');
+	    $country        = $this->input->post('country');
+	    $province       = $this->input->post('province');
+	    $city           = $this->input->post('city');
+	    $address        = $this->input->post('address');
+	    $note           = $this->input->post('note');
+	    $updated_at     = mdate("%y-%m-%d");
+  
+	$update_users_table = $this->db->update('users',
             [
                 'name'           => $name,
                 'father_name'    => $father_name,
