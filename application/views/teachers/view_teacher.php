@@ -1,3 +1,8 @@
+<style>
+    td, th{
+	text-align: center;
+    }
+</style> 
  <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -15,7 +20,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Teachers Records</h3>
-                  <a href="<?= site_url()?>teachercontroller/add_teacher" type="button" class="btn btn-primary glyphicon glyphicon-plus pull-right"> Add New Record</a>
+                  <a href="<?= site_url()?>teachercontroller/add_teacher" type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;Teacher</a>
 
                 </div><!-- /.box-header -->
                 <!-- form start -->
@@ -49,8 +54,8 @@
                         <td><?= $array->cnic?></td>
                         <td><?= $array->percentage?></td>
                         <td>
-                            <a href="<?= site_url()?>teachercontroller/edit_teacher/<?= $array->t_id?>/<?= $array->u_id?>" type="button" class="btn btn-primary glyphicon glyphicon-edit margin"> Edit</a>
-                            <a href="<?= site_url()?>teachercontroller/delete_teacher/<?= $array->t_id?>/<?= $array->u_id?>" type="button" class="btn btn-primary glyphicon glyphicon-trash margin"> Delete</a>
+                            <a href="<?= site_url()?>teachercontroller/edit_teacher/<?= $array->t_id?>/<?= $array->u_id?>" type="button" class="btn btn-warning"> <i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;&nbsp;Edit</a>&nbsp;&nbsp;&nbsp;
+                            <a href="<?= site_url()?>teachercontroller/delete_teacher/<?= $array->t_id?>/<?= $array->u_id?>" type="button" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i>&nbsp;&nbsp;&nbsp;Delete</a>
                         </td>
                       </tr>
                       <?php }?>
@@ -59,7 +64,5 @@
               </div><!-- /.box -->
               </div><!-- /.box -->
        </div>
-     </div>
    </section>
-</div>
-              
+ </div>

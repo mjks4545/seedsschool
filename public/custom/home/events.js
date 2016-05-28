@@ -25,18 +25,27 @@ var Events = function(){
 	    e.preventDefault();
 	    var $i = $('#number-d').val();
 	    $i++;
-	    var $output  = '<div class="row ">';
-                $output += '<div class="form-group col-sm-5">';
-                $output += '<label >Description</label>';
-		$output += '<input type="text" name="item_name_d_' + $i + '" style="color: white" class="form-control" placeholder="Item Description" >';
+	    
+	    var $output  = '<div class="row">';
+		$output += '<div class="form-group col-md-3">';
+		$output += '<label for="exampleInputEmail1">Paid To</label>';
+		$output += '<input type="text" name="expense_name_' + $i + '" class="form-control" placeholder="Person Name">';
 		$output += '</div>';
-		$output += '<div class="form-group col-sm-2">';
+		$output += '<div class="form-group col-md-3">';
+		$output += '<label for="exampleInputEmail1">Reason</label>';
+		$output += '<input type="text" name="expense_reason_' + $i + '" class="form-control" id="exampleInputEmail1" placeholder="Reason">';
 		$output += '</div>';
-		$output += '<div class="form-group col-sm-2">';
-		$output += '<label class="margin_left">Amount</label>';
-		$output += '<input type="text" name="item_amount_d_' + $i + '" style="color: white" class="form-control" placeholder="Amount" >';
+		$output += '<div class="form-group col-md-3">';
+		$output += '<label for="exampleInputEmail1">Amount</label>';
+		$output += '<input type="text" name="expense_amount_' + $i + '" class="form-control" id="exampleInputEmail1" placeholder="Expense Amount">';
+		$output += '</div>';
+		$output += '<div class="col-md-3" style="margin-top:30px;">';
+		$output += '<a class="add-another-d-d" href="#">';
+		$output += '<i class="glyphicon glyphicon-remove-sign glyphicon-white"></i>';
+		$output += '</a>';
 		$output += '</div>';
 		$output += '</div>';
+	   
 	    $('#add-another-one-d').append($output);	
 	    $('#number-d').val($i);
 	});

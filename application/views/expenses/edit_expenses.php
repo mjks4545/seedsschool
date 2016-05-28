@@ -25,29 +25,19 @@
                 <form role="form" action="<?= site_url()?>expensecontroller/create_expense_after_post" method="post">
                   <div class="box-body">
                         <div class="col-md-12">
-			    <div class="row">
-				<div class="form-group col-md-3">
-				  <label for="exampleInputEmail1">Paid To</label>
-				  <input type="text" name="expense_name_1" class="form-control" id="exampleInputEmail1" placeholder="Person Name">
-				  <input type="hidden" name="number-d" class="form-control" id="number-d" placeholder="Person Name" value="1">
-				</div>
-				<div class="form-group col-md-3">
-				  <label for="exampleInputEmail1">Reason</label>
-				  <input type="text" name="expense_reason_1" class="form-control" id="exampleInputEmail1" placeholder="Reason">
-				</div>
-				<div class="form-group col-md-3">
-				  <label for="exampleInputEmail1">Amount</label>
-				  <input type="text" name="expense_amount_1" class="form-control" id="exampleInputEmail1" placeholder="Expense Amount">
-				</div>
-				<div class="col-md-3" style="margin-top:30px;">
-				    <a id="add-another-d" href="#">
-				      <span class="glyphicon glyphicon-plus"></span>
-				    </a>
-				</div>
-			    </div>
-			</div>    
-                        <div id="add-another-one-d" class="col-md-12">
-                            
+                            <div class="form-group col-md-3">
+                              <label for="exampleInputEmail1">Paid To</label>
+                              <input type="text" name="expense_name" class="form-control" id="exampleInputEmail1" placeholder="Person Name" value="<?= $expense_name ?>" />
+                              <input type="hidden" name="expense_id" class="form-control" id="exampleInputEmail1" placeholder="Person Name"value="<?= $expense_id ?>" />
+                            </div>
+                            <div class="form-group col-md-3">
+                              <label for="exampleInputEmail1">Reason</label>
+                              <input type="text" name="expense_reason" class="form-control" id="exampleInputEmail1" placeholder="Reason" value="<?= $expenses_reason ?>" />
+                            </div>
+                            <div class="form-group col-md-3">
+                              <label for="exampleInputEmail1">Amount</label>
+                              <input type="text" name="expense_amount" class="form-control" id="exampleInputEmail1" placeholder="Expense Amount" value="<?= $expense_amount ?>" />
+                            </div>
                         </div> 
                   </div><!-- /.box-body -->
                   <div class="box-footer">

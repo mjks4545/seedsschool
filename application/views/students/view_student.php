@@ -1,4 +1,9 @@
- <div class="content-wrapper">
+<style>
+    td, th{
+	text-align: center;
+    }
+</style> 
+<div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
@@ -15,7 +20,7 @@
               <div class="box box-primary">
                 <div class="box-header with-border">
                   <h3 class="box-title">Students Records</h3>
-                  <a href="<?= site_url()?>studentcontroller/add_student" type="button" class="btn btn-primary glyphicon glyphicon-plus pull-right"> Add New Record</a>
+                  <a href="<?= site_url()?>studentcontroller/add_student" type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;Student</a>
 
                 </div><!-- /.box-header -->
                 <!-- form start -->
@@ -47,8 +52,8 @@
                         <td><?= $array->course?></td>
                         <td><?= $array->gender?></td>
                         <td>
-                            <a href="<?= site_url()?>studentcontroller/edit_student/<?= $array->s_id?>/<?= $array->u_id?>" type="button" class="btn btn-primary glyphicon glyphicon-edit margin"> Edit</a>
-                            <a href="<?= site_url()?>studentcontroller/delete_student/<?= $array->s_id?>/<?= $array->u_id?>/<?= $array->subject_id?>" type="button" class="btn btn-primary glyphicon glyphicon-trash margin"> Delete</a>
+                            <a href="<?= site_url()?>studentcontroller/edit_student/<?= $array->s_id?>/<?= $array->u_id?>" type="button" class="btn btn-warning"> <i class="glyphicon glyphicon-edit"></i>&nbsp;&nbsp;&nbsp;Edit</a>&nbsp;&nbsp;&nbsp;
+                            <a href="<?= site_url()?>studentcontroller/delete_student/<?= $array->s_id?>/<?= $array->u_id?>/<?= $array->subject_id?>" type="button" class="btn btn-danger"> <i class="glyphicon glyphicon-trash"></i>&nbsp;&nbsp;&nbsp;Delete</a>
                         </td>
                       </tr>
                       <?php }?>

@@ -32,7 +32,7 @@
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="<?=  site_url()?>expensecontroller/add_expenses"><i class="fa fa-circle-o"></i> Add Expenses</a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> View Expenses</a></li>
+                <li><a href="<?=  site_url()?>expensecontroller/view_expenses"><i class="fa fa-circle-o"></i> View Expenses</a></li>
               </ul>
             </li>
             <li>
