@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2016 at 05:01 PM
+-- Generation Time: May 30, 2016 at 06:35 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -47912,19 +47912,21 @@ INSERT INTO `countries` (`id`, `sortname`, `country_name`) VALUES
 CREATE TABLE IF NOT EXISTS `expenses` (
   `expense_id` int(11) NOT NULL AUTO_INCREMENT,
   `expense_name` varchar(255) NOT NULL,
+  `expenses_reason` varchar(500) NOT NULL,
   `expense_amount` varchar(255) NOT NULL,
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`expense_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `expenses`
 --
 
-INSERT INTO `expenses` (`expense_id`, `expense_name`, `expense_amount`, `created_at`, `updated_at`) VALUES
-(1, 'any', '50', '16-05-27', ''),
-(2, 'any number', '100', '16-05-27', '');
+INSERT INTO `expenses` (`expense_id`, `expense_name`, `expenses_reason`, `expense_amount`, `created_at`, `updated_at`) VALUES
+(5, 'asd', 'asdas', 'asdas', '16-05-28', ''),
+(6, 'asd1', 'asdas1', 'asdas1', '16-05-28', ''),
+(7, 'asd', 'asdas', 'asdas', '16-05-28', '');
 
 -- --------------------------------------------------------
 
@@ -52188,7 +52190,7 @@ CREATE TABLE IF NOT EXISTS `visitors` (
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL,
   PRIMARY KEY (`v_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `visitors`

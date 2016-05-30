@@ -41,6 +41,7 @@ var Events = function(){
 		$output += '</div>';
 		$output += '<div class="col-md-3" style="margin-top:30px;">';
 		$output += '<a class="add-another-d-d" href="#">';
+		$output += '<i class="glyphicon glyphicon-white"></i>';
 		$output += '<i class="glyphicon glyphicon-remove-sign glyphicon-white"></i>';
 		$output += '</a>';
 		$output += '</div>';

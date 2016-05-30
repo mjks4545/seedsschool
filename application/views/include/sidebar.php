@@ -32,11 +32,15 @@
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="<?=  site_url()?>expensecontroller/add_expenses"><i class="fa fa-circle-o"></i> Add Expenses</a></li>
+<<<<<<< HEAD
+                <li><a href="<?= site_url()?>expensecontroller/view_expenses"><i class="fa fa-circle-o"></i> View Expenses</a></li>
+=======
                 <li><a href="<?=  site_url()?>expensecontroller/view_expenses"><i class="fa fa-circle-o"></i> View Expenses</a></li>
+>>>>>>> origin/master
               </ul>
             </li>
             <li>
-              <a href="#">
+                <a href="<?= site_url()?>attendancecontroller/find_teacher">
                 <i class="fa fa-user"></i> <span>Attendance</span>
               </a>
               
