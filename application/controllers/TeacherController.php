@@ -3,12 +3,28 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class TeacherController extends CI_Controller {
-    
+ function __construct()
+        {
+        parent::__construct();
+        $this->load->model('insert_model');
+     if(!$this->session->userdata('email')){
+       redirect('home');
+      }
+        }
+    function index()
+    {
+        $id = $this->uri->segment(3);
+        $data['teacher'] = $this->insert_model->getTeacherData($id);
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('teachers/teacherView',$data);
+        $this->load->view('include/footer');
+    }
+
     public function add_teacher(){
         
-        $query            = $this->db->get('countries');
+        $query = $this->db->get('countries');
         $result['result'] = $query->result();
-
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('teachers/add_teacher',$result);

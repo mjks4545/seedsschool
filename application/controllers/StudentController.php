@@ -1,8 +1,27 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+  
+function __construct()
+        {
+        parent::__construct();
+        $this->load->model('insert_model');
+     if(!$this->session->userdata('email')){
+       redirect('home');
+      }
+        }
 
 class StudentController extends CI_Controller {
     
+    function index($id)
+    {
+        $id = $this->uri->segment(3);
+        $this->load->model('insert_model');
+        $data['teacher'] = $this->insert_model->getTeacherData($id);
+        $this->load->view('include/header');
+        $this->load->view('students/studentView',$data);
+        $this->load->view('include/footer'); 
+    }
+
     public function add_student(){
         
         $query            = $this->db->get('countries');
