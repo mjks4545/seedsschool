@@ -23,8 +23,8 @@ class Classcontroller extends CI_Controller {
 	    $this->load->view('include/sidebar');
 	    $this->load->view('classes/class_add',$result);
 	    $this->load->view('include/footer');
-	    
         }
+
 	
     //--------------------------------------------------------------------------
 	
@@ -67,24 +67,56 @@ class Classcontroller extends CI_Controller {
     //--------------------------------------------------------------------------
 	
 	function view_class(){
-	    
-	    $this->db->select('*');
-	    $this->db->from('class');
-	    $this->db->join('subject','subject.class_id = class.class_id');
-	    $this->db->join('time','time.class_id = class.class_id');
-	    $this->db->join('users','users.u_id = class.fk_teacher_id');
-	    $query          = $this->db->get();
-	    $result         = $query->result();
-	    $result['data'] = $result[0];
-	    
-	    //$this->load->view('include/header');
-	    //$this->load->view('include/sidebar');
+	  
+	  	$sql = $this->db->query("SELECT DISTINCT ClassNo FROM students ORDER BY s_id ASC");
+	  	//echo '<pre>';print_r($sql);die;
+	  	$students = $this->db->query("SELECT name , s_id FROM students s INNER JOIN users u ON s.fkuser_id = u.u_id");
+	    $result = array('classes' => $sql , 'students' => $students);
+	   // echo '<pre>';print_r($result);die;
+	    $this->load->view('include/header');
+	    $this->load->view('include/sidebar');
 	    $this->load->view('classes/view_class',$result);
-	    //$this->load->view('include/footer');
+	    $this->load->view('include/footer');
 	    
         }
+
+        public function get_students()
+        {
+        	 $date = date("Y/m/d");
+       $this->load->model('insert_model');
+      	$student['view'] = $this->insert_model->getAtt($date);
+        	//echo '<pre>';print_r($student);die;
+        	//echo '<pre>';print_r($data);die;
+        	$Id = $this->input->post("Id");
+        	//echo $Id;die;
+        	
+        	//$sql2 = $this->db->query("SELECT * FROM std_att WHERE std_att.Att_Date = '2016/06/01' ");
+/*      		echo '<pre>';
+        	print_r($sql2);
+        	echo '</pre>';die();*/
+        	$sql = $this->db->query("SELECT * FROM students INNER JOIN users ON students.fkuser_id = users.u_id 
+						WHERE students.ClassNo = ".$Id);
+        	$data = array('Present' => $sql, 'students' => $student['view']);
+        	echo $this->load->view("students/show_student_classes",$data , TRUE);
+        }
+
+
+
     
     //--------------------------------------------------------------------------
-   
+   /*  public function get_students()
+        {
+        	$this->load->model('insert_model');
+        	$student['view'] = $this->insert_model->getDailyAtt();
+        	//echo '<pre>';print_r($data);die;
+        	$Id = $this->input->post("Id");
+        	//echo $Id;die;
+        	$sql = $this->db->query("SELECT * FROM students INNER JOIN users ON students.fkuser_id = users.u_id 
+					   INNER JOIN std_att ON students.s_id = std_att.Std_Id WHERE Att_Date = '".date('Y/m/d')."' AND std_att.ClassNo = ".$Id);
+        	$sql1 = $this->db->query("SELECT * FROM students INNER JOIN users ON students.fkuser_id = users.u_id LEFT JOIN std_att ON students.s_id = std_att.Std_Id WHERE Attendance IS NULL AND students.ClassNo = ".$Id);
+        	$student = array('Present' => $sql , 'Absent' => $sql1);
+        	
+        	echo $this->load->view("students/show_student_classes",$student , TRUE);
+        }*/
 }
 

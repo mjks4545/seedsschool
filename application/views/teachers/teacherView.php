@@ -49,7 +49,7 @@
                         <div class="icon">
                           <i class="glyphicon glyphicon-duplicate"></i>
                         </div>
-                        <a href="<?= site_url()?>studentcontroller/view_student" class="small-box-footer">
+                        <a href="<?= site_url()?>classcontroller/view_class" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
                       </div>

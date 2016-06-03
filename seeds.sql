@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2016 at 05:54 AM
+-- Generation Time: Jun 03, 2016 at 12:00 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -47650,7 +47650,15 @@ CREATE TABLE IF NOT EXISTS `class` (
   `date_added` varchar(500) NOT NULL,
   `date_updated` varchar(500) NOT NULL,
   `description` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`class_id`, `fk_time_id`, `fk_teacher_id`, `date_added`, `date_updated`, `description`) VALUES
+(1, 1, 1, '22-2-2015', '22-2-2015', 'asdasdasdasdasdasdasdasd'),
+(2, 1, 1, '22-2-2015', '22-2-2015', 'asdasdasdasdasdasdasdasd');
 
 -- --------------------------------------------------------
 
@@ -47961,16 +47969,16 @@ CREATE TABLE IF NOT EXISTS `expenses` (
   `expense_amount` varchar(255) NOT NULL,
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `expenses`
 --
 
 INSERT INTO `expenses` (`expense_id`, `expense_name`, `expenses_reason`, `expense_amount`, `created_at`, `updated_at`) VALUES
-(5, 'asd', 'asdas', 'asdas', '16-05-28', ''),
 (6, 'asd1', 'asdas1', 'asdas1', '16-05-28', ''),
-(7, 'asd', 'asdas', 'asdas', '16-05-28', '');
+(7, 'asd', 'asdas', 'asdas', '16-05-28', ''),
+(8, '33', '123123', '123123', '16-05-31', '');
 
 -- --------------------------------------------------------
 
@@ -52166,6 +52174,31 @@ INSERT INTO `states` (`id`, `state_name`, `country_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `std_att`
+--
+
+CREATE TABLE IF NOT EXISTS `std_att` (
+`Id` int(11) NOT NULL,
+  `Std_Id` int(11) NOT NULL,
+  `Att_Date` varchar(20) NOT NULL,
+  `Attendance` varchar(1) DEFAULT NULL,
+  `ClassNo` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `std_att`
+--
+
+INSERT INTO `std_att` (`Id`, `Std_Id`, `Att_Date`, `Attendance`, `ClassNo`) VALUES
+(33, 7, '2016-06-02', 'l', 1),
+(35, 13, '2016-06-03', 'p', 3),
+(36, 7, '2016-06-02', 'p', 3),
+(37, 8, '2016-06-02', 'a', 1),
+(38, 9, '2016-06-02', 'l', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -52179,15 +52212,20 @@ CREATE TABLE IF NOT EXISTS `students` (
   `gender` varchar(32) NOT NULL,
   `course` varchar(255) NOT NULL,
   `created_at` varchar(255) NOT NULL,
-  `updated_at` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  `updated_at` varchar(255) NOT NULL,
+  `ClassNo` varchar(10) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`s_id`, `fkuser_id`, `date_of_birth`, `address`, `facebook_id`, `institute`, `gender`, `course`, `created_at`, `updated_at`) VALUES
-(7, '15', '2007-07-13', 'Sher Garh', 'numan_khan', 'SPS', 'Male', 'O Level', '16-05-25', '16-05-26');
+INSERT INTO `students` (`s_id`, `fkuser_id`, `date_of_birth`, `address`, `facebook_id`, `institute`, `gender`, `course`, `created_at`, `updated_at`, `ClassNo`) VALUES
+(7, '15', '2007-07-13', 'Sher Garh', 'numan_khan', 'SPS', 'Male', 'O Level', '16-05-25', '16-05-26', '3'),
+(8, '22', '2016-06-02', 'sdfsdfsdfsdf', 'sdfs@sdf.sdf', 'sdfsdfsdfsdf', 'Male', 'A Level', '16-05-31', '', '1'),
+(9, '24', '2016-06-03', 'asdasdasd', 'asdasdasdasd', 'asdasdasd', 'Male', 'O Level', '16-06-01', '', '1'),
+(13, '25', '2016-06-04', 'street6', 'sdfs@sdf.sdf', 'pehseara istriihgskdhfk', 'Female', 'O Level', '16-06-01', '', '3'),
+(14, '24', '2016-01-01', 'asdasdasd', 'aasdas', 'asasdasdasd', 'Male', 'AS Level', '16-06-02', '', '1');
 
 -- --------------------------------------------------------
 
@@ -52203,14 +52241,45 @@ CREATE TABLE IF NOT EXISTS `student_subjects` (
   `starting_date` varchar(255) NOT NULL,
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `student_subjects`
 --
 
 INSERT INTO `student_subjects` (`subject_id`, `fkstudent_id`, `subject_name`, `subject_teacher`, `starting_date`, `created_at`, `updated_at`) VALUES
-(7, '7', 'Advance English', 'Saddam', '2016-06-01', '16-05-25', '');
+(7, '7', 'Advance English', 'Saddam', '2016-06-01', '16-05-25', ''),
+(8, '8', 'sdfsdfsdf', 'sdfsdf', '2016-06-06', '16-05-31', ''),
+(9, '9', 'sdasdasdas', 'asdasdasdas', '2016-06-07', '16-06-01', ''),
+(10, '10', 'sdasdasdas', 'asdasdasdas', '2016-06-12', '16-06-01', ''),
+(11, '11', 'asdasdasd', 'asdasdasd', '', '16-06-01', ''),
+(12, '14', 'asdasdasd', 'asdasd', '2016-06-10', '16-06-02', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject`
+--
+
+CREATE TABLE IF NOT EXISTS `subject` (
+`subject_id` int(11) NOT NULL,
+  `subject_name` varchar(500) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `date_added` varchar(500) NOT NULL,
+  `date_updated` varchar(500) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`subject_id`, `subject_name`, `class_id`, `date_added`, `date_updated`) VALUES
+(2, 'physics', 3, '16-05-31', ''),
+(3, 'Chemistery', 3, '16-05-31', ''),
+(4, 'Maths', 3, '16-05-31', ''),
+(5, 'Pushto', 3, '16-05-31', ''),
+(6, 'Islamyat', 3, '16-05-31', ''),
+(7, 'Drying', 3, '16-05-31', '');
 
 -- --------------------------------------------------------
 
@@ -52227,14 +52296,39 @@ CREATE TABLE IF NOT EXISTS `teachers` (
   `percentage` varchar(255) NOT NULL,
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teachers`
 --
 
 INSERT INTO `teachers` (`t_id`, `fkuser_id`, `subject`, `cnic`, `address`, `percentage`, `created_at`, `updated_at`) VALUES
-(1, '16', 'oop23', '1234546789723', 'town23', '7023', '16-05-26', '16-05-26');
+(1, '16', 'oop23', '1234546789723', 'town23', '7023', '16-05-26', '16-05-26'),
+(2, '21', 'asdasdasd', '234234234234', 'asdasdasd', '1233', '16-05-31', '16-05-31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teacher_clases`
+--
+
+CREATE TABLE IF NOT EXISTS `teacher_clases` (
+`Id` int(11) NOT NULL,
+  `teach_id` int(11) NOT NULL,
+  `ClassNo` varchar(10) NOT NULL,
+  `subject_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `teacher_clases`
+--
+
+INSERT INTO `teacher_clases` (`Id`, `teach_id`, `ClassNo`, `subject_id`) VALUES
+(4, 2, '3', 5),
+(5, 2, '6', 6),
+(7, 1, '1', 3),
+(8, 1, '4', 4),
+(9, 2, 'Prep', 7);
 
 -- --------------------------------------------------------
 
@@ -52272,7 +52366,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `fkcity_id` varchar(255) NOT NULL,
   `created_at` varchar(255) NOT NULL,
   `updated_at` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
@@ -52282,7 +52376,12 @@ INSERT INTO `users` (`u_id`, `name`, `father_name`, `contact`, `fkcountry_id`, `
 (7, 'Saddam Hussain ', 'Sardar Hussain', '034569874544', '166', '2726', '31314', '16-05-25', '16-05-27'),
 (15, 'numan khan ', 'Mukammil Shah', '65478932', '166', '2726', '31314', '16-05-25', '16-05-26'),
 (16, 'junaid ', 'khan', '12345548723', '166', '2726', '31319', '16-05-26', '16-05-26'),
-(20, 'Hazrat Bilal', 'Zahir Shah', '', '#', '#', '#', '16-05-26', '');
+(20, 'Hazrat Bilal', 'Zahir Shah', '', '#', '#', '#', '16-05-26', ''),
+(21, 'teacher 2', 'asdasd', '234234234234', '4', '165', '6433', '16-05-31', '16-05-31'),
+(22, 'syedee', 'sdfsdf', '2342342342', '14', '291', '7114', '16-05-31', ''),
+(23, 'name', 'father', '12312312312', '1', '42', '5909', '16-06-01', ''),
+(24, 'lalalala', 'plaar', '123123123', '1', '43', '5909', '16-06-01', '16-06-02'),
+(25, 'street6', 'asdasd', '12345612356', '2', '80', '6030', '16-06-01', '16-06-01');
 
 -- --------------------------------------------------------
 
@@ -52354,6 +52453,12 @@ ALTER TABLE `states`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `std_att`
+--
+ALTER TABLE `std_att`
+ ADD PRIMARY KEY (`Id`), ADD KEY `fk_std_att` (`Std_Id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -52366,10 +52471,22 @@ ALTER TABLE `student_subjects`
  ADD PRIMARY KEY (`subject_id`);
 
 --
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+ ADD PRIMARY KEY (`subject_id`);
+
+--
 -- Indexes for table `teachers`
 --
 ALTER TABLE `teachers`
  ADD PRIMARY KEY (`t_id`);
+
+--
+-- Indexes for table `teacher_clases`
+--
+ALTER TABLE `teacher_clases`
+ ADD PRIMARY KEY (`Id`), ADD KEY `fk_teach_id` (`teach_id`), ADD KEY `fk_teacher_class` (`subject_id`);
 
 --
 -- Indexes for table `time`
@@ -52402,7 +52519,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47577;
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `countries`
 --
@@ -52412,7 +52529,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=247;
 -- AUTO_INCREMENT for table `expenses`
 --
 ALTER TABLE `expenses`
-MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `expense_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `login`
 --
@@ -52429,20 +52546,35 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 ALTER TABLE `states`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4121;
 --
+-- AUTO_INCREMENT for table `std_att`
+--
+ALTER TABLE `std_att`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
+--
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+MODIFY `s_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `student_subjects`
 --
 ALTER TABLE `student_subjects`
+MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
 MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `t_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `teacher_clases`
+--
+ALTER TABLE `teacher_clases`
+MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `time`
 --
@@ -52452,7 +52584,7 @@ MODIFY `time_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+MODIFY `u_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `visitors`
 --

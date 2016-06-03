@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   
 function __construct()
         {
-        parent::__construct();
+       
         $this->load->model('insert_model');
      if(!$this->session->userdata('email')){
        redirect('home');
@@ -102,6 +102,7 @@ class StudentController extends CI_Controller {
         $address            = $this->input->post('address');
         $created_at         = mdate("%y-%m-%d");
         $updated_at         = mdate("%y-%m-%d");
+        $class              = $this->input->post('class');
         
         $this->db->where('contact', $contact);
         $query = $this->db->get('users');
@@ -142,8 +143,9 @@ class StudentController extends CI_Controller {
             'institute'      => $institute,
             'gender'         => $gender,
             'course'         => $course,
-            'created_at'     => $created_at
-        ]);
+            'created_at'     => $created_at,
+            'ClassNo'        => $class
+         ]);
         $student_id = $this->db->insert_id();
         
         $insert_subjects_table = $this->db->insert('student_subjects',

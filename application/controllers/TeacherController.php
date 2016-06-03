@@ -70,8 +70,12 @@ class TeacherController extends CI_Controller {
         $query              = $this->db->get();
         $result             = $query->result();
         $result['result']   = $result[0];
-       
-        
+        $result['subject'] = $this->db->query("SELECT subject_id , subject_name FROM subject");
+        $teacher = 0;
+        foreach ($query->result() as $key) {
+            $teacher = $key->t_id;
+        }
+        $result['subjects'] = $this->db->query("SELECT t.Id ,  t.ClassNo , s.subject_id , s.subject_name FROM teacher_clases t INNER JOIN subject s ON t.subject_id = s.subject_id WHERE t.teach_id = ".$teacher);
         
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
@@ -135,8 +139,15 @@ class TeacherController extends CI_Controller {
             'percentage'     => $percentage,
             'created_at'     => $created_at
         ]);
-        
-        redirect(site_url() . 'teachercontroller/view_teacher');
+       
+       $sql = $this->insert_model->Get_New_Teacher();
+        $t_id = 0;
+        $fkuser_id = 0;
+        foreach ($sql->result() as $key) {
+            $t_id = $key->t_id;
+            $fkuser_id = $key->fkuser_id;
+                }        
+        redirect(site_url() . 'teachercontroller/edit_teacher/'.$t_id.'/'.$fkuser_id);
                 
     }
     
@@ -193,7 +204,29 @@ class TeacherController extends CI_Controller {
 
         redirect(site_url() . 'teachercontroller/view_teacher');
     }
+
+    public function save_Teacher_clases()
+    {
+        $classes = $this->input->post("classes");
+        $subject = $this->input->post("subject");
+        $teacher = $this->input->post("teacher");
+
+        $sql = $this->db->query("INSERT INTO teacher_clases(teach_id , ClassNo , subject_id) VALUES (".$teacher." , '".$classes."' , ".$subject.")");
+        if ($sql > 0) {
+            echo "Saved";
+        }
+        else
+        {
+            echo $sql;
+        }
+    }
     
+    public function delete_teacher_class()
+    {
+        $teacher = $this->input->post("teacher");
+        $this->db->query("DELETE FROM teacher_clases WHERE Id = ".$teacher);
+        echo 1;
+    }
     //--------------------------------------------------------------------------
     
 }

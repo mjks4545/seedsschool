@@ -86,8 +86,30 @@
                               <label for="exampleInputEmail1">Current Institute</label>
                               <input type="text" name="institute" class="form-control" id="exampleInputEmail1" placeholder="Institute Name">
                             </div>
-                        </div> 
-			<div class="col-md-12">
+                        </div>
+                      <div class="col-md-12">
+                             <div class="form-group col-md-6">
+                    <div class="form-group">
+                      <label>Class</label>
+                      <select class="form-control" name="class">
+                        <option value="Nursery">Nursery</option>
+                        <option value="Prep">Prep</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                      </select>
+                    </div>
+                    </div>
+                      </div>    
+
+			             <div class="col-md-12">
                             <div class="form-group">
                                 <div class="checkbox col-md-6">
                                  <label>Gender: </label>
