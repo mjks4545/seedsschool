@@ -8,9 +8,9 @@
     <section class="content-header">
         <h1>
             Director Dashboard
-            <small><a href="<?= site_url() ?>studentpayment/">All Course</a>
+            <small><a href="<?= site_url() ?>student/">Student Payment</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                All Course
+                All Students
             </small>
         </h1>
     </section>

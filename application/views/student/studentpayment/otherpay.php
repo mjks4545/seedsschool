@@ -20,7 +20,7 @@
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
                         <h3 class="box-title">Other Payment</h3>
-                        <a href="<?= site_url()?>teacher/" class="pull-right"> Back</a>
+                        <a href="<?= site_url()?>studentpayment/viewstd" class="pull-right"> Back</a>
                     </div><!-- /.box-header -->
                     <!-- form start -->
                     <form role="form" data-toggle="validator" action="<?= site_url()?>studentpayment/payotherfeepro" method="post">

@@ -37,9 +37,13 @@ class Studentpayment extends CI_Controller{
         $std_id = $this->input->post('fkstd_id');
         $data=$this->studentpayment_m->paymonthlyfeepro();
         if ($data==1){
+            $this->session->set_flashdata('msg', 'Sucessfully Added');
+            $this->session->set_flashdata('type', 'success');
             redirect(site_url().'studentpayment/studentclass/'.$std_id);
         }
         if ($data==0){
+            $this->session->set_flashdata('msg', 'Error');
+            $this->session->set_flashdata('type', 'danger');
             $this->load->view('student/studentpayment/paynow',$std_id);
         }
     }
@@ -78,8 +82,12 @@ class Studentpayment extends CI_Controller{
        // echo '<pre>';print_r($data);die();
 
         if ($data) {
+            $this->session->set_flashdata('msg', 'Sucessfully Added');
+            $this->session->set_flashdata('type', 'success');
             redirect(site_url().'studentpayment/studentclass/'.$std_id);
         }else{
+            $this->session->set_flashdata('msg', 'Error');
+            $this->session->set_flashdata('type', 'danger');
             redirect(site_url().'studentpayment/otherpay/'.$std_id);
         }  
     }

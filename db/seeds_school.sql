@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2016 at 12:12 AM
+-- Generation Time: Jul 03, 2016 at 07:33 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `v2`
+-- Database: `seeds_school`
 --
 
 -- --------------------------------------------------------
@@ -125,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `expense` (
   `expense_paid_amount` varchar(100) NOT NULL,
   `expense_created_date` varchar(100) NOT NULL,
   PRIMARY KEY (`expense_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `expense`
@@ -135,7 +135,11 @@ INSERT INTO `expense` (`expense_id`, `expense_reason`, `expense_paid_to`, `expen
 (1, 'any', 'ali', '1000', '02-Jul-2016'),
 (2, 'anyyy', 'asdf', '200', '02-Jul-2016'),
 (3, 'sam na', 'lala', '500', '02-Jul-2016'),
-(4, 'asdf', 'khan', '900', '02-Jul-2016');
+(4, 'asdf', 'khan', '900', '02-Jul-2016'),
+(5, 'hi to', 'lala g', '2500', '03-Jul-2016'),
+(6, 'pase pakr di', 'khan kaka', '1500', '03-Jul-2016'),
+(7, 'asdfgg', 'khankahan', '1000', '03-Jul-2016'),
+(8, 'asdsadas', 'muhammad', '800', '03-Jul-2016');
 
 -- --------------------------------------------------------
 
@@ -471,7 +475,7 @@ CREATE TABLE IF NOT EXISTS `student_other_payment` (
   `amt_reason` varchar(100) NOT NULL,
   `otherpay_created_date` varchar(20) NOT NULL,
   PRIMARY KEY (`otherpay_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `student_other_payment`
@@ -481,7 +485,9 @@ INSERT INTO `student_other_payment` (`otherpay_id`, `fkstudent_id`, `total_amt`,
 (1, '1', '1000', '1000', 0, 'Admission Fee', '01-Jul-2016'),
 (2, '4', '1000', '500', 500, 'Admission Fee', '02-Jul-2016'),
 (3, '4', '900', '500', 900, 'Certificate Fee', '02-Jul-2016'),
-(4, '4', '1200', '1000', 1100, 'Certificate Fee', '02-Jul-2016');
+(4, '4', '1200', '1000', 1100, 'Certificate Fee', '02-Jul-2016'),
+(5, '1', '1000', '500', 500, 'Admission Fee', '03-Jul-2016'),
+(6, '1', '500', '100', 900, 'Admission Fee', '03-Jul-2016');
 
 -- --------------------------------------------------------
 
@@ -492,14 +498,24 @@ INSERT INTO `student_other_payment` (`otherpay_id`, `fkstudent_id`, `total_amt`,
 CREATE TABLE IF NOT EXISTS `student_payment` (
   `p_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `fkstudentclassfee_id` int(11) NOT NULL,
-  `stp_payment` int(11) NOT NULL,
-  `stp_paid` int(11) NOT NULL,
-  `stp_remain` varchar(10) NOT NULL,
-  `stp_month` varchar(20) NOT NULL,
-  `stp_date` varchar(20) NOT NULL,
-  `reason` varchar(100) NOT NULL,
+  `std_payment` int(11) NOT NULL,
+  `std_paid` int(11) NOT NULL,
+  `std_remain` varchar(10) NOT NULL,
+  `std_month` varchar(20) NOT NULL,
+  `std_date` varchar(20) NOT NULL,
+  `std_reason` varchar(100) NOT NULL,
   PRIMARY KEY (`p_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `student_payment`
+--
+
+INSERT INTO `student_payment` (`p_id`, `fkstudentclassfee_id`, `std_payment`, `std_paid`, `std_remain`, `std_month`, `std_date`, `std_reason`) VALUES
+(1, 1, 3000, 1000, '2000', 'Jan', '03-Jul-2016', 'Monthly Fee'),
+(2, 1, 2000, 6000, '-4000', 'Jan', '03-Jul-2016', 'Monthly Fee'),
+(3, 1, -1000, 1000, '-2000', 'Feb', '03-Jul-2016', 'Monthly Fee'),
+(4, 1, -2000, 3000, '-5000', 'Feb', '03-Jul-2016', 'Monthly Fee');
 
 -- --------------------------------------------------------
 

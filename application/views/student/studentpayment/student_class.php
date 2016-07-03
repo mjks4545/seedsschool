@@ -8,9 +8,11 @@
     <section class="content-header">
         <h1>
             Director Dashboard
-            <small><a href="<?= site_url() ?>studentpayment/">All Course</a>
+            <small><a href="<?= site_url() ?>student/">Student</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                All Course
+                <a href="<?= site_url() ?>studentpayment/viewstd">All Students</a>
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                Student
             </small>
         </h1>
     </section>
@@ -27,15 +29,15 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                    <div class="box-body table-responsive">
+                        <table id="example1" class="table table-bordered table-striped ">
                             <thead>
                             <tr>
                                 <th>S.no</th>
                                 <th>Name</th>
                                 <th>Father Name</th>
                                 <th>Subject</th>
-                                <th colspan="2">Action</th>
+                                <th colspan="3">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -52,11 +54,17 @@
                                         <td><a class="btn btn-success"
                                                href="<?= site_url() ?>studentpayment/paynow/<?php echo $array->classfee_id; ?>/<?php echo $array->fkstudent_id; ?>">
                                                 <span class="fa fa-money"></span>
-                                                &nbsp;&nbsp;Pay
+                                                &nbsp;&nbsp;Pay Monthly Fee
                                             </a>
                                         </td>
                                         <td><a class="btn btn-success"
-                                               href="<?= site_url() ?>studentpayment/classpaymentdetail/<?php echo $array->classfee_id; ?>">
+                                               href="<?= site_url() ?>studentpayment/otherpay/<?php echo $array->fkstudent_id; ?>">
+                                                <span class="fa fa-money"></span>
+                                                &nbsp;&nbsp;Pay Other Fee
+                                            </a>
+                                        </td>
+                                        <td><a class="btn btn-success"
+                                               href="<?= site_url() ?>studentpayment/classpaymentdetail/<?php echo $array->classfee_id; ?>/<?php echo $array->fkstudent_id; ?>">
                                                 <i class="fa fa-credit-card" aria-hidden="true"></i>
                                                 &nbsp;&nbsp;Payment Detail
                                             </a>
