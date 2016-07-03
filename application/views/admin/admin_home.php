@@ -58,7 +58,7 @@
                           <p>Visitors Details</p>
                         </div>
                         <div class="icon">
-                            <i class="fa fa-suitcase" aria-hidden="true"></i>                        </div>
+                            <i class="fa fa-suitcase" aria-hidden="true"></i></div>
                           <a href="<?= site_url()?>visitor/index" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
@@ -92,7 +92,7 @@
                                   <p>Gate Keeper</p>
                               </div>
                               <div class="icon">
-                                  <i class="fa fa-street-view" aria-hidden="true"></i>                              </div>
+                                  <i class="fa fa-street-view" aria-hidden="true"></i></div>
                               <a href="<?= site_url()?>gatekeeper/index" class="small-box-footer">
                                   Click here  <i class="fa fa-arrow-circle-right"></i>
                               </a>
@@ -106,7 +106,7 @@
                                   <p>Other Staff</p>
                               </div>
                               <div class="icon">
-                                  <i class="fa fa-street-view" aria-hidden="true"></i>                              </div>
+                                  <i class="fa fa-street-view" aria-hidden="true"></i> </div>
                               <a href="<?= site_url()?>otherstaff/index" class="small-box-footer">
                                   Click here  <i class="fa fa-arrow-circle-right"></i>
                               </a>
@@ -123,8 +123,22 @@
                                   <p>Expenses</p>
                               </div>
                               <div class="icon">
-                                  <i class="fa fa-street-view" aria-hidden="true"></i>                              </div>
+                                  <i class="fa fa-money" aria-hidden="true"></i></div>
                                <a href="<?= site_url()?>expenses/index" class="small-box-footer">
+                                  Click here  <i class="fa fa-arrow-circle-right"></i>
+                              </a>
+                          </div>
+                      </div><!-- ./col -->
+                      <div class="col-lg-3 col-xs-6">
+                          <!-- small box -->
+                          <div class="small-box bg-aqua">
+                              <div class="inner">
+                                  <h3>...</h3>
+                                  <p>Reports</p>
+                              </div>
+                              <div class="icon">
+                                  <i class="fa fa-flag" aria-hidden="true"></i></div>
+                               <a href="<?= site_url()?>reports/index" class="small-box-footer">
                                   Click here  <i class="fa fa-arrow-circle-right"></i>
                               </a>
                           </div>
