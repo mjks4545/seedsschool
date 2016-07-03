@@ -1,5 +1,5 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /seedsschool/index.php/$1 [L,QSA]
+RewriteRule ^(.*)$ /seeds/index.php/$1 [L,QSA]
 

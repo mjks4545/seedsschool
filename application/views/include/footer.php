@@ -64,5 +64,14 @@
           showInputs: false
         });
     </script>
+<script src="<?=base_url();?>public/js/validator.js"></script>
+
+<script type="text/javascript">
+    $(".alert").fadeOut(5000);
+    $(".alert").fadeIn(5000);
+    $(".alert").fadeOut(5000);
+
+</script>
+
   </body>
 </html>

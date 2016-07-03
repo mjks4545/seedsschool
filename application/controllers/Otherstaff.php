@@ -1,0 +1,220 @@
+<?php
+
+class Otherstaff extends CI_Controller
+{
+
+    function index()
+    {
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('otherstaff/otherstaff_home');
+        $this->load->view('include/footer');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function addstaff()
+    {
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('otherstaff/addstaff');
+        $this->load->view('include/footer');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function paymentdetails()
+    {
+        $id = $this->uri->segment(3);
+        $data['result'] = $this->otherstaff_m->staff_salaries($id);
+        $data['id'] = $id;
+//        echo '<pre>';print_r($data);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('otherstaff/staff_paymentdetails', $data);
+        $this->load->view('include/footer');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function paysalary()
+    {
+        $id = $this->uri->segment(3);
+        $data['result'] = $this->otherstaff_m->staff_data($id);
+//        echo '<pre>';print_r($data);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('otherstaff/pay_salary', $data);
+        $this->load->view('include/footer');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function addstaffpro()
+    {
+        $result = $this->otherstaff_m->addstaffpro();
+        if ($result == 1) {
+            $this->session->set_flashdata('msg', 'Sucessfully Added');
+            $this->session->set_flashdata('type', 'success');
+            redirect("otherstaff/");
+        }
+        if ($result == 0) {
+            $this->session->set_flashdata('msg', 'Error');
+            $this->session->set_flashdata('type', 'danger');
+            redirect("otherstaff/addstaff");
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function viewstaff()
+    {
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data['staff'] = $this->otherstaff_m->viewstaff();
+//        echo '<pre>';print_r($data);die();
+        $this->load->view('otherstaff/view_staff', $data);
+        $this->load->view('include/footer');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function viewstaffdetails()
+    {
+        $id = $this->uri->segment(3);
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data['staff'] = $this->otherstaff_m->view_staffdetails($id);
+//       echo '<pre>';print_r($data);die();
+        $this->load->view('otherstaff/view_staffdetails', $data);
+        $this->load->view('include/footer');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function updatestaff()
+    {
+        $id = $this->uri->segment(3);
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data['staff'] = $this->otherstaff_m->update_staff($id);
+//       echo '<pre>';print_r($data);die();
+        $this->load->view('otherstaff/update_staff', $data);
+        $this->load->view('include/footer');
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function updatestaffpro()
+    {
+        $id = $this->uri->segment(3);
+        $result = $this->otherstaff_m->updatestaffpro($id);
+        if ($result == 1) {
+            $this->session->set_flashdata('msg', 'Sucessfully Updated');
+            $this->session->set_flashdata('type', 'success');
+            redirect("otherstaff/viewstaffdetails/" . $id);
+        }
+        if ($result == 0) {
+            $this->session->set_flashdata('msg', 'Error');
+            $this->session->set_flashdata('type', 'danger');
+            redirect("otherstaff/updatestaff/" . $id);
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function deletestaff()
+    {
+
+        $id = $this->uri->segment(3);
+        $result = $this->otherstaff_m->delete_staff($id);
+        if ($result == 1) {
+            $this->session->set_flashdata('msg', 'Sucessfully Deleted');
+            $this->session->set_flashdata('type', 'success');
+            redirect("otherstaff/viewstaff");
+        }
+        if ($result == 0) {
+            $this->session->set_flashdata('msg', 'Error');
+            $this->session->set_flashdata('type', 'danger');
+            redirect("otherstaff/viewstaff");
+        }
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function salarypaymentpro()
+    {
+        $id = $this->uri->segment(3);
+        $result = $this->otherstaff_m->salarypaymentpro();
+//      echo '<pre>';print_r($result);die();
+        if ($result == 1) {
+            $this->session->set_flashdata('msg', 'Sucessfully Added');
+            $this->session->set_flashdata('type', 'success');
+            redirect("otherstaff/paymentdetails/" . $id);
+//            echo $id;
+        }
+        if ($result == 0) {
+            $this->session->set_flashdata('msg', 'Error');
+            $this->session->set_flashdata('type', 'danger');
+            redirect("otherstaff/paymentdetails/" . $id);
+
+        }
+    }
+
+    //----------------------------------------------------------------------
+
+    function newattendence()
+    {
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data['attendence'] = $this->otherstaff_m->stafattendence();
+        $this->load->view('otherstaff/newattendence', $data);
+        $this->load->view('include/footer');
+    }
+
+    //----------------------------------------------------------------------
+
+    function staffattpro()
+    {
+        $result = $this->otherstaff_m->staffattpro();
+        if ($result == 1) {
+            $this->session->set_flashdata('msg', 'Sucessfully Done');
+            $this->session->set_flashdata('type', 'success');
+            redirect("otherstaff/todayattendance");
+        }
+        if ($result == 0) {
+            $this->session->set_flashdata('msg', 'There is Some Error');
+            $this->session->set_flashdata('type', 'danger');
+            redirect("otherstaff/newattendence");
+        }
+        if ($result == 2) {
+            $this->session->set_flashdata('msg', 'Attendance already Taken');
+            $this->session->set_flashdata('type', 'info');
+            redirect("otherstaff/todayattendance");
+        }
+    }
+
+    //----------------------------------------------------------------------
+
+    function todayattendance()
+    {
+        $data['attend'] = $this->otherstaff_m->todayattendance();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('otherstaff/todayattendance', $data);
+        $this->load->view('include/footer');
+
+    }
+
+    //----------------------------------------------------------------------
+    function staffattendancedetail()
+    {
+        $data['result'] = $this->otherstaff_m->staffattendancedetail();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('otherstaff/staffattendancedetail', $data);
+        $this->load->view('include/footer');
+
+    }
+  //---------------------------------------------------------------------------
+  function staffattendancedetailview(){
+      $st_id = $this->uri->segment(3);
+      $data['result'] = $this->otherstaff_m->staffattendancedetailview($st_id);
+      $this->load->view('include/header');
+      $this->load->view('include/sidebar');
+      $this->load->view('otherstaff/staffattendancedetailview', $data);
+      $this->load->view('include/footer');
+
+  }
+}

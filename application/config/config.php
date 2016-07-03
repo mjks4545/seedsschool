@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/seedsschool/';
+$config['base_url'] = 'http://localhost/seeds/';
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,6 @@ $config['base_url'] = 'http://localhost/seedsschool/';
 |
 */
 $config['index_page'] = '';
-
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL
@@ -158,7 +157,11 @@ $config['composer_autoload'] = FALSE;
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+//$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
+$config['permitted_uri_chars']  = ''; #keep it blank to allow all characters
+$config['allow_get_array']       = TRUE;
+$config['enable_query_strings'] = TRUE;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -213,7 +216,7 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 0;
 
 /*
 |--------------------------------------------------------------------------
@@ -261,7 +264,9 @@ $config['log_file_permissions'] = 0644;
 | codes to set your own date formatting
 |
 */
-$config['log_date_format'] = 'Y-m-d H:i:s';
+//$config['log_date_format'] = 'Y-m-d H:i:s';
+$config['log_date_format'] = 'd-M-Y h:i:a';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -314,7 +319,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'VPa"N/0Z6-em-tNwPL4a^[eR3tIh5d';
 
 /*
 |--------------------------------------------------------------------------
@@ -371,7 +376,7 @@ $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
 $config['sess_expiration'] = 7200;
 $config['sess_save_path'] = NULL;
-$config['sess_match_ip'] = FALSE;
+$config['sess_match_ip'] = TRUE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 
@@ -479,7 +484,8 @@ $config['compress_output'] = FALSE;
 |
 */
 $config['time_reference'] = 'local';
-
+//date_default_timezone_set('Asia/Dubai');
+date_default_timezone_set('Asia/Karachi');
 /*
 |--------------------------------------------------------------------------
 | Rewrite PHP Short Tags
