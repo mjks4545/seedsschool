@@ -47,7 +47,7 @@
                             <tbody>
                             <?php if ($teachers == 0) { ?>
                                 <tr>
-                                    <td colspan="9">No Visitor Found</td>
+                                    <td>No Visitor Found</td>
                                 </tr>
                             <?php } else {
                                 $sno=1;
@@ -82,12 +82,6 @@
                                     </td>
                                 </tr>
                             <?php $sno++; } }?>
-                            <tr>
-                                <td colspan="8">
-                                    <?php echo $this->pagination->create_links(); ?>
-                                </td>
-                            </tr>
-
                         </table>
                     </div>
                     <!-- /.box-body -->

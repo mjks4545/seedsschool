@@ -144,8 +144,9 @@
                                         <th>Percentage</th>
                                         <td>Total</td>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     <?php if($subject==0){
-                                        echo "<tr>"."<td colspan='3'>No Result Found!!!</td></tr>";
                                     } else{
                                         $sno=1;
                                         foreach($subject as $sub){?>
@@ -159,8 +160,7 @@
                                             </tr>
                                     <?php $sno++; }
                                     } ?>
-                                    </thead>
-                                    <tbody>
+
                                     </tbody>
                                 </table>
                             </div>

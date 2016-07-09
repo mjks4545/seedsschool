@@ -10,9 +10,9 @@
             Director Dashboard
             <small><a href="<?= site_url()?>reports/">Reports</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <a href="<?= site_url()?>reports/weeklyreports">Weekly Reports</a>
+                <a href="<?= site_url()?>reports/weeklyreports">Yearly Reports</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Students Weekly Record
+                Students Yearly Record
             </small>
         </h1>
     </section>
@@ -26,7 +26,7 @@
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
                         <h3 class="box-title">Students Details</h3>
-                        <a href="<?= site_url() ?>reports/weeklyreports" class="pull-right"> Back</a>
+                        <a href="<?= site_url() ?>reports/yearlyreports" class="pull-right"> Back</a>
                        
                     </div>
                     <!-- /.box-header -->

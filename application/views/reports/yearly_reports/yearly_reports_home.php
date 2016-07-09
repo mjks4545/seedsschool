@@ -1,20 +1,19 @@
-<style>
-    td, th{
-	text-align: center;
-    }
-    .glyphicon {
-    position: relative;
-    top: 4px!important;
-  }
-</style> 
- <div class="content-wrapper">
+
+<div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Teacher
+            Director Dashboard
+            <small>
+              <a href="<?php echo site_url()?>admin/">Admin</a>
+              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+              <a href="<?php echo site_url()?>reports/">Reports</a>
+              <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+              Weekly Reports Home
+            </small>
           </h1>
-             
         </section>
+
         <!-- Main content -->
         <section class="content">
           <div class="row">
@@ -23,19 +22,7 @@
               <!-- general form elements -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Teachers Records</h3>
-<!--                   <a href="<?= site_url()?>teachercontroller/add_teacher" type="button" class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;Teacher</a> -->
-
-                </div><!-- /.box-header -->
-                <!-- form start -->
-              <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <!-- left column -->
-            <div class="col-md-12">
-              <!-- general form elements -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
+                    <?php $this->load->view('include/alert'); ?>
                 </div><!-- /.box-header -->
                 <div class="row">
                     <div class="col-lg-1 col-xs-4"></div>
@@ -44,12 +31,12 @@
                       <div class="small-box bg-aqua">
                         <div class="inner">
                           <h3>...</h3>
-                          <p>Classes Details</p>
+                          <p>Visitor Reports </p>
                         </div>
                         <div class="icon">
-                          <i class="glyphicon glyphicon-duplicate"></i>
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         </div>
-                        <a href="<?= site_url()?>classcontroller/view_class" class="small-box-footer">
+                        <a href="<?= site_url()?>reports/yearlyvisitors" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
                       </div>
@@ -59,38 +46,38 @@
                       <div class="small-box bg-green">
                         <div class="inner">
                           <h3>...</h3>
-                          <p>Attendence Details</p>
+                          <p>Students Reports</p>
                         </div>
                         <div class="icon">
-                          <i class="glyphicon glyphicon-list-alt"></i>
+                            <i class="fa fa-male" aria-hidden="true"></i>
                         </div>
-                          <a href="<?= site_url()?>teachercontroller/view_teacher" class="small-box-footer">
+                          <a href="<?= site_url()?>reports/yearlyStudent" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
                       </div>
                     </div><!-- ./col -->
                     <div class="col-lg-3 col-xs-6">
                       <!-- small box -->
-                     <!--  <div class="small-box bg-yellow">
+                      <div class="small-box bg-yellow">
                         <div class="inner">
                           <h3>...</h3>
-                          <p>Visitors Details</p>
+                          <p>Profit & Loss Reports</p>
                         </div>
                         <div class="icon">
-                          <i class="fa ion-person-add"></i>
-                        </div>
-                          <a href="<?= site_url()?>visitorcontroller/view_visitor" class="small-box-footer">
+                            <i class="fa fa-suitcase" aria-hidden="true"></i></div>
+                          <a href="<?= site_url()?>reports/monthlyfinance" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
-                      </div> -->
+                      </div>
                     </div><!-- ./col -->
                     
                  </div><!-- /.row -->
+                                   
+                  </div>
                 </div><!-- /.box -->
               </div>
             </div>
-        </section>    
-                
-       </div>
-   </section>
- </div>
+        </section>
+    </div>
+              
+

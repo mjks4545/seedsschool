@@ -49,9 +49,7 @@
                             </thead>
                             <tbody>
                             <?php if ($result == 0) { ?>
-                                <tr>
-                                    <td colspan="9">No Staff Found</td>
-                                </tr>
+
                             <?php } else {
                                 $sno=1;
                                 foreach($result as $t){?>
@@ -105,13 +103,7 @@
 
                                     </tr>
                                     <?php $sno++; } }?>
-                            <tr>
-                                <td colspan="8">
-                                    <?php echo $this->pagination->create_links(); ?>
-                                </td>
-                            </tr>
-
-                        </table>
+                           </table>
                     </div>
                     <!-- /.box-body -->
                 </div>

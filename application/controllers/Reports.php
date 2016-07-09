@@ -24,7 +24,7 @@ class Reports extends CI_Controller
 	function dailyvisitors()
 	{
 		$data['result'] = $this->reports_m->dailyvisitors();
-
+		//echo '<pre>'; print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/daily_reports/daily_visitors',$data);
@@ -36,7 +36,7 @@ class Reports extends CI_Controller
 	function dailystudents()
 	{
 		$data['result'] = $this->reports_m->dailystudents();
-
+		//echo '<pre>';print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/daily_reports/daily_students',$data);
@@ -57,7 +57,7 @@ class Reports extends CI_Controller
 	function weeklyvisitors()
 	{
 		$data['result'] = $this->reports_m->weeklyvisitors();
-		
+		//echo '<pre>';print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/weekly_reports/weekly_visitors',$data);
@@ -90,7 +90,7 @@ class Reports extends CI_Controller
 	function monthlyvisitors()
 	{
 		$data['result'] = $this->reports_m->monthlyvisitors();
-		
+		//echo "<pre>";print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/monthly_reports/monthly_visitors',$data);
@@ -102,11 +102,37 @@ class Reports extends CI_Controller
 	function monthlystudents()
 	{
 		$data['result'] = $this->reports_m->monthlystudents();
-
+//echo '<pre>';print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/monthly_reports/monthly_students',$data);
 		$this->load->view('include/footer');
 
+	}
+
+	function yearlyReports()
+	{
+		$this->load->view('include/header');
+		$this->load->view('include/sidebar');
+		$this->load->view('reports/yearly_reports/yearly_reports_home');
+		$this->load->view('include/footer');
+	}
+
+	function yearlyvisitors()
+	{
+		$data['result'] = $this->reports_m->yearly_visitor_reports();
+		$this->load->view('include/header');
+		$this->load->view('include/sidebar');
+		$this->load->view('reports/yearly_reports/yearly_visitors',$data);
+		$this->load->view('include/footer');
+	}
+
+	function yearlyStudent()
+	{
+		$data['result'] = $this->reports_m->yearlystudents();
+		$this->load->view('include/header');
+		$this->load->view('include/sidebar');
+		$this->load->view('reports/yearly_reports/yearly_students',$data);
+		$this->load->view('include/footer');
 	}
 }

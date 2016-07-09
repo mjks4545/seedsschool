@@ -10,9 +10,9 @@
             Director Dashboard
             <small><a href="<?= site_url()?>reports/">Reports</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <a href="<?= site_url()?>reports/weeklyreports">Weekly Reports</a>
+                <a href="<?= site_url()?>reports/yearlyreports">Yearly Reports</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Students Weekly Record
+                Visitor Yearly Record
             </small>
         </h1>
     </section>
@@ -25,7 +25,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
-                        <h3 class="box-title">Students Details</h3>
+                        <h3 class="box-title">Visitor Details</h3>
                         <a href="<?= site_url() ?>reports/weeklyreports" class="pull-right"> Back</a>
                        
                     </div>
@@ -36,13 +36,12 @@
                             <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th>Student Name</th>
-                                <th>Father Name</th>
+                                <th>Visitor Name</th>
                                 <th>Contact</th>
-                                <th>Email</th>
+                                <th>Reason</th>
                                 <th>Address</th>
-                                <th>Facebook Id</th>
-                                <th>Current School</th>
+                                <th>Relationship</th>
+                                <th>Time</th>
                                 <th>Date</th>
 
                             </tr>
@@ -55,14 +54,13 @@
                                 foreach($result as $row){?>
                                     <tr>
                                         <td><?php echo $sno?></td>
-                                        <td><?php echo $row['student_name']?></td>
-                                        <td><?php echo $row['std_father_name']?></td>
-                                        <td><?php echo $row['student_contact']?></td>
-                                        <td><?php echo $row['student_email']?></td>
-                                        <td><?php echo $row['student_address']?></td>
-                                        <td><?php echo $row['facebook_id']?></td>
-                                        <td><?php echo $row['current_school']?></td>
-                                        <td><?php echo $row['student_created_date']?></td>
+                                        <td><?php echo $row['name']?></td>
+                                        <td><?php echo $row['contact']?></td>
+                                        <td><?php echo $row['reason']?></td>
+                                        <td><?php echo $row['address']?></td>
+                                        <td><?php echo $row['relationship']?></td>
+                                        <td><?php echo $row['time']?></td>
+                                        <td><?php echo $row['date']?></td>
 
                                     </tr>
                                     <?php $sno++; } }?>
