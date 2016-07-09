@@ -47,11 +47,6 @@
                             <tbody>
                             <?php
                             if ($result==0) {?>
-                                <tr>
-                                    <td colspan="7">
-                                        <h3>No Result Found</h3>
-                                    </td>
-                                </tr>
                             <?php } else {
                                 $sno = 1;
                                 foreach ($result as $array) { ?>

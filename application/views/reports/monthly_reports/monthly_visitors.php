@@ -54,13 +54,13 @@
                                 foreach($result as $row){?>
                                     <tr>
                                         <td><?php echo $sno?></td>
-                                        <td><?php echo $row['name']?></td>
-                                        <td><?php echo $row['contact']?></td>
-                                        <td><?php echo $row['reason']?></td>
-                                        <td><?php echo $row['address']?></td>
-                                        <td><?php echo $row['relationship']?></td>
-                                        <td><?php echo $row['time']?></td>
-                                        <td><?php echo $row['date']?></td>
+                                        <td><?php echo $row->name?></td>
+                                        <td><?php echo $row->contact?></td>
+                                        <td><?php echo $row->reason?></td>
+                                        <td><?php echo $row->address?></td>
+                                        <td><?php echo $row->relationship?></td>
+                                        <td><?php echo $row->time?></td>
+                                        <td><?php echo $row->date?></td>
 
                                     </tr>
                                     <?php $sno++; } }?>

@@ -55,14 +55,14 @@
                                 foreach($result as $row){?>
                                     <tr>
                                         <td><?php echo $sno?></td>
-                                        <td><?php echo $row['student_name']?></td>
-                                        <td><?php echo $row['std_father_name']?></td>
-                                        <td><?php echo $row['student_contact']?></td>
-                                        <td><?php echo $row['student_email']?></td>
-                                        <td><?php echo $row['student_address']?></td>
-                                        <td><?php echo $row['facebook_id']?></td>
-                                        <td><?php echo $row['current_school']?></td>
-                                        <td><?php echo $row['student_created_date']?></td>
+                                        <td><?php echo $row->student_name?></td>
+                                        <td><?php echo $row->std_father_name?></td>
+                                        <td><?php echo $row->student_contact?></td>
+                                        <td><?php echo $row->student_email?></td>
+                                        <td><?php echo $row->student_address?></td>
+                                        <td><?php echo $row->facebook_id?></td>
+                                        <td><?php echo $row->current_school?></td>
+                                        <td><?php echo $row->student_created_date?></td>
 
                                     </tr>
                                     <?php $sno++; } }?>

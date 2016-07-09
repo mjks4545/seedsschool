@@ -27,6 +27,17 @@ class Expenses_m extends CI_Model{
             $this->db->order_by('expense_id','desc');
             $query = $this->db->get();
             return $result= $query->result();
+        }
 
+        function expenses_search()
+        {
+            $name= $this->input->post('exp_search');
+            $this->db->select('*');
+            $this->db->from('expense');
+            $this->db->like('expense_id',$name);
+            $this->db->or_like('expense_reason',$name);
+            $this->db->or_like('expense_paid_to',$name);
+            $query = $this->db->get();
+            return $result= $query->result();
         }
 }

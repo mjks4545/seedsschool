@@ -82,7 +82,7 @@
                         <div class="icon">
                             <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         </div>
-                        <a href="<?= site_url()?>reports/yearlyReports" class="small-box-footer">
+                        <a href="<?= site_url()?>academic/index" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
                       </div>

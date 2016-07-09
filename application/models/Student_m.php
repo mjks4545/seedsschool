@@ -422,4 +422,21 @@ class Student_m extends CI_Model
         }
         return $date;
     }
+   //-----------------------------------------------------------------
+   function std_search(){
+       $search = $this->input->post("std_search");
+       $this->db->select("*");
+       $this->db->from("student");
+       $this->db->like('student_name',$search);
+       $this->db->or_like('std_father_name',$search);
+       $this->db->or_like('student_contact',$search);
+       $this->db->or_like('student_email',$search);
+       $this->db->or_like('student_id',$search);
+       $query = $this->db->get();
+       $result = $query->result();
+      return $result;
+   }
+
+
+
 }

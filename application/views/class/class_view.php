@@ -86,10 +86,7 @@
 				    $i++;
 				    endforeach;
 				?>
-				<tr>
-				    <td colspan="11"> <?= $this->pagination->create_links(); ?> </td>
-				</tr>
-                            </tbody>
+            </tbody>
 			    
                         </table>
                     </div>

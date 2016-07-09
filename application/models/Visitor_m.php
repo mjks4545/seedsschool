@@ -115,4 +115,16 @@ class Visitor_m extends CI_Model
 
     }
     //-------------------------------------------------------------------
+    public function visitor_search()
+    {
+        $search = $this->input->post("visitor_search");
+        $this->db->select("*");
+        $this->db->from("visitor");
+        $this->db->like('name',$search);
+        $this->db->or_like('contact',$search);
+        $this->db->or_like('relationship',$search);
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    }
 }

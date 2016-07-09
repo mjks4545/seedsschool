@@ -20,36 +20,40 @@
                 </div><!-- /.box-header -->
                 <div class="row">
                     <div class="col-lg-1 col-xs-4"></div>
+
                     <div class="col-lg-3 col-xs-6">
-                      <!-- small box -->
-                      <div class="small-box bg-aqua">
-                        <div class="inner">
-                          <h3>...</h3>
-                          <p>Academic Section </p>
+                        <!-- small box -->
+                        <div class="small-box bg-orange">
+                            <div class="inner">
+                                <h3>...</h3>
+                                <p>Gate Keeper</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-street-view" aria-hidden="true"></i></div>
+                            <a href="<?= site_url()?>gatekeeper/index" class="small-box-footer">
+                                Click here  <i class="fa fa-arrow-circle-right"></i>
+                            </a>
                         </div>
-                        <div class="icon">
-                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                        </div>
-                        <a href="<?= site_url()?>academic/index" class="small-box-footer">
-                          Click here  <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                      </div>
                     </div><!-- ./col -->
-                   <div class="col-lg-3 col-xs-6">
-                      <!-- small box -->
-                      <div class="small-box bg-green">
-                        <div class="inner">
-                          <h3>...</h3>
-                          <p>Teachers Details</p>
+
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div class="small-box bg-green">
+                            <div class="inner">
+                                <h3>...</h3>
+                                <p>Reception</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-desktop" aria-hidden="true"></i>
+                            </div>
+                            <a href="<?= site_url()?>reception/index" class="small-box-footer">
+                                Click here  <i class="fa fa-arrow-circle-right"></i>
+                            </a>
                         </div>
-                        <div class="icon">
-                            <i class="fa fa-male" aria-hidden="true"></i>
-                        </div>
-                          <a href="<?= site_url()?>teacher/index" class="small-box-footer">
-                          Click here  <i class="fa fa-arrow-circle-right"></i>
-                        </a>
-                      </div>
                     </div><!-- ./col -->
+
+
+
                     <div class="col-lg-3 col-xs-6">
                       <!-- small box -->
                       <div class="small-box bg-yellow">
@@ -64,7 +68,7 @@
                         </a>
                       </div>
                     </div><!-- ./col -->
-                    
+
                  </div><!-- /.row -->
                <!-- for new row-->
                   <div class="row">
@@ -74,26 +78,27 @@
                           <div class="small-box bg-green">
                               <div class="inner">
                                   <h3>...</h3>
-                                  <p>Reception</p>
+                                  <p>Teachers Details</p>
                               </div>
                               <div class="icon">
-                                  <i class="fa fa-desktop" aria-hidden="true"></i>
+                                  <i class="fa fa-male" aria-hidden="true"></i>
                               </div>
-                              <a href="<?= site_url()?>reception/index" class="small-box-footer">
+                              <a href="<?= site_url()?>teacher/index" class="small-box-footer">
                                   Click here  <i class="fa fa-arrow-circle-right"></i>
                               </a>
                           </div>
                       </div><!-- ./col -->
                       <div class="col-lg-3 col-xs-6">
                           <!-- small box -->
-                          <div class="small-box bg-orange">
+                          <div class="small-box bg-aqua">
                               <div class="inner">
                                   <h3>...</h3>
-                                  <p>Gate Keeper</p>
+                                  <p>Academic Section </p>
                               </div>
                               <div class="icon">
-                                  <i class="fa fa-street-view" aria-hidden="true"></i></div>
-                              <a href="<?= site_url()?>gatekeeper/index" class="small-box-footer">
+                                  <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                              </div>
+                              <a href="<?= site_url()?>academic/index" class="small-box-footer">
                                   Click here  <i class="fa fa-arrow-circle-right"></i>
                               </a>
                           </div>
@@ -143,6 +148,26 @@
                               </a>
                           </div>
                       </div><!-- ./col -->
+                        <!--for searches-->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>...</h3>
+                                    <p>Searches</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-search" aria-hidden="true"></i></div>
+                                <a href="<?= site_url()?>search/" class="small-box-footer">
+                                    Click here  <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+
+
+
+
+                        <!--for searches-->
                     </div>
                   </div>
                 </div><!-- /.box -->

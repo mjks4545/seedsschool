@@ -34,9 +34,6 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th colspan="9">Visitors To be View</th>
-                            </tr>
-                            <tr>
                                 <th>S.no</th>
                                 <th>Visitor Name</th>
                                 <th>Contact Number</th>
@@ -50,9 +47,6 @@
                             </thead>
                             <tbody>
                             <?php if ($visitors == 0) { ?>
-                                <tr>
-                                    <td colspan="9">No Visitor Found</td>
-                                </tr>
                             <?php } else {
                                 $sno=1;
                                 foreach($visitors as $v){?>
@@ -80,11 +74,6 @@
                                     </td>
                                 </tr>
                             <?php $sno++; } }?>
-                            <tr>
-                                <td colspan="8">
-                                    <?php echo $this->pagination->create_links(); ?>
-                                </td>
-                            </tr>
 
                         </table>
                     </div>
