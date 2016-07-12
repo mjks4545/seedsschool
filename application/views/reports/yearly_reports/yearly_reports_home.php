@@ -65,7 +65,7 @@
                         </div>
                         <div class="icon">
                             <i class="fa fa-suitcase" aria-hidden="true"></i></div>
-                          <a href="<?= site_url()?>reports/monthlyfinance" class="small-box-footer">
+                          <a href="<?= site_url()?>reports/yearlyfinance" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
                       </div>

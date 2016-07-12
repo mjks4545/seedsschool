@@ -9,7 +9,7 @@
               <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
               <a href="<?php echo site_url()?>reports/">Reports</a>
               <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-              Weekly Reports Home
+              Monthly Reports Home
             </small>
           </h1>
         </section>
