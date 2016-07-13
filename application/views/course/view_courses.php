@@ -8,7 +8,7 @@
     <section class="content-header">
         <h1>
             Director Dashboard
-            <small><a href="<?= site_url()?>student/">Courses</a>
+            <small><a href="<?= site_url()?>Academic/">Academic</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 View Courses
             </small>

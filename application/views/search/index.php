@@ -8,9 +8,9 @@
     <section class="content-header">
         <h1>
             Director Dashboard
-            <small><a href="<?= site_url() ?>expenses/">Expenses</a>
+            <small><a href="<?= site_url() ?>admin/">Home</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Add Expenses
+                Search For Some one
             </small>
         </h1>
     </section>

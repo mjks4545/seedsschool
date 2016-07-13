@@ -1,6 +1,14 @@
 <?php
 class Studentpayment extends CI_Controller{
-
+    function __construct() {
+        parent::__construct();
+        $session = $this->session->userdata("session_data");
+        $logged_in=$session['logged_in'];
+        if($logged_in==0){
+            redirect(site_url()."home/");
+        }
+    }
+//-------------------------------------------------------------------
    function viewstd()
    {
        $this->load->view('include/header');
@@ -31,23 +39,41 @@ class Studentpayment extends CI_Controller{
 //        echo "<pre>";print_r($data); die();
         $this->load->view('student/studentpayment/paynow',$data);
         $this->load->view('include/footer');
+        $this->session->set_userdata("paymentdetail",'');
     }
     //---------------------------------------------------------------
     function paymonthlyfeepro(){
         $std_id = $this->input->post('fkstd_id');
         $data=$this->studentpayment_m->paymonthlyfeepro();
-        if ($data==1){
+         $classfee_id =  $data['arr']['fkstudentclassfee_id'];
+        $data['std_info']=$this->student_m->student_details($std_id);
+        $data['class_info']=$this->student_m->class_details($classfee_id);
+        $this->session->set_userdata("paymentdetail",$data);
+//       echo "<pre>";print_r($data); die();
+        if ($data['result']==1){
             $this->session->set_flashdata('msg', 'Sucessfully Added');
             $this->session->set_flashdata('type', 'success');
-            redirect(site_url().'studentpayment/studentclass/'.$std_id);
+            redirect(site_url().'studentpayment/slip');
         }
-        if ($data==0){
+        if ($data['result']==0){
             $this->session->set_flashdata('msg', 'Error');
             $this->session->set_flashdata('type', 'danger');
             $this->load->view('student/studentpayment/paynow',$std_id);
         }
     }
 
+    //----------------------------------------------------------------
+    function slip(){
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data = $this->session->userdata("paymentdetail");
+            //   echo "<pre>";print_r($data); die();
+
+        $this->load->view('student/studentpayment/payment_slip',$data);
+        $this->load->view('include/footer');
+
+
+    }
     //----------------------------------------------------------------
     function classpaymentdetail(){
         $classfee_id=$this->uri->segment(3);
@@ -79,19 +105,33 @@ class Studentpayment extends CI_Controller{
      function payotherfeepro(){
         $std_id = $this->input->post('fkstd_id');
         $data=$this->studentpayment_m->payotherfeepro($std_id);
-       // echo '<pre>';print_r($data);die();
+        $data['std_info']=$this->student_m->student_details($std_id);
+         $this->session->set_userdata("otherpaymentdetail",$data);
 
-        if ($data) {
+        // echo '<pre>';print_r($data);die();
+
+        if ($data['result']==1) {
             $this->session->set_flashdata('msg', 'Sucessfully Added');
             $this->session->set_flashdata('type', 'success');
-            redirect(site_url().'studentpayment/studentclass/'.$std_id);
+            redirect(site_url().'studentpayment/otherpayment_slip');
         }else{
             $this->session->set_flashdata('msg', 'Error');
             $this->session->set_flashdata('type', 'danger');
             redirect(site_url().'studentpayment/otherpay/'.$std_id);
         }  
     }
+    //----------------------------------------------------------------
+    function otherpayment_slip(){
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data = $this->session->userdata("otherpaymentdetail");
+           //echo "<pre>";print_r($data); die();
 
+        $this->load->view('student/studentpayment/otherpayment_slip',$data);
+        $this->load->view('include/footer');
+
+
+    }
     //-----------------------------------------------------------------
     
 }

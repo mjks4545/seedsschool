@@ -25,8 +25,9 @@
             <div class="callout callout-info" style="margin-bottom: 0!important;">
                 <h4><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Note:</h4>
                 This page has been enhanced for printing.Press Ctrl+P.
-                <?php // print_r($teacher); ?>
-                <?php // print_r($paymentdetail); ?>
+               <!-- <pre>
+                                <?php /* print_r($arr); */?>
+                                --><?php /* print_r($std_info); */?>
             </div>
         </div>
 
@@ -36,7 +37,7 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
 
-                        <img src="<?php echo site_url() ?>public/img/logo.jpg" class="img-responsive" style="height:100px;margin-bottom:-40px;  "/>
+                    <img src="<?php echo site_url() ?>public/img/logo.jpg" class="img-responsive" style="height:100px;margin-bottom:-40px;  "/>
                     <h2 class="page-header text-center">
                         Seeds School of Excellence
                         <small class="pull-right" style="margin-right:20px; ">Date&nbsp;:&nbsp;<?php echo date("d-M-Y"); ?></small>
@@ -46,7 +47,7 @@
             <!-- info row -->
             <div class="row invoice-info">
                 <div class="col-sm-4 invoice-col">
-                    From
+                    To
                     <address>
                         <strong>Seeds School of Excellence</strong><br>
                         University Town Peshawar,<br>
@@ -56,14 +57,14 @@
                     </address>
                 </div><!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                    To
+                    From
                     <address>
                         <strong>
-                            <?php echo $teacher[0]->name; ?>
+                            <?php echo $std_info[0]->student_name; ?>
                         </strong><br>
-                        <?php echo $teacher[0]->address; ?><br>
-                        Phone: <?php echo $teacher[0]->contact; ?><br>
-                        Email: <?php echo $teacher[0]->email; ?>
+                        Address: <?php echo $std_info[0]->student_address; ?><br>
+                        Phone: <?php echo  $std_info[0]->student_contact; ?><br>
+                        Email: <?php echo $std_info[0]->student_email; ?>
                     </address>
                 </div><!-- /.col -->
                 <div class="col-sm-4 invoice-col">
@@ -72,11 +73,8 @@
 
                         ?></b><br>
                     <br>
-                    <b>Payment Month&nbsp;: &nbsp;<?php $month = $paymentdetail['arr']['paid_month'];
-                        $month_p = date('F',strtotime("01-".$month."-2001"));
-                        echo $month_p;
-                        ?></b><br>
-                    <b>Payment Due:</b> <?php echo $paymentdetail['arr']['total_salary']."&nbsp;.Rs";?><br>
+                    <b>Payment Date&nbsp;: &nbsp;<?php echo  $arr['otherpay_created_date']; ?></b><br>
+                    <b>Payment Due:</b> <?php echo $arr['paid_amt']+($arr['otherfee_remain'])."&nbsp;.Rs";?><br>
                 </div><!-- /.col -->
             </div><!-- /.row -->
 
@@ -93,7 +91,7 @@
                         <tbody>
                         <tr>
                             <td>1</td>
-                            <td><?php echo  $paymentdetail['arr']['amount_reason'];?></td>
+                            <td><?php echo  $arr['amt_reason'];?></td>
                         </tr>
                         </tbody>
                     </table>
@@ -110,20 +108,20 @@
                     <div class="table-responsive">
                         <table class="table">
                             <tr>
-                                <th style="width:50%">Total:</th>
-                                <td><?php echo $paymentdetail['arr']['paid_salary']+($paymentdetail['arr']['remaining_salary']);?></td>
+                                <th style="width:50%">Total Balance:</th>
+                                <td><?php echo $arr['paid_amt']+($arr['otherfee_remain']);?></td>
                             </tr>
                             <tr>
                                 <th>Paid</th>
-                                <td><?php echo $paymentdetail['arr']['paid_salary'];?></td>
+                                <td><?php echo $arr['paid_amt'];?></td>
                             </tr>
                             <tr>
                                 <th>Remain</th>
-                                <td><?php echo $paymentdetail['arr']['remaining_salary'];?></td>
+                                <td><?php echo $arr['otherfee_remain'];?></td>
                             </tr>
                             <tr>
                                 <th>Total Paid:</th>
-                                <td><?php echo $paymentdetail['arr']['paid_salary']."&nbsp;.Rs";?></td>
+                                <td><?php echo $arr['paid_amt']."&nbsp;.Rs";?></td>
                             </tr>
                         </table>
                     </div>
@@ -131,14 +129,14 @@
             </div><!-- /.row -->
 
             <!-- this row will not appear when printing -->
-           <div class="row no-print">
+            <div class="row no-print">
                 <div class="col-xs-12">
                     <a class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</a>
-                    <a  href="<?php echo site_url() ?>teacher/paymentdetails/<?php echo $paymentdetail['arr']['fkteacher_id'];  ?>" class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                         Back</a>
+                    <a href="<?php echo site_url() ?>studentpayment/studentclass/<?php echo $arr['fkstudent_id']; ?>"  class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                        Back</a>
                 </div>
             </div>
         </section><!-- /.content -->
         <div class="clearfix"></div>
     </div><!-- /.content-wrapper -->
-  </div><!-- ./wrapper -->
+</div><!-- ./wrapper -->

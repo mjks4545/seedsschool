@@ -344,6 +344,25 @@ class Student_m extends CI_Model
             return 0;
         }
     }
+ //------------------------------------------------------------------------------------------------------------------
+    function class_details($classfee_id)
+    {
+        $this->db->select('*');
+        $this->db->from('student_class_fee');
+        $this->db->where('classfee_id', $classfee_id);
+       $this->db->join('class','class.cl_id = student_class_fee.fkclass_id');
+        $this->db->join('subject','subject.su_id = class.su_id');
+//        $this->db->join('teacher','teacher.id = class.t_id');
+//        $this->db->where('student_id',$id);
+
+        $query = $this->db->get();
+        $result = $query->result();
+        if ($result) {
+            return $result;
+        } else {
+            return 0;
+        }
+    }
 
     //------------------------------------------------------------------------------------------------------------------
     function updatestudent($id)
