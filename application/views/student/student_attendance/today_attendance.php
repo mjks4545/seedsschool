@@ -15,7 +15,7 @@
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Today Attendance
             </small>
-            <? } elseif($role=="teacher"){?>
+            <?php } elseif($role=="teacher"){?>
             Teacher Dashboard
             <small><a href="<?= site_url() ?>studentattendance/">attendance</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>

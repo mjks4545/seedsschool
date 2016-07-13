@@ -23,16 +23,13 @@
           <ul class="sidebar-menu">
            <?php if($role=='admin'){?> 
             <li class="header">SEEDS SCHOOL OF EXCELLENCE</li>
+
             <li>
-              <a href="#">
-                <i class="fa fa-users"></i> <span>Users</span> <i class="fa fa-angle-left pull-right"></i>
+              <a href="<?= site_url()?>admin">
+            <i class="fa fa-tachometer"></i>   <span>Dashboard</span> 
               </a>
-              <ul class="treeview-menu">
-                <li class="active"><a href="<?= site_url()?>admin/"><i class="fa fa-circle-o"></i> Director</a></li>
-                <li><a href="<?= site_url()?>/reception/index"><i class="fa fa-circle-o"></i> Receptionist</a></li>
-                <li><a href="<?= site_url()?>/gatekeeper/index"><i class="fa  fa-male"></i> Gate Keeper</a></li>
-              </ul>
             </li>
+
             <li>
               <a href="">
                   <i class="fa fa-user"></i> <span>Expanses</span> <i class="fa fa-angle-left pull-right"></i>
@@ -46,7 +43,7 @@
 
 			<li>
                 <a href="">
-                  <i class="fa fa-user"></i> <span>Classes</span> <i class="fa fa-angle-left pull-right"></i>
+                  <i class="fa fa-table"></i> <span>Classes</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li class="active"><a href="<?=  site_url()?>classcontroller/add_class"><i class="fa fa-circle-o"></i> Add class</a></li>
@@ -61,7 +58,7 @@
             </li>
             <li>
               <a href="<?= site_url()?>academic/index">
-                <i class="fa fa-user"></i> <span>Academic Section</span>
+                <i class="fa fa-university"></i> <span>Academic Section</span>
               </a>
             </li>
 
@@ -73,15 +70,15 @@
 
              <li>
                 <a href="<?= site_url()?>reports/index">
-                <i class="fa fa-user"></i> <span>Reports</span>
+                <i class="fa fa-newspaper-o"></i> <span>Reports</span>
               </a>
             </li>
 
-             <li>
+           <!--   <li>
                 <a href="<?= site_url()?>attendancecontroller/find_teacher">
                 <i class="fa fa-user"></i> <span>Attendance</span>
               </a>
-            </li>
+            </li> -->
 
             <li>
               <a href="<?= site_url()?>admin/admin_setting">
@@ -91,7 +88,7 @@
 
             <li>
               <a href="<?php echo base_url();?>search">
-                <i class="fa fa-user"></i> <span>Searches</span> 
+                <i class="fa fa-search"></i> <span>Searches</span> 
               </a> 
             </li> 
           <?php } elseif($role=="teacher") {?>

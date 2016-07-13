@@ -64,7 +64,7 @@
                 <a href="<?php echo base_url('home/logout');?>">
                   <span class="hidden-xs">
                   <?php if($this->session->userdata('session_data')){ ?>
-                  Logout
+                 <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
                <?php }?>
                   </span>
                 </a>

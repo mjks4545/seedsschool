@@ -144,17 +144,11 @@ class Otherstaff extends CI_Controller
     function salarypaymentpro()
     {
         $id = $this->uri->segment(3);
-<<<<<<< HEAD
-        $result = $this->otherstaff_m->salarypaymentpro();
-//      echo '<pre>';print_r($result);die();
-        if ($result == 1) {
-=======
         $data = $this->otherstaff_m->salarypaymentpro();
         $data['staff'] = $this->otherstaff_m->view_staffdetails($id);
         $this->session->set_userdata("paymentdetail",$data);
           // echo '<pre>';print_r($data);die();
         if ($data['result'] == 1) {
->>>>>>> refs/remotes/origin/seeeds_muhammad
             $this->session->set_flashdata('msg', 'Sucessfully Added');
             $this->session->set_flashdata('type', 'success');
             redirect("otherstaff/payment_slip/");

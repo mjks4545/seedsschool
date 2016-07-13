@@ -30,28 +30,69 @@ class Reports_m extends CI_Model
     {
     	$this->db->select('*');
     	$this->db->from('visitor');	
-    	$current_date = date('d-M-Y');
-    	$interval =date('d-M-Y', strtotime('-7 days'));
-        //echo $interval;die;
-    	$this->db->where("date <=",$current_date); 
-    	$this->db->or_where("date >",$interval);
+    	$current_date = date('Y-m-d');
+    	$interval =date('Y-m-d', strtotime('-7 days'));
+      $query = $this->db->get();
+      $result= $query->result();
+      //echo '<pre>';print_r($result);die;
+             foreach ($result as $row) {
+        
+           $date = date("Y-m-d",strtotime($row->date));
+           //echo $date;die;
+           if($date>$interval && $date<=$current_date){
+           $array = array(
+                    'id' =>$row->id , 
+                    'name' =>$row->name , 
+                    'contact' =>$row->contact, 
+                    'reason' =>$row->reason, 
+                    'address' =>$row->address, 
+                    'relationship' =>$row->relationship, 
+                    'note' =>$row->note, 
+                    'date' =>$row->date, 
+                    'time' =>$row->time, 
+                    );
+                $data[]=$array;
+           }
+          }
+        return $data;
 
-	  	$query = $this->db->get();
-    	return $result= $query->result();
     }
 
     //------------------------------------------------------
     function weeklystudents()
     {
-    	$this->db->select('*');
-    	$this->db->from('student');
-    	$current_date = date('d-M-Y');
-    	$interval = date('d-M-Y', strtotime('-7 days'));
-    	$this->db->where("student_created_date <=",$current_date); 
-    	$this->db->or_where("student_created_date >",$interval);
+      $this->db->select('*');
+        $this->db->from('student'); 
+        $current_date = date('Y-m-d');
+        $interval = date('Y-m-d', strtotime('-7 days') );
+        $query = $this->db->get();
+        $result= $query->result();
+       // print_r($result);die;
+       foreach ($result as $row) {
+        
+           $date = date("Y-m-d",strtotime($row->student_created_date));
+           //echo $date;die;
+           if($date>$interval && $date<=$current_date){
+                $array = array(
+                    'student_id' =>$row->student_id , 
+                    'student_name' =>$row->student_name , 
+                    'std_father_name' =>$row->std_father_name, 
+                    'student_contact' =>$row->student_contact, 
+                    'std_guardian_contact' =>$row->std_guardian_contact, 
+                    'facebook_id' =>$row->facebook_id, 
+                    'student_address' =>$row->student_address, 
+                    'student_email' =>$row->student_email, 
+                    'student_created_date' =>$row->student_created_date, 
+                    'current_school'=>$row->current_school,
+                    'student_contact'=>$row->student_contact
+                    );
+                $data[]=$array;
 
-    	$query = $this->db->get();
-    	return $result= $query->result();
+           }
+         
+        }
+
+         return $data;
     }
 
     //------------------------------------------------------
@@ -66,7 +107,6 @@ class Reports_m extends CI_Model
        foreach ($result as $row) {
         
            $date = date("Y-m-d",strtotime($row->date));
-
            if($date>$interval && $date<=$current_date){
                 $array = array(
                     'id' =>$row->id , 
@@ -85,6 +125,9 @@ class Reports_m extends CI_Model
          
         }
 
+ /*echo "<pre>";
+ print_r($data);
+ die();*/
     	 return $data;
     }
 

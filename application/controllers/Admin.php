@@ -1,9 +1,6 @@
 <?php
-class Admin extends CI_Controller{
 
-<<<<<<< HEAD
-    function index(){
-=======
+
 class Admin extends CI_Controller
 {
     function __construct() {
@@ -16,7 +13,6 @@ class Admin extends CI_Controller
     }
     function index()
     {
->>>>>>> refs/remotes/origin/seeeds_muhammad
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('admin/admin_home');
