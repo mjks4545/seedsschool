@@ -111,9 +111,11 @@ class Studentpayment_m extends CI_Model
             $result_1 = $this->db->insert('student_payment', $inser_array);
         }
         if ($result_1){
-            return $result_1;
+           $data['arr'] = $inser_array;
+           $data['result']=1;
+            return $data;
         }else{
-            return 0;
+           return $data['result']=0;
         }
     }
     //----------------------------------------------------------------------------
@@ -187,9 +189,12 @@ class Studentpayment_m extends CI_Model
         );
         $result = $this->db->insert('student_other_payment',$insert_array);
         if($result){
-            return $result;
+            $data['arr']=$insert_array;
+            $data['result']=1;
+            return $data;
         }else{
-            return 0;
+            $data['result']=0;
+            return $data;
         }
     }
 
