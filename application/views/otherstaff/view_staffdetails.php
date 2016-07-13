@@ -62,7 +62,7 @@
                                 <div class="form-group name"><label>Employee CNIC : </label><?= $staff_array->cnic;?></div>
                             </div>
                             <div class="col-md-2">
-                                <!----for spacing---->
+                                <!--for spacing-->
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group name"><label>Address : </label><?= $staff_array->address;?></div>
@@ -117,7 +117,53 @@
                             </div>
 
                          </div>
+                        <div class="col-md-12">
+                            <!-- general form elements -->
+                            <div class="col-md-1">
+
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group name"><label>Password : </label><?= $staff_array->password;?></div>
+                            </div>
+                           <div class="col-md-2">
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group name"><a href="" data-toggle="modal" data-target="#myModal">Change Password</a></div>
+                            </div>
+                         </div>                         
                         </div>
+
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Modal Header</h4>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form role="form" method="post" action="<?php echo base_url('otherstaff/change_other_staff_password')?>">
+                                      <div class="form-group">
+                                        <label for="oldPassword">Old Password:</label>
+                                        <input type="text" class="form-control" name="oldPassword" value="<?= $staff_array->password;?>">
+                                        <input type="hidden" class="form-control" name="pass_id" value="<?= $staff_array->id;?>">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="pwd">New Password:</label>
+                                        <input type="text" class="form-control" name="password">
+                                      </div>
+                                     
+                                      <button type="submit" class="btn btn-info">Change Password</button>
+                                    </form>
+
+                                </div>
+                               
+                              </div> 
+                            </div>
+                        </div>    
+
                         <?php }?>
 
                     </div>

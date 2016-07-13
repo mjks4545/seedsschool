@@ -3,7 +3,7 @@
         <section class="sidebar">
           <!-- Sidebar user panel -->
           <?php $session = $this->session->userdata('session_data');
-                                   $id= $session['id']; $role = $session['role'];
+            $id= $session['id']; $role = $session['role'];
 
                                 ?> 
             <?php if($role=='admin'){?> 
@@ -17,9 +17,11 @@
             </div>
           </form>
           <!-- /.search form -->
+          <?php }?>
           <!-- sidebar menu: : style can be found in sidebar.less -->
          
           <ul class="sidebar-menu">
+           <?php if($role=='admin'){?> 
             <li class="header">SEEDS SCHOOL OF EXCELLENCE</li>
             <li>
               <a href="#">
@@ -81,20 +83,39 @@
               </a>
             </li>
 
-<!--             <li>
-              <a href="#">
-                <i class="fa fa-user"></i> <span>Payments</span> 
+            <li>
+              <a href="<?= site_url()?>admin/admin_setting">
+                <i class="fa fa-cog"></i> <span>Setting</span> 
               </a> 
-            </li> -->
+            </li>
 
             <li>
               <a href="<?php echo base_url();?>search">
                 <i class="fa fa-user"></i> <span>Searches</span> 
               </a> 
             </li> 
+          <?php } elseif($role=="teacher") {?>
 
+            <li>
+              <a href="<?php echo base_url();?>teacher/index">
+                <i class="fa fa-user"></i> <span>Teacher</span> 
+              </a> 
+            </li> 
+         <?php }elseif($role=="receptionist"){?>
+            <li>
+              <a href="<?php echo base_url();?>reception/index">
+                <i class="fa fa-user"></i> <span>Receptionist</span> 
+              </a> 
+            </li>
+            <?php }elseif($role=="gatekeeper"){?>
+            <li>
+              <a href="<?php echo base_url();?>gatekeeper/index">
+                <i class="fa fa-user"></i> <span>Gatekeeper</span> 
+              </a> 
+            </li>
+            <?php }?>
           </ul>
-          <?php }?>
+
         </section>
         <!-- /.sidebar -->
       </aside>

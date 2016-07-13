@@ -210,7 +210,7 @@ class Otherstaff_m extends CI_Model
                     );
                     $result = $this->db->insert('staff_salaries', $insert_array);
                 }
-                if ($last_paid != $paid_month) {
+                if ($last_paid !== $paid_month) {
                     $remaining_salary = ($total_salary) + ($remaining_salary) - ($paid_salary);
                     $insert_array = array(
 
@@ -245,9 +245,7 @@ class Otherstaff_m extends CI_Model
             $result = $this->db->insert('staff_salaries', $insert_array);
         }
         if ($result) {
-            $data['arr']=$insert_array;
-            $data['result'] = 1;
-            return $data;
+            return 1;
         } else {
             return 0;
         }
@@ -384,5 +382,15 @@ class Otherstaff_m extends CI_Model
         $this->db->where($where);
         $query = $this->db->get();
         return $query->num_rows();
+    }
+
+    function change_other_staff_password()
+    {
+        $id = $this->input->post('pass_id');
+        $data = array(
+            'password'=>$this->input->post('password')
+            );
+        $this->db->where('id',$id);
+        $this->db->update('otherstaff',$data);
     }
 }

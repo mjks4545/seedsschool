@@ -46,7 +46,7 @@ class Home extends CI_Controller
             }
             else if($role == 'receptionist')
             {
-                $this->session->set_flashdata('msg','Welcome to Gatekeeper Dashboard');
+                $this->session->set_flashdata('msg','Welcome to Receptionist Dashboard');
                 $this->session->set_flashdata('type','success');
                 redirect('reception/index');
             }            
@@ -56,5 +56,11 @@ class Home extends CI_Controller
             $this->session->set_flashdata('error','Incorrect Email or Password or Role');
              redirect('home/index');
         }
+    }
+
+    function logout()
+    {
+        $this->session->sess_destroy(); 
+        redirect();
     }
 }

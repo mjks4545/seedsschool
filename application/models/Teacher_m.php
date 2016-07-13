@@ -456,7 +456,7 @@ class Teacher_m extends CI_Model
                     );
                     $result = $this->db->insert('teacher_salaries', $insert_array);
                 }
-                if ($last_paid != $paid_month) {
+                if ($last_paid !== $paid_month) {
                     $remaining_salary = ($total_salary) + ($remaining_salary) - ($paid_salary);
                     $insert_array = array(
 
@@ -491,14 +491,22 @@ class Teacher_m extends CI_Model
             $result = $this->db->insert('teacher_salaries', $insert_array);
         }
         if ($result) {
-            $data['arr'] = $insert_array;
-            $data['result'] =1;
-
-            return $data;
+            return 1;
         } else {
-            $data['result'] =0;
+            return 0;
         }
     }
     //-----------------------------------------------------------
+
+    function change_teacher_password()
+    {
+        $id = $this->input->post('pass_id');
+        //$password = $this->input->post('password');
+        $data = array(
+            'password'=>$this->input->post('password')
+            );        
+        $this->db->where('id',$id);
+        $this->db->update('teacher',$data);
+    }
 
 }

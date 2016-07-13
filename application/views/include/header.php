@@ -63,7 +63,7 @@
               <li class="dropdown user user-menu">
                 <a href="<?php echo base_url('home/logout');?>">
                   <span class="hidden-xs">
-                  <?php if($this->session->userdata('email')){ ?>
+                  <?php if($this->session->userdata('session_data')){ ?>
                   Logout
                <?php }?>
                   </span>

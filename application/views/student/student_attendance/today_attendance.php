@@ -5,13 +5,23 @@
 </style>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+    <?php $session = $this->session->userdata('session_data');
+       $role = $session['role'];  ?>
     <section class="content-header">
         <h1>
+        <?php if($role=="admin") {?>
             Director Dashboard
             <small><a href="<?= site_url() ?>studentattendance/">Student attendance</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Today Attendance
             </small>
+            <? } elseif($role=="teacher"){?>
+            Teacher Dashboard
+            <small><a href="<?= site_url() ?>studentattendance/">attendance</a>
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                Today Attendance
+            </small>
+            <?php }?>
         </h1>
     </section>
     <!-- Main content -->

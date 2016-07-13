@@ -136,28 +136,15 @@ class Otherstaff extends CI_Controller
     function salarypaymentpro()
     {
         $id = $this->uri->segment(3);
-        $data = $this->otherstaff_m->salarypaymentpro();
-        $data['staff'] = $this->otherstaff_m->view_staffdetails($id);
-        $data['paymentdetail'] = $data['arr'];
-        $this->session->set_userdata("paymentdetail",$data);
-        /*
-         *
-         *
-         *
-         *
-         *
-         * for to give to slip payment and have */
-
-
-
-//      echo '<pre>';print_r($data);die();
-        if ($data['result'] == 1) {
+        $result = $this->otherstaff_m->salarypaymentpro();
+//      echo '<pre>';print_r($result);die();
+        if ($result == 1) {
             $this->session->set_flashdata('msg', 'Sucessfully Added');
             $this->session->set_flashdata('type', 'success');
             redirect("otherstaff/paymentdetails/" . $id);
 //            echo $id;
         }
-        if ($data['result'] == 0) {
+        if ($result == 0) {
             $this->session->set_flashdata('msg', 'Error');
             $this->session->set_flashdata('type', 'danger');
             redirect("otherstaff/paymentdetails/" . $id);
@@ -229,5 +216,12 @@ class Otherstaff extends CI_Controller
       $this->load->view('otherstaff/staffattendancedetailview', $data);
       $this->load->view('include/footer');
 
+  }
+
+  function change_other_staff_password()
+  {
+    $id = $this->input->post('pass_id');    
+    $data = $this->otherstaff_m->change_other_staff_password();
+    redirect('otherstaff/viewstaffdetails/'.$id);
   }
 }

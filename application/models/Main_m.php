@@ -1,7 +1,25 @@
 <?php
 class Main_m extends CI_Model
 {
-    
+   
+
+   function get_admin_data($id)
+   {
+    $this->db->where('id',$id);
+    $qry = $this->db->get('admin');
+    return $qry->result();
+   } 
+
+   function change_admin_password()
+   {
+        $id = $this->input->post('pass_id');
+        $data = array(
+            'pwd'=>$this->input->post('password')
+            );        
+        $this->db->where('id',$id);
+        $this->db->update('admin',$data);
+   }
+   
     // -------------------------------------------------------------------------
     
     function loginpro(){

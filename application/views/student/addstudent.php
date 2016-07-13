@@ -8,7 +8,9 @@
         <section class="content-header">
           <h1>
             Add New Student
-            <small><a href="<?= site_url()?>student/">Student Home</a> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Add New Student</small>
+            <small><!-- <a href="<?= site_url()?>student/">Student Home</a>  -->
+            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Add New Student
+            </small>
           </h1>
         </section>
         <!-- Main content -->

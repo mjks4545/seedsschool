@@ -15,4 +15,25 @@ class Admin extends CI_Controller{
         $this->load->view('invoice/invoice');
 //        $this->load->view('include/footer');
     }
+
+    function admin_setting()
+    {
+        $session = $this->session->userdata('session_data');
+        $id= $session['id'];
+         $data['adm_data'] = $this->main_m->get_admin_data($id);
+        // echo '<pre>';print_r($data);die;
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('admin/admin_setting',$data);
+        $this->load->view('include/footer');
+    }
+
+
+    function change_admin_password()
+    {
+        $data = $this->main_m->change_admin_password();
+        redirect('admin/admin_setting');
+    }
+
+
 }

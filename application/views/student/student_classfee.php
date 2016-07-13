@@ -41,7 +41,7 @@
                                     <label for="exampleInputEmail1">Admission Fee</label>
                                     <input type="text" name="admission_fee" id="add_fee" class="form-control"
                                            maxlength="50"
-                                           minlength="1" required/>
+                                           minlength="3" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"
                                           style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>

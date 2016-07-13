@@ -119,17 +119,22 @@
                             <div class="col-md-1">
 
                             </div>
-                            <div class="col-md-2">
-                                <div class="form-group name"><label>Date : </label><?= $teachers['0']->created_date; ?>
+                            <?php if($role=="admin"){?>
+                             <div class="col-md-2">
+                                <div class="form-group name"><label>Password : </label><?= $teachers['0']->password; ?>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <!----for spacing---->
+                                <!--for spacing-->
                             </div>
-                            <div class="col-md-4">
-                                <div class="form-group name"><label>Time : </label><?= $teachers['0']->created_time; ?>
+                           <div class="col-md-4">
+                                <div class="form-group name">
+                               
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" >Change Password </a>
+                                
                                 </div>
-                            </div>
+                            </div> 
+                            <?php }?>
                             <div class="col-md-1">
 
                             </div>
@@ -151,6 +156,40 @@
                             </a>
                             <?php }?>
                                     </div>
+
+
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+                            
+                              <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  <h4 class="modal-title">Modal Header</h4>
+                                </div>
+                                <div class="modal-body">
+                                    
+                                    <form role="form" method="post" action="<?php echo base_url('teacher/change_teacher_password')?>">
+                                      <div class="form-group">
+                                        <label for="oldPassword">Old Password:</label>
+                                        <input type="text" class="form-control" name="oldPassword" value="<?= $teachers['0']->password; ?>">
+                                        <input type="hidden" class="form-control" name="pass_id" value="<?= $teachers['0']->id; ?>">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="pwd">New Password:</label>
+                                        <input type="text" class="form-control" name="password">
+                                      </div>
+                                     
+                                      <button type="submit" class="btn btn-info">Change Password</button>
+                                    </form>
+
+                                </div>
+                               
+                              </div> 
+                            </div>
+                        </div>               
+
+
                             <!------------table start----------------------------------->
                             <div class="box-body">
                                 <table id="example2" class="table table-bordered table-hover" style="margin-top:20px;">

@@ -3,10 +3,15 @@
         text-align: center;
     }
 </style>
+
+<?php $session = $this->session->userdata('session_data');
+  $role = $session['role'];?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
+        <?php if($role=="admin"){?>
             Director Dashboard
             <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
@@ -14,6 +19,15 @@
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Class Attendance
             </small>
+            <?php }elseif($role=="teacher"){?>
+            Teacher Dashboard
+            <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                <a href="<?= site_url() ?>studentattendance/allclass/<?=$co_id?>">All classes</a>
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                Class Attendance
+            </small>
+            <?php }?>
         </h1>
     </section>
     <!-- Main content -->

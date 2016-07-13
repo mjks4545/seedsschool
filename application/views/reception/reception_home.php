@@ -20,9 +20,13 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
+         <div class="box-header with-border">
+                    <?php $this->load->view('include/alert'); ?>
+            </div><!-- /.box-header -->
             <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
+
+             <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
                     </div><!-- /.box-header -->

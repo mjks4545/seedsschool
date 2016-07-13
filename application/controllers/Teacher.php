@@ -252,40 +252,28 @@ class Teacher extends CI_Controller
     //---------------------------------------------------------------
     function salarypaymentpro(){
         $teacher_id=$this->input->post("teacher_id");
-        $data = $this->teacher_m->salarypaymentpro($teacher_id);
-        $this->session->set_userdata("payment",$data);
-             //echo '<pre>';print_r($data);die();
-
-        if ($data['result'] == 1) {
-//            $this->session->set_flashdata('msg', 'Sucessfully Added');
-//            $this->session->set_flashdata('type', 'success');
-            redirect("teacher/paymentslip/");
+        $result = $this->teacher_m->salarypaymentpro($teacher_id);
+        if ($result == 1) {
+            $this->session->set_flashdata('msg', 'Sucessfully Added');
+            $this->session->set_flashdata('type', 'success');
+            redirect("teacher/paymentdetails/" . $teacher_id);
 //            echo $id;
         }
-        if ($data['result'] == 0) {
+        if ($result == 0) {
             $this->session->set_flashdata('msg', 'Error');
             $this->session->set_flashdata('type', 'danger');
             redirect("teacher/paymentdetails/" . $teacher_id);
 
         }
     }
-    //----------------------------------------------------------------
-    function paymentslip(){
-        $paymentdetail = $this->session->userdata("payment");
-         $t_id=$paymentdetail['arr']['fkteacher_id'];
-        $data['teacher'] = $this->teacher_m->view_teacherdetails($t_id);
-        $data['paymentdetail'] = $paymentdetail;
-
-       // echo '<pre>';print_r($data);die();
-        $this->load->view('include/header');
-        $this->load->view('include/sidebar');
-        $this->load->view('teacher/paymentslip', $data);
-        $this->load->view('include/footer');
-
-
-    }
-
     //---------------------------------------------------------------
 
+    function change_teacher_password()
+    {
+        $id = $this->input->post('pass_id');
+
+        $data = $this->teacher_m->change_teacher_password();
+        redirect('teacher/viewteacherdetails/'.$id);
+    }
 
 }
