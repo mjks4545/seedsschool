@@ -24,11 +24,20 @@ class Visitor extends CI_Controller
     //-------------------------------------------------------------
     function visitoraddpro()
     {
+        $session = $this->session->userdata('session_data');
+        $role = $session['role']; 
+
         $result = $this->visitor_m->addvisitorpro();
+
         if ($result == 1) {
             $this->session->set_flashdata('msg', 'Sucessfully Added');
             $this->session->set_flashdata('type', 'success');
+            if($role=="admin"){
             redirect("visitor/viewvisitors");
+            }else if($role=="gatekeeper")
+            {
+                redirect("gatekeeper/index");
+            }
         }
         if ($result == 0) {
             $this->session->set_flashdata('msg', 'There is Some Error');

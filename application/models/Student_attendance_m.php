@@ -24,6 +24,22 @@ class Student_attendance_m extends CI_Model
         return $query->result();
     }
 
+    function allclass_t($co_id)
+    {
+       $session = $this->session->userdata('session_data');
+        $id = $session['id'];
+        $this->db->select("*");
+        $this->db->from("class");
+        $this->db->where("class.co_id", $co_id);
+        $this->db->join("subject", "subject.su_id=class.su_id");
+        $this->db->join("teacher", "teacher.id=class.t_id");
+        $this->db->join("course", "course.co_id=class.co_id");
+        $this->db->where('class.t_id',$id);
+//        $this->db->join("teacher_subject","teacher_subject.sub_id=class.su_id");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     //-----------------------------------------------------------------
     function takeattendance($cl_id)
     {

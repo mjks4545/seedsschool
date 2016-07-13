@@ -16,19 +16,45 @@ class Home extends CI_Controller
     {
         $role = $this->input->post('role');
         $result = $this->main_m->loginpro();
+        //echo $result;die;
         if($result==0)
         {
-            echo 'status is 0';
+            $this->session->set_flashdata('error','Incorrect Email or Password or Role');
+             redirect('home/index');
         }
         if($result==1){
-            //$session = $this->session->userdata('session_data');
-            // $email = $session['email'];
+
             $this->session->set_flashdata('msg','Welcome Director Dashboard');
             $this->session->set_flashdata('type','success');
+            if($role == 'admin')
+            {
+            $this->session->set_flashdata('msg','Welcome Director Dashboard');
+            $this->session->set_flashdata('type','success');                
             redirect("admin/index");
+            } 
+            else if($role == 'teacher')
+            {
+                $this->session->set_flashdata('msg','Welcome to Teacher Dashboard');
+                $this->session->set_flashdata('type','success');
+                redirect('teacher/index');
+            }
+            else if($role == 'gatekeeper')
+            {
+                $this->session->set_flashdata('msg','Welcome to Gatekeeper Dashboard');
+                $this->session->set_flashdata('type','success');
+                redirect('gatekeeper/index');
+            }
+            else if($role == 'receptionist')
+            {
+                $this->session->set_flashdata('msg','Welcome to Gatekeeper Dashboard');
+                $this->session->set_flashdata('type','success');
+                redirect('reception/index');
+            }            
+
         }
         if($result==2){
-            echo 'data not founded';
+            $this->session->set_flashdata('error','Incorrect Email or Password or Role');
+             redirect('home/index');
         }
     }
 }

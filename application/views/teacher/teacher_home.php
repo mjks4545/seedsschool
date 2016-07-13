@@ -1,10 +1,18 @@
-
+             <?php $session = $this->session->userdata('session_data');
+             $id= $session['id']; $role = $session['role'];?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
+        <?php if($role=="admin"){?>
             Director Dashboard
-            <small>Teacher</small>
+          <?php } elseif($role=="teacher"){?>
+            Teacher Dashboard
+          <?php } elseif($role=="gatekeeper"){?>
+          Gatekeeper Controller
+          <?php } elseif($role=="receptionist"){?>
+          Receptionist Dashboard
+          <?php }?>
         </h1>
     </section>
 
@@ -20,6 +28,7 @@
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-lg-1 col-xs-4"></div>
+                       <?php if($role=='admin'){?> 
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-aqua">
@@ -49,7 +58,8 @@
                                     Click here  <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
-                        </div><!-- ./col -->
+                        </div>
+                        <!-- ./col -->
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
                             <div class="small-box bg-success">
@@ -85,6 +95,7 @@
                                 </a>
                             </div>
                         </div>
+                      
                         <!-- ./col -->
                         <div class="col-lg-3 col-xs-6">
                             <!-- small box -->
@@ -103,6 +114,61 @@
                             </div>
                         </div>
                         <!-- ./col -->
+                          <?php } ?>
+
+                          <?php if( $role=='teacher') {?>       
+                      <!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-black">
+                                <div class="inner">
+                                    <h3>...</h3>
+
+                                    <p>Teacher Attendence</p>
+                                </div>
+                                <div class="icon" style="color:#ffffff; ">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                              
+                                <a href="<?= site_url('teacher/teacherattendancedetailview/'.$id) ?> " class="small-box-footer">
+                                    Click here <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- ./col -->   
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>...</h3>
+
+                                    <p> Teacher Details </p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                </div>
+                                <a href="<?= site_url('teacher/viewteacherdetails/'.$id) ?>" class="small-box-footer">
+                                    Click here <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-green">
+                                <div class="inner">
+                                    <h3>...</h3>
+                                    <p>Attendance</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-table" aria-hidden="true"></i>
+                                </div>
+                                <a href="<?= site_url()?>studentattendance/allcourse" class="small-box-footer">
+                                    Click here  <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                        <?php }?>
                     </div>
                     <!-- /.row -->
                 </div>

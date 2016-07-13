@@ -19,6 +19,13 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="<?= base_url()?>public/plugins/iCheck/square/blue.css">
 
+     <!-- jQuery 2.1.4 -->
+    <script src="<?= base_url()?>public/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="<?= base_url()?>public/bootstrap/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="<?= base_url()?>public/plugins/iCheck/icheck.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

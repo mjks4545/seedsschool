@@ -3,15 +3,25 @@
         text-align: center;
     }
 </style>
+<?php $session = $this->session->userdata('session_data');
+      $id= $session['id']; $role = $session['role'];?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Director Dashboard
-            <small><a href="<?= site_url() ?>student/">Student</a>
+            <?php if($role=="admin"){?>
+                <small><a href="<?= site_url() ?>student/">Student</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                All Course
             </small>
+            <?php } else if($role=="teacher"){?>
+              <small><a href="<?= site_url() ?>teacher/index">Teacher</a>
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+               All Course
+            </small>
+            <?php } ?>
+
         </h1>
     </section>
     <!-- Main content -->

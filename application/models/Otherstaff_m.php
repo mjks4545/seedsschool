@@ -16,6 +16,14 @@ class Otherstaff_m extends CI_Model
         $created_date = date("d-M-Y");
         $created_time = date("h:i:sa");
 
+        $length = 6;
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,@#$%*';
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        $password = $randomString;
+      //  echo $password;die;
         $insert_array = array(
             'name' => $name,
             'contact' => $contact,
@@ -24,6 +32,7 @@ class Otherstaff_m extends CI_Model
             'salary' => $salary,
             'address' => $address,
             'email' => $email,
+            'password'=>$password,
             'created_date' => $created_date,
             'created_time' => $created_time,
         );

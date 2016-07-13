@@ -11,16 +11,24 @@
         text-align: center;
     }
 </style>
+           <?php $session = $this->session->userdata('session_data');
+          $role = $session['role'];  ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
             Teacher Dashboard
-            <small><a href="<?= site_url() ?>teacher/">Teacher</a>
+            
+            <small>
+            <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+             <a href="<?= site_url() ?>teacher">Teacher</a>
+            <?php if($role=="admin") {?>
+                <a href="<?= site_url() ?>teacher/">Teacher</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url() ?>teacher/viewteacher">View Teacher</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>Details
             </small>
+            <?php }?>
         </h1>
     </section>
     <!-- Main content -->
@@ -38,9 +46,13 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <?php foreach ($teachers as $teacher){ ?>
-                        <div class="col-md-12 "><h3>Personal Information</h3><a
+                        <div class="col-md-12 "><h3>Personal Information</h3>
+                   <?php if($role=="admin") {?>         
+                        <a
                                 href="<?= site_url() ?>teacher/updateteacher/<?= $teacher->id ?>"
-                                style="position:relative;bottom: 30px;" class="btn btn-info pull-right" type="button">Update</a>
+                                style="position:relative;bottom: 30px;" class="btn btn-info pull-right" type="button">Update
+                        </a>
+                        <?php }?>
                         </div>
                         <div class="col-md-12">
                             <!-- general form elements -->
@@ -131,9 +143,14 @@
                             <div class="col-md-12">
                                 <hr>
                             </div>
-                            <div class="col-md-12"><h3>Subject Information</h3><a
+                            <div class="col-md-12"><h3>Subject Information</h3>
+                              <?php if($role=="admin") {?>    
+                            <a
                                     href="<?= site_url() ?>teacher/add_class/<?= $teacher->id ?>"
-                                    style="position:relative;bottom: 30px;" class="btn btn-info pull-right" type="button">Add Subject</a></div>
+                                    style="position:relative;bottom: 30px;" class="btn btn-info pull-right" type="button">Add Subject
+                            </a>
+                            <?php }?>
+                                    </div>
                             <!------------table start----------------------------------->
                             <div class="box-body">
                                 <table id="example2" class="table table-bordered table-hover" style="margin-top:20px;">

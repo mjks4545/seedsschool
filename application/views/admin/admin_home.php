@@ -7,9 +7,11 @@
             <small>Home</small>
           </h1>
         </section>
-
+      <?php $session = $this->session->userdata('session_data');
+              $role = $session['role'];  ?>
         <!-- Main content -->
         <section class="content">
+        <?php if($role=="admin"){?>
           <div class="row">
             <!-- left column -->
             <div class="col-md-12">
@@ -172,6 +174,7 @@
                   </div>
                 </div><!-- /.box -->
               </div>
+              <?php }?>
             </div>
         </section>
     </div>

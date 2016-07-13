@@ -3,7 +3,16 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+         <?php $session = $this->session->userdata('session_data');
+          $role = $session['role'];  ?>
+
+          <?php if($role=="admin"){?>
+                Director Dashboard
+          <?php }?>
+
+        <?php if($role=="receptionist"){?>
+                Receptionist Dashboard
+          <?php }?>
             <small>Reception</small>
         </h1>
     </section>

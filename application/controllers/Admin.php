@@ -1,29 +1,18 @@
 <?php
+class Admin extends CI_Controller{
 
-class Admin extends CI_Controller
-{
-
-    function index()
-    {
+    function index(){
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('admin/admin_home');
         $this->load->view('include/footer');
 
     }
-
-    //-------------------------------------------------------------
-    function invoice()
-    {
+  //-------------------------------------------------------------
+    function invoice(){
         $this->load->view('include/header_login');
         //$this->load->view('include/sidebar');
         $this->load->view('invoice/invoice');
 //        $this->load->view('include/footer');
-    }
-
-    //----------------------------------------------------------
-    function add_auto_montly_fee()
-    {
-        $this->main_m->add_auto_montly_fee();
     }
 }

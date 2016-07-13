@@ -137,10 +137,7 @@
                             </div>
                         <?php }?>
                         <div class="col-md-12"><hr></div>
-                        <div class="col-md-12 ">
-                            <h3>Subject Information &nbsp;<a class="btn btn-info btn-xs" href="<?php echo site_url("student/add_newclass/".$data->student_id); ?>">
-                                    Add New class
-                                </a></h3>
+                        <div class="col-md-12 "><h3>Subject Information</h3>
                         </div>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -201,8 +198,7 @@
                                     ($result[0]->student_id)?></td>
                                     <?php
                                         $remain =$this->student_m->monthlyfeeremaining
-                                        ($result[0]->student_id);
-                                    ?>
+                                        ($result[0]->student_id);?>
 
                                         <td>
                                             <?php

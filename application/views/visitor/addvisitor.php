@@ -1,11 +1,29 @@
  <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+           <?php $session = $this->session->userdata('session_data');
+          $role = $session['role'];  ?>
         <section class="content-header">
           <h1>
+              
+              <?php if($role=="admin"){?>
               Director Dashboard
             <small><a href="<?= site_url() ?>visitor/">Visitor</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Add Visitor</small>
+                Add Visitor
+            </small>
+            <?php } elseif($role=="gatekeeper"){?>
+            Gatekeeper Dashboard
+                    <small>
+                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                     <a href="<?php echo base_url('gatekeeper/index');?>">GateKeeper</a>
+                     </small>
+            <?php } elseif($role=="receptionist") {?>
+            Receptionist Dashboard
+                    <small>
+                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                     <a href="<?php echo base_url('visitor');?>">Visitors</a>
+                     </small>
+                  <?php }?>   
           </h1>
         </section>
      <!-- Main content -->

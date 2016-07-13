@@ -74,6 +74,8 @@
             </ul>
           </div>
         </nav>
+         <?php $session = $this->session->userdata('session_data');
+              $id= $session['id']; $role = $session['role'];  ?>
       </header>
         <script>
             $(function () {

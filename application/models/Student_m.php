@@ -120,33 +120,6 @@ class Student_m extends CI_Model
     }
 
     //------------------------------------------------------------------------------------------------------------------
-    function add_newclass($std_id){
-        $this->db->select('*');
-        $this->db->from('class');
-        $this->db->join('student_class_fee','student_class_fee.fkclass_id = class.cl_id');
-        $this->db->where("student_class_fee.fkstudent_id",$std_id);
-        $query = $this->db->get();
-        $result1 = $query->result();
-        foreach ( $result1 as $ids ){
-            $array_ids[] = $ids->cl_id;
-        }
-        $this->db->select('*');
-        $this->db->from('class');
-        $this->db->join('subject','subject.su_id = class.su_id');
-        $this->db->join('teacher','teacher.id = class.t_id');
-        $query2 = $this->db->get();
-        $num = $query->num_rows();
-       $result = $query2->result();
-        for($i=0;$i <= $num+1; $i++){
-            if( in_array( $result[$i]->cl_id, $array_ids ) ){
-                continue;
-            }
-            $data[] = $result[$i];
-
-        }
-        return $data;
-    }
-    //------------------------------------------------------------------------------------------------------------------
     function studentall_fee($id)
     {
 
@@ -382,7 +355,7 @@ class Student_m extends CI_Model
         $result= $query->result();
         $remain = 0;
         foreach ($result as $row) {
-            $remain = ($remain)+($row->std_remain);
+            $remain = $row->std_remain;
         }
         return $remain;
     }

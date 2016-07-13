@@ -15,10 +15,16 @@ class Studentattendance extends CI_Controller
     //---------------------------------------------------------------
     function allclass()
     {
+        $session = $this->session->userdata('session_data');
+        $role = $session['role'];
         $co_id = $this->uri->segment(3);
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
+        if($role=='admin'){
         $data['result'] = $this->student_attendance_m->allclass($co_id);
+        }else if($role=='teacher'){
+        $data['result'] = $this->student_attendance_m->allclass_t($co_id);
+        }
 //        echo "<pre>";print_r($data); die();
         $this->load->view('student/student_attendance/all_class', $data);
         $this->load->view('include/footer');

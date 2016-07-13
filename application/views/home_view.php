@@ -1,5 +1,17 @@
 <body class="hold-transition login-page">
+
  <div class="login-box">
+<?php $error = $this->session->flashdata('error');
+
+if(isset($error) ){
+?>
+
+<div class="alert alert-warning" id="erroralert">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <?php echo $error;?>
+</div>
+<?php }?>
+
       <div class="login-logo">
         <a href=""><b>Seeds School Of Excellence</b></a>
       </div><!-- /.login-logo -->
@@ -19,7 +31,7 @@
         <option>Login As</option>
         <option value="admin">Admin</option>
         <option value="teacher">Teacher</option>
-        <option value="student">Student</option>
+        <option value="receptionist">receptionist</option>
         <option value="gatekeeper">Gate Keeper</option>
       </select>
           </div>
@@ -37,3 +49,10 @@
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
      <!-- jQuery 2.1.4 -->
+
+
+<script type="text/javascript">
+
+    $("#erroralert").fadeOut(8000);
+
+</script>
