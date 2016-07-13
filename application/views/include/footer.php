@@ -1,4 +1,4 @@
-<footer class="main-footer">
+<footer class="main-footer no-print">
     <strong>Copyright &copy; 2016-2017 <a href="">SS Technologies</a>.</strong> All rights reserved.
 </footer>
       <!-- Add the sidebar's background. This div must be placed

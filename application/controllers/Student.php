@@ -62,6 +62,28 @@ class Student extends CI_Controller
     }
 
     //------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+    function add_newclass()
+    {
+        $std_id = $this->uri->segment(3);
+        $data['result'] = $this->student_m->add_newclass($std_id);
+        $data['std_id'] = $std_id;
+//    echo '<pre>'; print_r($data);die();
+        if ($data['result'] == 0) {
+            $this->session->set_flashdata('msg', 'Student have Already all Subjects.');
+            $this->session->set_flashdata('type', 'danger');
+            redirect(site_url() . "student/studentdetails/" . $std_id);
+        } else {
+            $this->load->view('include/header');
+            $this->load->view('include/sidebar');
+            $this->load->view('student/add_newclass', $data);
+            $this->load->view('include/footer');
+        }
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+>>>>>>> refs/remotes/origin/seeeds_muhammad
     function studentclasspro()
     {
         $std_id = $this->uri->segment(3);
@@ -75,11 +97,45 @@ class Student extends CI_Controller
     }
 
     //------------------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+    function addnewclasspro()
+    {
+        $std_id = $this->uri->segment(3);
+        $data['result'] = $this->student_m->addnewclasspro($std_id);
+        $data['std_id']=$std_id;
+       // echo '<pre>';print_r($data);die();
+        $this->session->set_userdata("cl_ids",$data['result']);
+        if ($data) {
+            redirect(site_url().'student/addnewclass_fee/' . $std_id);
+        } else {
+            redirect(site_url().'student/studentclasses');
+        }
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function addnewclass_fee()
+    {
+        $std_id = $this->uri->segment(3);
+        $result['result'] = $this->student_m->addnewclass_fee($std_id);
+         // echo '<pre>';print_r($result);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/student_classfee', $result);
+        $this->load->view('include/footer');
+    }
+     //------------------------------------------------------------------------------------------------------------------
+>>>>>>> refs/remotes/origin/seeeds_muhammad
     function student_class_fee()
     {
         $std_id = $this->uri->segment(3);
         $result['result'] = $this->student_m->student_class_fee($std_id);
+<<<<<<< HEAD
 //            echo '<pre>';print_r($result);die();
+=======
+          //  echo '<pre>';print_r($result);die();
+>>>>>>> refs/remotes/origin/seeeds_muhammad
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('student/student_classfee', $result);

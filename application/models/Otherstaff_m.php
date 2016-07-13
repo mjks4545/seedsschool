@@ -210,7 +210,7 @@ class Otherstaff_m extends CI_Model
                     );
                     $result = $this->db->insert('staff_salaries', $insert_array);
                 }
-                if ($last_paid !== $paid_month) {
+                if ($last_paid != $paid_month) {
                     $remaining_salary = ($total_salary) + ($remaining_salary) - ($paid_salary);
                     $insert_array = array(
 
@@ -245,7 +245,9 @@ class Otherstaff_m extends CI_Model
             $result = $this->db->insert('staff_salaries', $insert_array);
         }
         if ($result) {
-            return 1;
+            $data['arr']=$insert_array;
+            $data['result'] = 1;
+            return $data;
         } else {
             return 0;
         }
