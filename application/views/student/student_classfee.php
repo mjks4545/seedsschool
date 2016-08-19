@@ -41,7 +41,7 @@
                                     <label for="exampleInputEmail1">Admission Fee</label>
                                     <input type="text" name="admission_fee" id="add_fee" class="form-control"
                                            maxlength="50"
-                                           minlength="3" required/>
+                                           minlength="1" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"
                                           style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
@@ -54,6 +54,8 @@
                                     <div class="form-group has-feedback col-md-3">
                                         <input type="hidden" name="std_cls_fee_id_<?php echo $i; ?>"
                                                value="<?php echo $data->classfee_id; ?>">
+                                        <input type="hidden" name="student_id"
+                                               value="<?php echo $data->fkstudent_id; ?>">
                                         <label for="exampleInputEmail1">Subject Name</label>
                                         <input type="text" name="subject_name" readonly class="form-control"
                                                maxlength="50" minlength="3" id="exampleInputEmail1"
@@ -73,8 +75,8 @@
                                     </div>
                                     <div class="form-group has-feedback col-md-3">
                                         <label for="exampleInputEmail1">Concession</label>
-                                        <input type="text" id="concession_<?= $i ?>" name="concession"
-                                               class="form-control " required/>
+                                        <input type="text" id="<?= $i ?>" name="concession"
+                                               class="form-control concession" required />
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"
                                               style="margin-right: 20px;"></span>
                                         <span class="help-block with-errors" style="margin-left:10px; "></span>
@@ -88,24 +90,29 @@
                                         <span class="help-block with-errors" style="margin-left:10px; "></span>
                                     </div>
                                 </div>
-                                <script>
-                                    $(document).ready(function () {
-                                        $("#concession_<?=$i?>").keyup(function () {
-                                            var topay_<?=$i?> = $("#subject_fee_<?=$i ?>").val() - $("#concession_<?=$i ?>").val();
-                                            $("#fee_pay_<?=$i?>").val(topay_<?=$i?>);
-
-                                        })
-                                    })
-                                </script>
                                 <?php $i++;
-                            } ?>
+                            }  ?>
+                            <input type="hidden" value="<?= $i - 1; ?>" id="counter" name="counter" >
                             <div class="col-md-12">
-                                <div class="col-md-8"></div>
-                                <div class="col-md-1" style="position: relative;left: 50px;top: 10px;"><b>Total Fee</b>
+                                <div class="col-md-6">
+                                    <!-- for concision-->
+                                    <div class="form-group has-feedback">
+                                        <label for="exampleInputEmail1">Reason For Concisiom</label>
+                                        <textarea type="text" name="r_c" style="height:50px;resize: none; "
+                                                  class="form-control"  minlength="1" maxlength="300" required></textarea>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                              style="margin-right: 20px;"></span>
+                                        <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                    </div>
+
+
+                                    <!-- end for concision-->
+                                </div>
+                                <div class="col-md-3" style="position: relative;left: 50px;top: 10px;"><b>Total Fee</b>
                                 </div>
                                 <div class="form-group has-feedback col-md-3">
                                     <input type="text" name="total_fee" class="form-control" maxlength="50"
-                                           minlength="3" id="total_fee" required/>
+                                           minlength="3" placeholder="Total Fee" id="total_fee" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"
                                           style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>

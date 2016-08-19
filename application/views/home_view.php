@@ -31,6 +31,7 @@ if(isset($error) ){
         <option>Login As</option>
         <option value="admin">Admin</option>
         <option value="teacher">Teacher</option>
+        <option value="student">student</option>
         <option value="receptionist">receptionist</option>
         <option value="gatekeeper">Gate Keeper</option>
       </select>

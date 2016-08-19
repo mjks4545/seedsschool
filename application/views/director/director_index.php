@@ -3,7 +3,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Director Dashboard
+            Admin Dashboard
             <small>Home</small>
           </h1>
         </section>

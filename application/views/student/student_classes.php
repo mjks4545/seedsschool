@@ -36,6 +36,7 @@
                                 <thead>
                                 <tr>
                                     <th>S.no</th>
+                                    <th>Level</th>
                                     <th>Class Name</th>
                                     <th>Teacher Name</th>
                                     <th>Class Timing</th>
@@ -56,6 +57,7 @@
                                         ?>
                                         <tr>
                                             <td><?php echo $sno; ?></td>
+                                            <td><?php echo $re->co_name; ?></td>
                                             <input type="hidden" name="class_<?php echo $sno; ?>"
                                                    value="<?php echo $re->cl_id; ?>">
                                             <input type="hidden" name="co_id" value="<?php echo $re->co_id; ?>">

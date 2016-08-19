@@ -15,7 +15,8 @@ class Teacher extends CI_Controller
     {
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-        $this->load->view('teacher/teacher_home');
+        $data['teachers'] = $this->teacher_m->viewteachers();
+        $this->load->view('teacher/teacher_home',$data);
         $this->load->view('include/footer');
 
     }
@@ -67,6 +68,7 @@ class Teacher extends CI_Controller
         $data['teachers'] = $this->teacher_m->view_teacherdetails($id);
         $data['academic'] = $this->teacher_m->academicinfo_teacher($id);
         $data['subject'] = $this->teacher_m->teacher_subject($id);
+        $data['result'] = $this->teacher_m->teacher_paymentdetail($id);
         //    echo '<pre>';print_r($data);die();
         $this->load->view('teacher/view_teacherdetails', $data);
         $this->load->view('include/footer');
@@ -231,7 +233,9 @@ class Teacher extends CI_Controller
     function teacherattendancedetailview()
     {
         $t_id = $this->uri->segment(3);
-        $data['result'] = $this->teacher_m->teacher_attendance_detailview($t_id);
+        $cl_id = $this->uri->segment(4);
+        $data['result'] = $this->teacher_m->teacher_attendance_detailview($t_id,$cl_id);
+//        echo "<pre>";print_r($data); die;
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('teacher/teacher_attendance_detailview', $data);
@@ -252,7 +256,7 @@ class Teacher extends CI_Controller
     function paysalary(){
         $id = $this->uri->segment(3);
         $data['result'] = $this->teacher_m->paysalary($id);
-//        echo '<pre>';print_r($data);die();
+       //echo '<pre>';print_r($data);die();
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('teacher/paysalary', $data);
@@ -261,19 +265,36 @@ class Teacher extends CI_Controller
     //---------------------------------------------------------------
     function salarypaymentpro(){
         $teacher_id=$this->input->post("teacher_id");
-        $result = $this->teacher_m->salarypaymentpro($teacher_id);
-        if ($result == 1) {
-            $this->session->set_flashdata('msg', 'Sucessfully Added');
-            $this->session->set_flashdata('type', 'success');
-            redirect("teacher/paymentdetails/" . $teacher_id);
+        $data['teacher'] = $this->teacher_m->view_teacherdetails($teacher_id);
+        $data['paymentdetail'] = $this->teacher_m->salarypaymentpro($teacher_id);
+        /*echo "<pre>";
+        print_r($result);
+        die;*/
+        if ($data['paymentdetail']['result'] == 1) {
+            $this->load->view('include/header');
+            $this->load->view('include/sidebar');
+           //   echo "<pre>";print_r($data); die();
+
+            $this->load->view('teacher/paymentslip',$data);
+            $this->load->view('include/footer');
 //            echo $id;
         }
-        if ($result == 0) {
+        if ($data['paymentdetail'] == 0) {
             $this->session->set_flashdata('msg', 'Error');
             $this->session->set_flashdata('type', 'danger');
             redirect("teacher/paymentdetails/" . $teacher_id);
 
         }
+    }
+    //---------------------------------------------------------------
+    function teacherclasses($t_id)
+    {
+        $data['class']=$this->teacher_m->teacherclasses($t_id);
+//        echo "<pre>";print_r($data);die;
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('teacher/teacherclasses', $data);
+        $this->load->view('include/footer');
     }
     //---------------------------------------------------------------
 
@@ -284,5 +305,7 @@ class Teacher extends CI_Controller
         $data = $this->teacher_m->change_teacher_password();
         redirect('teacher/viewteacherdetails/'.$id);
     }
+    //----------------------------------------------------------------
 
+    //-----------------------------------------------------------------
 }

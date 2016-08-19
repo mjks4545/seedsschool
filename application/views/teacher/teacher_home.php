@@ -1,21 +1,17 @@
-             <?php $session = $this->session->userdata('session_data');
-             $id= $session['id']; $role = $session['role'];?>
+<?php
+$session = $this->session->userdata('session_data');
+$id = $session['id'];
+$role = $session['role']; ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        <?php if($role=="admin"){?>
-            Director Dashboard
-          <?php } elseif($role=="teacher"){?>
-            Teacher Dashboard
-          <?php } elseif($role=="gatekeeper"){?>
-          Gatekeeper Controller
-          <?php } elseif($role=="receptionist"){?>
-          Receptionist Dashboard
-          <?php }?>
+            <span class="text-capitalize"><?= $role; ?></span>
+            Dashboard
         </h1>
     </section>
 
+    <!-- Main content -->
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -25,159 +21,137 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
-                    </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-lg-1 col-xs-4"></div>
-                       <?php if($role=='admin'){?> 
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <h3>...</h3>
-                                    <p>Add New Teacher</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa ion-person-add"></i>
-                                </div>
-                                <a href="<?= site_url()?>teacher/addTeacher" class="small-box-footer">
-                                    Click here  <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>...</h3>
-                                    <p>View Teacher</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa ion-person-add"></i>
-                                </div>
-                                <a href="<?= site_url()?>teacher/viewteacher" class="small-box-footer">
-                                    Click here  <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3>...</h3>
+                        <h3 class="box-title">View Teachers</h3>
 
-                                    <p> New Attendence </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url() ?>teacher/teachernewattendance" class="small-box-footer">
-                                    Click here <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div><!-- /.row -->
-                    <div class="row">
-                        <div class="col-lg-1 col-xs-4"></div>
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow-active">
-                                <div class="inner">
-                                    <h3>...</h3>
+                        <div class="btn-group pull-right">
+                            <?php if ($role == "admin" || $role == "receptionist") { ?>
+                                <?php if ($role == "admin") { ?>
+                                    <a href="<?= site_url() ?>teacher/teachernewattendance" type="button"
+                                       class="btn btn-success"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Take
+                                        Attendance</a>
 
-                                    <p>Today Attendance </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url() ?>teacher/todayattendance" class="small-box-footer">
-                                    Click here <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
+                                    <a href="<?= site_url() ?>teacher/todayattendance" type="button"
+                                       class="btn btn-success"><i class="fa fa-building-o"></i>&nbsp;&nbsp;&nbsp;View
+                                        Today Attendance</a>
+                                    <a href="<?= site_url() ?>teacher/teacher_attendance_detail" type="button"
+                                       class="btn btn-success"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Attendance
+                                        Detail</a>
+                                <?php } ?>
+                                <a href="<?= site_url() ?>teacher/addteacher" type="button"
+                                   class="btn btn-success"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;Teacher</a>
+                            <?php } ?>
                         </div>
-                      
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-black">
-                                <div class="inner">
-                                    <h3>...</h3>
-
-                                    <p>Attendance Details</p>
-                                </div>
-                                <div class="icon" style="color:#ffffff; ">
-                                    <i class="fa fa-table" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url() ?>teacher/teacher_attendance_detail" class="small-box-footer">
-                                    Click here <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                          <?php } ?>
-
-                          <?php if( $role=='teacher') {?>       
-                      <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-black">
-                                <div class="inner">
-                                    <h3>...</h3>
-
-                                    <p>Teacher Attendence</p>
-                                </div>
-                                <div class="icon" style="color:#ffffff; ">
-                                    <i class="fa fa-table" aria-hidden="true"></i>
-                                </div>
-                              
-                                <a href="<?= site_url('teacher/teacherattendancedetailview/'.$id) ?> " class="small-box-footer">
-                                    Click here <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- ./col -->   
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>...</h3>
-
-                                    <p> Teacher Details </p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url('teacher/viewteacherdetails/'.$id) ?>" class="small-box-footer">
-                                    Click here <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>...</h3>
-                                    <p>Attendance</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-table" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url()?>studentattendance/allcourse" class="small-box-footer">
-                                    Click here  <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <?php }?>
                     </div>
-                    <!-- /.row -->
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table id="example1" class="table table-bordered table-striped table-responsive">
+                                <thead>
+                                <tr>
+                                    <th>S.no</th>
+                                    <th>Teacher Name</th>
+                                    <th>Contact Number</th>
+                                    <th>Teacher CNIC</th>
+                                    <th>Address</th>
+                                    <?php if ($role == "admin") { ?>
+                                        <th>Status</th>
+                                    <?php } ?>
+                                    <th class="text-center">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php if ($teachers == 0) { ?>
+                                <?php } else {
+                                    $sno = 1;
+                                    foreach ($teachers as $t) {
+                                        ?>
+                                        <?php if ($role == "admin" || $role == "receptionist") { ?>
+                                            <tr>
+                                                <td><?php echo $sno; ?></td>
+                                                <td><?php echo $t->name; ?></td>
+                                                <td><?php echo $t->contact; ?></td>
+                                                <td><?php echo $t->cnic ?></td>
+                                                <td><?php echo $t->address; ?></td>
+                                            <?php if ($role=="admin") { ?>
+                                                <td><?php if ($t->t_status == 1) { ?>
+                                                        <a href="<?= site_url() ?>teacher/status/0/<?= $t->id ?>"
+                                                           class="btn btn-success btn-sm ">
+                                                            <i class="fa fa-toggle-on" aria-hidden="true"></i>
+                                                            &nbsp;Active</a>
+                                                    <?php } else { ?>
+                                                        <a href="<?= site_url() ?>teacher/status/1/<?= $t->id ?>"
+                                                           class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-toggle-off" aria-hidden="true"></i>
+                                                            &nbsp;Deactive</a>
+                                                    <?php } ?>
+                                                </td>
+                                                <?php } ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>teacher/viewteacherdetails/<?= $t->id ?>"
+                                                       type="button" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-eye" alt="View details of this Visitor"
+                                                           aria-hidden="true"></i>
+                                                        &nbsp;&nbsp;&nbsp;View Details</a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= site_url() ?>teacher/paymentdetails/<?= $t->id ?>"
+                                                       type="button"
+                                                       class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-money" alt="View details of this Visitor"
+                                                           aria-hidden="true"></i>
+                                                        &nbsp;&nbsp;Payment Details</a>
+                                                </td>
+                                            <?php if ($role=="admin") { ?>
+                                                <td>
+                                                    <a href="<?= site_url() ?>teacher/deleteteacher/<?= $t->id ?>"
+                                                       onclick="return confirm('Do You Want To Delete This?')"
+                                                       type="button"
+                                                       class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                                        &nbsp;&nbsp;&nbsp;Delete</a>
+                                                </td>
+                                              <?php } ?>
+                                            </tr>
+                                        <?php }
+                                        if ($t->id == $id && $role == "teacher") { ?>
+                                            <tr>
+                                                <td><?php echo $sno; ?></td>
+                                                <td><?php echo $t->name; ?></td>
+                                                <td><?php echo $t->contact; ?></td>
+                                                <td><?php echo $t->cnic ?></td>
+                                                <td><?php echo $t->address; ?></td>
+                                                <td>
+                                                    <a href="<?= site_url() ?>teacher/viewteacherdetails/<?= $t->id ?>"
+                                                       type="button" class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-eye" alt="View details of this Visitor"
+                                                           aria-hidden="true"></i>
+                                                        &nbsp;&nbsp;&nbsp;View Details</a>
+                                                </td>
+                                                <td>
+                                                    <a href="<?= site_url() ?>teacher/paymentdetails/<?= $t->id ?>"
+                                                       type="button"
+                                                       class="btn btn-primary btn-sm">
+                                                        <i class="fa fa-money" alt="View details of this Visitor"
+                                                           aria-hidden="true"></i>
+                                                        &nbsp;&nbsp;Payment Details</a>
+                                                </td>
+                                            </tr>
+                                            <?php $sno++;
+                                        }
+                                    }
+                                } ?>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
                 </div>
-                    
-                </div>
-            </div><!-- /.box -->
+                <!-- /.box -->
+            </div>
+            <!-- /.box -->
         </div>
-</div>
-</section>
+
+    </section>
 </div>
 
 

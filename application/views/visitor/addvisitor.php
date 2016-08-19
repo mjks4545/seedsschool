@@ -6,7 +6,7 @@
           <h1>
               
               <?php if($role=="admin"){?>
-              Director Dashboard
+              Admin Dashboard
             <small><a href="<?= site_url() ?>visitor/">Visitor</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Add Visitor
@@ -58,8 +58,12 @@
                              </div>
                              <div class="col-md-12">
                                  <div class="form-group has-feedback col-md-6">
-                                     <label for="exampleInputEmail1">Reason</label>
-                                     <input type="text" name="reason" class="form-control" id="exampleInputEmail1" placeholder="Reason" required />
+                                     <label for="exampleInputEmail1">Perpose of Visit</label>
+                                     <select name="reason" class="form-control" required>
+                                        <option value="New Admission">New Admission</option>
+                                        <option value="Information about Class">Information about Class</option>
+                                        <option value="Other Information">Other Information</option>
+                                     </select>
                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                      <span class="help-block with-errors" style="margin-left:10px; "></span>
                                  </div>
@@ -76,25 +80,41 @@
                                  <div class="form-group has-feedback col-md-6">
                                      <label for="exampleInputEmail1">Relationship</label>
                                      <select  name="relationship"  id="relationship" class="form-control"  required>
-                                         <option>Relation</option>
-                                         <option>Parents</option>
-                                         <option>Brother</option>
-                                         <option>Cousin</option>
-                                         <option>student/New admission</option>
-
+                                         <option value="">Relation</option>
+                                         <option value="Student Him Self">Student Him Self</option>
+                                         <option value="Parent">Parents</option>
+                                         <option value="Brother">Brother</option>
+                                         <option value="Cousin">Cousin</option>
+                                     </select>
+                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                 </div>
+                                 <div class="form-group has-feedback col-md-6">
+                                     <label for="exampleInputEmail1">Gender</label>
+                                     <select  name="gender"  class="form-control"  required>
+                                         <option value="">Select Gender</option>
+                                         <option value="male">Male</option>
+                                         <option value="female">Female</option>
                                      </select>
                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                      <span class="help-block with-errors" style="margin-left:10px; "></span>
                                  </div>
 
                              </div>
-                             <div class="form-group has-feedback col-md-12">
+                             <div class="col-md-12">
+                                 <div class="form-group has-feedback col-md-6">
+                                     <label for="exampleInputEmail1">CNIC</label>
+                                     <input type="text" name="cnic"  class="form-control" pattern="[0-9]{13,13}" minlength="13" maxlength="13" id="exampleInputEmail1" placeholder="Enter CNIC" required />
+                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                 </div>
+                              <div class="form-group has-feedback col-md-6">
                                  <label for="exampleInputEmail1" > Note </label>
-                                 <textarea name="note" placeholder="Note Here" class="form-control" rows="10" style="resize:none;" required /></textarea>
+                                 <textarea name="note" placeholder="Note Here" class="form-control" rows="6" style="resize:none;" required /></textarea>
                                  <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                  <span class="help-block with-errors" style="margin-left:10px; "></span>
-                             </div>
-
+                              </div>
+                                 <!--for gender-->
                          </div><!-- /.box-body -->
                          <div class="box-footer">
                              <button type="submit" class="btn btn-primary pull-right col-sm-1">Save</button>

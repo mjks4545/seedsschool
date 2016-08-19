@@ -8,7 +8,7 @@
         <h1>
         
        <?php if($role=="admin"){?>
-            Director Dashboard
+            Admin Dashboard
             <?php }elseif($role=="receptionist"){?>
             Receptionist Dashboard
             <?php }?>

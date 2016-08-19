@@ -10,19 +10,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        <?php if($role=="admin"){?>
-            Director Dashboard
-            <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Take Attendance
-            </small>
-             <?php } else if($role=="teacher"){?>
-            Teacher Dashboard
+            <span class="text-capitalize"><?=$role; ?></span>
+            Dashboard
               <small><a href="<?= site_url() ?>studentattendance/allcourse">All Courses</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                Attendence
             </small>
-            <?php } ?>
         </h1>
     </section>
     <!-- Main content -->
@@ -108,6 +101,8 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-10 col-xs-offset-1">
+                                <input type="hidden" name="teacher_id" value="<?= $result[0]->id; ?>"/>
+                                <input type="hidden" name="class_id" value="<?= $result[0]->cl_id; ?>"/>
                                 <input type="submit" class="btn btn-success btn-block pull-right"/>
                             </div>
                         </div>

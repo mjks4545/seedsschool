@@ -10,23 +10,16 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        <?php if($role=="admin"){?>
-            Director Dashboard
+            <span class="text-capitalize"><?=$role; ?></span>
+            Dashboard
+            <?php if($role=="admin"){?>
             <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url() ?>studentattendance/allclass/<?=$co_id?>">All classes</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url() ?>studentattendance/classattendance/<?=$cl_id?>/<?=$co_id?>">All classes</a>
             </small>
-            <?php } elseif($role="teacher"){?>
-             Teacher Dashboard
-            <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <a href="<?= site_url() ?>studentattendance/allclass/<?=$co_id?>">All classes</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <a href="<?= site_url() ?>studentattendance/classattendance/<?=$cl_id?>/<?=$co_id?>">All classes</a>
-            </small>           
-            <?php }?>
+            <?php } ?>
         </h1>
     </section>
     <!-- Main content -->

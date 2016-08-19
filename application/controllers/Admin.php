@@ -45,6 +45,10 @@ class Admin extends CI_Controller
         $data = $this->main_m->change_admin_password();
         redirect('admin/admin_setting');
     }
-
+//--------------------------------------------------
+    function add_auto_montly_fee()
+    {
+        $this->main_m->add_auto_montly_fee();
+    }
 
 }

@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?=site_url()?>expenses/">Expenses</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Add Expenses
@@ -50,6 +50,37 @@
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
+                            <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
+                                <label for="exampleInputEmail1">Month</label>
+                                <select type="text" name="month" class="form-control" placeholder="Select Month" required >
+                                    <option value="">Select Month</option>
+                                    <option value='Jan'>Janaury</option>
+                                    <option value='Feb'>February</option>
+                                    <option value='Mar'>March</option>
+                                    <option value='Apr'>April</option>
+                                    <option value='May'>May</option>
+                                    <option value='Jun'>June</option>
+                                    <option value='Jul'>July</option>
+                                    <option value='Aug'>August</option>
+                                    <option value='Sept'>September</option>
+                                    <option value='Oct'>October</option>
+                                    <option value='Nov'>November</option>
+                                    <option value='Dec'>December</option>
+                                </select>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                <span class="help-block with-errors" style="margin-left:10px; "></span>
+                            </div>
+                            <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
+                                <label for="exampleInputEmail1">Year</label>
+                                <select name="year" class="form-control"  required>
+                                    <?php $date = date("Y");
+                                    for($i=$date-5; $i<=$date+2; $i++){ ?>
+                                        <option value="<?=$i?>"><?=$i?></option>
+                                    <?php } ?>
+                                </select>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                <span class="help-block with-errors" style="margin-left:10px; "></span>
+                            </div>
                             
                             
                         </div>

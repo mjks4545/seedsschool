@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url()?>Academic/">Academic</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 View Class
@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <th>S.no</th>
-                                <th>Course</th>
+                                <th>Level</th>
                                 <th>Subject</th>
                                 <th>Teacher</th>
                                 <th>Fee</th>

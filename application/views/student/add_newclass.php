@@ -36,6 +36,7 @@
                                 <thead>
                                 <tr>
                                     <th>S.no</th>
+                                    <th>Level</th>
                                     <th>Class Name</th>
                                     <th>Teacher Name</th>
                                     <th>Class Timing</th>
@@ -47,9 +48,6 @@
                                 <?php
                                 if ($result == 0) {
                                     ?>
-                                    <tr>
-                                        <td colspan="6">No Class Found for This Course</td>
-                                    </tr>
                                 <?php } else {
                                     $sno = 1;
                                     foreach ($result as $re) {
@@ -61,6 +59,7 @@
                                             <input type="hidden" name="co_id" value="<?php echo $re->co_id; ?>">
                                             <input type="hidden" name="cl_fee_<?php echo $sno; ?>"
                                                    value="<?php echo $re->fee; ?>">
+                                            <td><?php echo $re->co_name; ?></td>
                                             <td><?php echo $re->su_name; ?></td>
                                             <td><?php echo $re->name; ?></td>
                                             <td><?php echo $re->time ?></td>

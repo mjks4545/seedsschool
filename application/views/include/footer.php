@@ -1,5 +1,5 @@
-<footer class="main-footer">
-    <strong>Copyright &copy; 2016-2017 <a href="">SS Technologies</a>.</strong> All rights reserved.
+<footer class="main-footer no-print">
+    <strong>Copyright &copy; 2015-<?php echo date("Y"); ?> <a href="">SS Technologies</a>.</strong> All rights reserved.
 </footer>
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
@@ -49,14 +49,25 @@
     <!-- Slimscroll -->
     <script src="<?=base_url();?>public/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
-    <script src="<?=base_url();?>public/plugins/fastclick/fastclick.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="<?=base_url();?>public/dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="<?=base_url();?>public/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="<?=base_url();?>public/dist/js/demo.js"></script>
 
+<script src="<?php echo site_url() ?>public/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<!-- Bootstrap 3.3.5 -->
+<script src="<?php echo site_url() ?>public/bootstrap/js/bootstrap.min.js"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="<?php echo site_url() ?>public/plugins/chartjs/Chart.min.js"></script>
+<!-- FastClick -->
+<script src="<?php echo site_url() ?>public/plugins/fastclick/fastclick.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo site_url() ?>public/dist/js/app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo site_url() ?>public/dist/js/demo.js"></script>
+<script src="<?php echo site_url() ?>public/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo site_url() ?>public/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script src="<?=base_url();?>public/plugins/fullcalendar/fullcalendar.min.js"></script>
     <script src="<?=base_url();?>public/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script>
         //Timepicker
@@ -65,13 +76,15 @@
         });
     </script>
 <script src="<?=base_url();?>public/js/validator.js"></script>
+<!-- for charts-->
 
+<?php $this->load->view('include/partial_events'); ?>
+<!-- end of charts-->
+<?php $this->load->view("include/graph"); ?>
 <script type="text/javascript">
     $(".alert").fadeOut(5000);
     $(".alert").fadeIn(5000);
     $(".alert").fadeOut(5000);
-
 </script>
-
   </body>
 </html>

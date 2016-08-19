@@ -7,7 +7,7 @@
           $role = $session['role'];  ?>
 
           <?php if($role=="admin"){?>
-                Director Dashboard
+                Admin Dashboard
           <?php }?>
 
         <?php if($role=="receptionist"){?>
@@ -21,7 +21,6 @@
     <section class="content">
         <div class="row">
          <div class="box-header with-border">
-                    <?php $this->load->view('include/alert'); ?>
             </div><!-- /.box-header -->
             <!-- left column -->
             <div class="col-md-12">
@@ -29,6 +28,7 @@
              <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
+                        <?php $this->load->view('include/alert'); ?>
                     </div><!-- /.box-header -->
                     <div class="row">
                         <div class="col-lg-1 col-xs-4"></div>
@@ -37,11 +37,11 @@
                             <div class="small-box bg-yellow">
                                 <div class="inner">
                                     <h3>...</h3>
-                                    <p>Visitors Details</p>
+                                    <p>Add Visitor</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-suitcase" aria-hidden="true"></i></div>
-                                <a href="<?= site_url()?>visitor/index" class="small-box-footer">
+                                    <i class="fa fa-plus" aria-hidden="true"></i></div>
+                                <a href="<?= site_url()?>visitor/addvisitor" class="small-box-footer">
                                     Click here  <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>
@@ -51,12 +51,27 @@
                             <div class="small-box bg-aqua">
                                 <div class="inner">
                                     <h3>...</h3>
-                                    <p>Add New Student</p>
+                                    <p>Teacher Detail</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="fa fa-user-plus"></i>
+                                    <i class="fa fa-user"></i>
                                 </div>
-                                <a href="<?= site_url()?>student/addstudent" class="small-box-footer">
+                                <a href="<?= site_url()?>teacher/index" class="small-box-footer">
+                                    Click here  <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </div>
+                        </div><!-- ./col -->
+                        <div class="col-lg-3 col-xs-6">
+                            <!-- small box -->
+                            <div class="small-box bg-aqua">
+                                <div class="inner">
+                                    <h3>...</h3>
+                                    <p>Student Detail</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-graduation-cap"></i>
+                                </div>
+                                <a href="<?= site_url()?>student/index" class="small-box-footer">
                                     Click here  <i class="fa fa-arrow-circle-right"></i>
                                 </a>
                             </div>

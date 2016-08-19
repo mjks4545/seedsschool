@@ -8,7 +8,7 @@
         <section class="content-header">
           <h1>
             Add Class
-			  <small><a href="<?= site_url()?>student/">Class</a>
+			  <small><a href="<?= site_url()?>class_c/">Class</a>
 				  <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
 				  Add Class
 			  </small>
@@ -31,8 +31,8 @@
                     <div class="col-md-12">
                         <div class="form-group has-feedback col-md-6">
 			    <label for="exampleInputEmail1">Name</label>
-			    <select type="text" name="name" class="form-control" maxlength="50" minlength="3" placeholder="Select Course" required >
-				<option>Select Course</option>
+			    <select type="text" name="name" class="form-control" maxlength="50" minlength="3" placeholder="Select Level" required >
+				<option>Select Level</option>
 				<?php foreach( $course as $value ) : ?>
 				    <option value="<?=$value->co_id?>"><?=$value->co_name?></option>
 				<?php endforeach; ?>

@@ -9,19 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        <?php if($role=="admin"){?>
-            Director Dashboard
+            <span class="text-capitalize"><?=$role; ?></span>
+            Dashboard
             <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                All Course
+                All Level
             </small>
-            <?php }elseif($role=="teacher"){?>
-            Teacher Dashboard
-            <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                All Course
-            </small>
-            <?php }?>            
         </h1>
     </section>
     <!-- Main content -->
@@ -42,11 +35,13 @@
                             <thead>
                             <tr>
                                 <th>S.no</th>
-                                <th>Course Name</th>
+                                <th>Level Name</th>
                                 <th>Teacher</th>
                                 <th>Subject</th>
                                 <th>Time</th>
+                                <?php if($role=="admin" ||$role =="teacher"){ ?>
                                 <th>Today Attendance</th>
+                                <?php } ?>
                                 <th>Take Attendance</th>
                                 <th>Detail</th>
                             </tr>
@@ -73,11 +68,13 @@
                                                 Today Attendance
                                             </a>
                                         </td>
+                                      <?php if($role=="admin" ||$role =="teacher"){ ?>
                                         <td><a class="btn btn-success" href="<?=site_url()?>studentattendance/takeattendace/<?=$array->cl_id ?>/<?=$array->co_id ?>">
                                                 <span class="fa fa-table"></span>
                                                 Take Attendance
                                             </a>
                                         </td>
+                                        <?php } ?>
                                         <td><a class="btn btn-success" href="<?=site_url()?>studentattendance/classattendance/<?=$array->cl_id ?>/<?=$array->co_id ?>">
                                                 <span class="fa fa-eye"></span>
                                                 View Detail

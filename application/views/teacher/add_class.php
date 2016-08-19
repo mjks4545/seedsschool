@@ -2,7 +2,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              Director Dashboard
+              Admin Dashboard
             <small>Teacher
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Add Teacher</small>

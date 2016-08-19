@@ -10,12 +10,14 @@ class Student extends CI_Controller
             redirect(site_url()."home/");
         }
     }
+
 //-------------------------------------------------------------------
     function index()
     {
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-        $this->load->view('student/student_home');
+        $result['result'] = $this->student_m->view_students();
+        $this->load->view('student/student_home',$result);
         $this->load->view('include/footer');
 
     }
@@ -279,4 +281,119 @@ class Student extends CI_Controller
         /**/
     }
 //--------------------------------------------------------------
+
+        function add_newclass()
+    {
+        $std_id = $this->uri->segment(3);
+        $data['result'] = $this->student_m->add_newclass($std_id);
+        $data['std_id'] = $std_id;
+//    echo '<pre>'; print_r($data);die();
+        if ($data['result'] == 0) {
+            $this->session->set_flashdata('msg', 'Student have Already all Subjects.');
+            $this->session->set_flashdata('type', 'danger');
+            redirect(site_url() . "student/studentdetails/" . $std_id);
+        } else {
+            $this->load->view('include/header');
+            $this->load->view('include/sidebar');
+            $this->load->view('student/add_newclass', $data);
+            $this->load->view('include/footer');
+        }
+    }
+
+
+
+    //------------------------------------------------------------------------------------------------------------------
+    function addnewclasspro()
+    {
+        $std_id = $this->uri->segment(3);
+        $data['result'] = $this->student_m->addnewclasspro($std_id);
+        $data['std_id']=$std_id;
+       // echo '<pre>';print_r($data);die();
+        $this->session->set_userdata("cl_ids",$data['result']);
+        if ($data) {
+            redirect(site_url().'student/addnewclass_fee/' . $std_id);
+        } else {
+            redirect(site_url().'student/studentclasses');
+        }
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function addnewclass_fee()
+    {
+        $std_id = $this->uri->segment(3);
+        $result['result'] = $this->student_m->addnewclass_fee($std_id);
+         // echo '<pre>';print_r($result);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/student_classfee', $result);
+        $this->load->view('include/footer');
+    }
+    //--------------------------------------------------------
+    function studentlevel()
+    {
+        $data['level']=$this->student_m->studentlevel();
+//         echo '<pre>';print_r($data);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/studentlevel',$data);
+        $this->load->view('include/footer');
+
+    }
+ //-----------------------------------------------------------------
+    function levelclass($co_id)
+    {
+        $data['class']=$this->student_m->levelclass($co_id);
+//         echo '<pre>';print_r($data);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/levelclasses',$data);
+        $this->load->view('include/footer');
+
+    }
+//-----------------------------------------------------------------
+    function clstudent($cl_id)
+    {
+        $data['student']=$this->student_m->clstudent($cl_id);
+//         echo '<pre>';print_r($data);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/clstudent',$data);
+        $this->load->view('include/footer');
+
+    }
+//-----------------------------------------------------------------
+    function chalanperstudent($clfee_id)
+    {
+        $data['std_info']=$this->student_m->chalanperstudent($clfee_id);
+//         echo '<pre>';print_r($data);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/studentperclass_slip',$data);
+        $this->load->view('include/footer');
+
+    }
+//-----------------------------------------------------------------
+    function chalanperclass($cl_id)
+    {
+        $data['std_info']=$this->student_m->chalanperclass($cl_id);
+//         echo '<pre>';print_r($data["std_info"]);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/chalanperclass_slip',$data);
+        $this->load->view('include/footer');
+
+    }
+//-----------------------------------------------------------------
+    function chalanperlevel($co_id)
+    {
+        $data['std_info']=$this->student_m->chalanperlevel($co_id);
+//         echo '<pre>';print_r($data["std_info"]);die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/chalanpercourse_slip',$data);
+        $this->load->view('include/footer');
+
+    }
+    //-----------------------------------------
 }

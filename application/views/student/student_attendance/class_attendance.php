@@ -11,23 +11,14 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-        <?php if($role=="admin"){?>
-            Director Dashboard
+            <span class="text-capitalize"><?=$role; ?></span>
+            Dashboard
             <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url() ?>studentattendance/allclass/<?=$co_id?>">All classes</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Class Attendance
             </small>
-            <?php }elseif($role=="teacher"){?>
-            Teacher Dashboard
-            <small><a href="<?= site_url() ?>studentattendance/allcourse">All Course</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <a href="<?= site_url() ?>studentattendance/allclass/<?=$co_id?>">All classes</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Class Attendance
-            </small>
-            <?php }?>
         </h1>
     </section>
     <!-- Main content -->
@@ -53,7 +44,9 @@
                                 <th>Subject Name</th>
                                 <th>Time</th>
                                 <th>Percentage</th>
+                                <?php if($role=="admin" ||$role =="teacher"){ ?>
                                 <th>detail</th>
+                                <?php } ?>
                             </tr>
                             </thead>
                             <tbody>
@@ -87,10 +80,13 @@
 
                                             ?>
                                         </td>
+                                    <?php if($role=="admin" ||$role =="teacher"){ ?>
                                         <td><a class="btn btn-success" href="<?=site_url()?>studentattendance/attendancedetail/<?=$array->fkstudent_id?>/<?=$array->fkclass_id?>/<?=$array->co_id?>">
                                                 <span class="fa fa-eye"></span>
                                                 View Detail
-                                            </a></td>
+                                            </a>
+                                        </td>
+                                    <?php } ?>
                                     </tr>
                                     <?php $sno++;
                                 }

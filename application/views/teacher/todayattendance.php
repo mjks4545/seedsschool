@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url() ?>teacher/">Teacher</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Add New Attendence
@@ -23,7 +23,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Today Attendence</h3>
-                        <a href="<?= site_url() ?>otherstaff/" class="pull-right"> Back</a>
+                        <a href="<?= site_url() ?>teacher/" class="pull-right"> Back</a>
                         <?php $this->load->view('include/alert'); ?>
                     </div>
                     <!-- /.box-header -->
@@ -42,7 +42,6 @@
                                         <th>S.No</th>
                                         <th>Name</th>
                                         <th>Status</th>
-                                        <th>Update</th>
                                     </tr>
                                     <?php
                                     $sno=1;
@@ -51,7 +50,6 @@
                                             <td><?php echo $sno; ?></td>
                                             <td><?php echo $at->name; ?></td>
                                             <td><?php echo $at->status; ?></td>
-                                            <td><a href="" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;&nbsp;Update</a> </td>
                                         </tr>
                                         <?php $sno++; } ?>
                                 </table>

@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url() ?>student/">Student</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 View Students
@@ -37,7 +37,7 @@
                                 <th>S.no</th>
                                 <th>Student Name</th>
                                 <th>Father Name</th>
-                                <th>Course</th>
+                                <th>Level</th>
                                 <th>Contact</th>
                                 <th>Status</th>
 
@@ -56,7 +56,12 @@
                                         <td><?= $array->std_father_name ?></td>
                                         <td><?= $array->co_name ?></td>
                                         <td><?= $array->student_contact ?></td>
-                                        <td>1</td>
+                                        <td><?php  if($array->student_status==1){?>
+                                         <i class="label label-success">Active</i>
+                                            <?php }else{ ?>
+                                                <i class="label label-danger">Deactive</i>
+                                            <?php } ?>
+                                        </td>
                                         <td>
                                             <a href="<?= site_url() ?>student/studentdetails/<?= $array->student_id ?>"
                                                type="button" class="btn btn-primary">
@@ -72,6 +77,7 @@
                                     <?php $sno++;
                                 }
                             } ?>
+                           </tbody>
                         </table>
                     </div>
                     <!-- /.box-body -->

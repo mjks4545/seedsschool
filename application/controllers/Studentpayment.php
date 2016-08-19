@@ -133,5 +133,15 @@ class Studentpayment extends CI_Controller{
 
     }
     //-----------------------------------------------------------------
-    
+    function viewotherpaymentdetail($std_id)
+    {
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data['result']=$this->studentpayment_m->otherpaymentdetail($std_id);
+//        echo "<pre>"; print_r($data); die;
+        $this->load->view('student/studentpayment/otherpaymentdetail',$data);
+        $this->load->view('include/footer');
+    }
+    //-----------------------------------------------------------------
+
 }

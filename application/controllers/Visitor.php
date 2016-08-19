@@ -16,7 +16,8 @@ class Visitor extends CI_Controller
     {
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-        $this->load->view('visitor/visitor_home');
+        $data['visitors'] = $this->visitor_m->viewvisitors();
+        $this->load->view('visitor/visitor_home',$data);
         $this->load->view('include/footer');
     }
 
@@ -46,6 +47,10 @@ class Visitor extends CI_Controller
             }else if($role=="gatekeeper")
             {
                 redirect("gatekeeper/index");
+            }
+            else if($role=="receptionist")
+            {
+                redirect("reception/index");
             }
         }
         if ($result == 0) {
@@ -105,6 +110,32 @@ class Visitor extends CI_Controller
         $this->load->view('include/footer');
     }
    //--------------------------------------------------------------------
+    function addcommentpro($v_id){
+
+        $result  = $this->visitor_m->addcommentpro($v_id);
+        if($result == 1){
+            $this->session->set_flashdata('msg', 'Sucessfully Commented');
+            $this->session->set_flashdata('type', 'success');
+            redirect("visitor/viewvisitordetail/".$v_id);
+        }
+        if($result == 0){
+            $this->session->set_flashdata('msg', 'Error');
+            $this->session->set_flashdata('type', 'danger');
+            redirect("visitor/viewvisitordetail/".$v_id);
+        }
+    }
+ //-----------------------------------------------------------------------
+ function visitorhistory($vcnic)
+ {
+        $data['v_history'] = $this->visitor_m->visitorhistory($vcnic);
+     $this->load->view('include/header');
+     $this->load->view('include/sidebar');
+     $this->load->view("visitor/visitorhistory",$data);
+     $this->load->view('include/footer');
+
+
+ }
+ //------------------------------------------------------------------------
 }
 
 

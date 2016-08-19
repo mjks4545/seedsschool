@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
        <h1>
-        Director Dashboard
+        Admin Dashboard
         <small><a href="<?= site_url()?>otherstaff/">Staff</a>
             <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
             Add New Staff
@@ -53,9 +53,10 @@
                                     <label>Type</label>
                                     <select  name="type"  id="type" class="form-control">
                                         <option> Select type</option>
-                                        <option value="Clerk">Clerk</option>
-                                        <option value="Receptionist">Receptionist</option>
+                                        <option value="receptionist">Receptionist</option>
                                         <option value="Librarian">Librarian</option>
+                                        <option value="gatekeeper">Gate Keeper</option>
+                                        <option value="other">Other</option>
                                     </select>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>

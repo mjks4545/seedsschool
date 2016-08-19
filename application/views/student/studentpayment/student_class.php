@@ -3,17 +3,24 @@
         text-align: center;
     }
 </style>
+<?php
+$session = $this->session->userdata('session_data');
+$id= $session['id'];
+$role = $session['role'];  ?>
+
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>
-            Director Dashboard
+        <h1 class="text-capitalize">
+            <?=$role?> Dashboard
+            <?php if($role=="admin" || $role=="receptionist"){ ?>
             <small><a href="<?= site_url() ?>student/">Student</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url() ?>studentpayment/viewstd">All Students</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Student
             </small>
+            <?php } ?>
         </h1>
     </section>
     <!-- Main content -->
@@ -51,12 +58,14 @@
                                         <td><?= $array->student_name ?></td>
                                         <td><?= $array->std_father_name ?></td>
                                         <td><?= $array->su_name ?></td>
+                                    <?php if($role=="admin" || $role=="receptionist"){ ?>
                                         <td><a class="btn btn-success"
                                                href="<?= site_url() ?>studentpayment/paynow/<?php echo $array->classfee_id; ?>/<?php echo $array->fkstudent_id; ?>">
                                                 <span class="fa fa-money"></span>
                                                 &nbsp;&nbsp;Pay Monthly Fee
                                             </a>
                                         </td>
+                                     <?php } ?>
                                         <td><a class="btn btn-success"
                                                href="<?= site_url() ?>studentpayment/otherpay/<?php echo $array->fkstudent_id; ?>">
                                                 <span class="fa fa-money"></span>

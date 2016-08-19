@@ -36,25 +36,32 @@ class Reports_m extends CI_Model
       $result= $query->result();
       //echo '<pre>';print_r($result);die;
              foreach ($result as $row) {
-        
-           $date = date("Y-m-d",strtotime($row->date));
-           //echo $date;die;
-           if($date>$interval && $date<=$current_date){
-           $array = array(
-                    'id' =>$row->id , 
-                    'name' =>$row->name , 
-                    'contact' =>$row->contact, 
-                    'reason' =>$row->reason, 
-                    'address' =>$row->address, 
-                    'relationship' =>$row->relationship, 
-                    'note' =>$row->note, 
-                    'date' =>$row->date, 
-                    'time' =>$row->time, 
-                    );
-                $data[]=$array;
-           }
-          }
-        return $data;
+
+                 $date = date("Y-m-d", strtotime($row->date));
+                 //echo $date;die;
+                 if ($date > $interval && $date <= $current_date) {
+                     $array = array(
+                         'id' => $row->id,
+                         'name' => $row->name,
+                         'contact' => $row->contact,
+                         'reason' => $row->reason,
+                         'address' => $row->address,
+                         'relationship' => $row->relationship,
+                         'note' => $row->note,
+                         'date' => $row->date,
+                         'time' => $row->time,
+                     );
+                     $data[] = $array;
+                 }
+             }
+                 if(isset($data)){
+                     return $data;
+                 }
+
+
+        else{
+            return 0;
+        }
 
     }
 
@@ -92,7 +99,14 @@ class Reports_m extends CI_Model
          
         }
 
-         return $data;
+        if(isset($data)){
+            return $data;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
     //------------------------------------------------------
@@ -128,7 +142,14 @@ class Reports_m extends CI_Model
  /*echo "<pre>";
  print_r($data);
  die();*/
-    	 return $data;
+        if(isset($data)){
+            return $data;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
     //------------------------------------------------------
@@ -166,7 +187,14 @@ class Reports_m extends CI_Model
          
         }
 
-         return $data;
+        if(isset($data)){
+            return $data;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
     function yearly_visitor_reports()
@@ -199,7 +227,14 @@ class Reports_m extends CI_Model
              
             }
 
-             return $data;
+        if(isset($data)){
+            return $data;
+        }
+
+
+        else{
+            return 0;
+        }
 
     }
 
@@ -236,52 +271,63 @@ class Reports_m extends CI_Model
          
         }
 
-         return $data;
+         if(isset($data)){
+             return $data;
+         }
+
+
+         else{
+             return 0;
+         }
     }
     
 
-    function daily_finance_reports()
+    function fee_daily_finance()
     {
         $this->db->select('*');
         $this->db->from('student_payment');
-        $data = $this->db->where('std_date',date('d-M-Y'));
+        $this->db->where('std_month',date("M"));
+        $this->db->where('std_year',date("Y"));
         $query = $this->db->get();
         return $result= $query->result();
     }
 
-    function daily_finance_report()
+    function otherfee_daily_finance()
     {
         $this->db->select('*');
         $this->db->from('student_other_payment');
-        $data = $this->db->where('otherpay_created_date',date('d-M-Y'));
+        $this->db->where('other_month',date("M"));
+        $this->db->where('other_year',date("Y"));
         $query = $this->db->get();
         return $result= $query->result();
     }
 
-    function daily_expense_loss()
+    function daily_expense()
     {
         $this->db->select('*');
         $this->db->from('expense');
-        $data = $this->db->where('expense_created_date',date('d-M-Y'));
+        $this->db->where('expense_month',date("M"));
+        $this->db->where('expense_year',date("Y"));
         $query = $this->db->get();
         return $result= $query->result();
     }
 
-    function daily_staff_loss()
+    function daily_staff()
     {
         $this->db->select('*');
         $this->db->from('staff_salaries');
-        $this->db->where('staff_salaries.created_date',date('d-M-Y'));
-        //$this->db->join('otherstaff',"otherstaff.id = staff_salaries.fkstaff_id");
+        $this->db->where('paid_month',date("m"));
+        $this->db->where('paid_year',date("Y"));
         $query = $this->db->get();
         return $result= $query->result();
     }
 
-function daily_teacher_staff_loss()
+function daily_teacher()
     {
         $this->db->select('*');
         $this->db->from('teacher_salaries');
-        $this->db->where('created_date',date('d-M-Y'));
+        $this->db->where('paid_month',date("m"));
+        $this->db->where('salary_year',date("Y"));
         $query = $this->db->get();
         return $result= $query->result();
     }
@@ -309,7 +355,15 @@ function daily_teacher_staff_loss()
           }
 
        }
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
+
     }
 
     function weekly_other_profit_reports()
@@ -335,7 +389,14 @@ function daily_teacher_staff_loss()
 
        }
 
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
     function weekly_expense_reports()
@@ -361,7 +422,14 @@ function daily_teacher_staff_loss()
 
        }
       //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
 
@@ -396,7 +464,14 @@ function daily_teacher_staff_loss()
 
        }
      // echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
     function weekly_teacher_expense_reports()
@@ -422,7 +497,14 @@ function daily_teacher_staff_loss()
 
        }
       //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
 
@@ -430,140 +512,89 @@ function daily_teacher_staff_loss()
 
     function monthly_profit_reports()
     {
+        $year = date("Y");
         $this->db->select('*');
-        $this->db->from('student_payment'); 
-        $current_date = date('Y-m-d');
-        $interval =date('Y-m-d', strtotime('-30 days'));
-         $query = $this->db->get();
-        $data = $query->result();
-        foreach ($data as $key ) {
-        $date = date("Y-m-d",strtotime($key->std_date));
-         if($date>$interval && $date<=$current_date)
-          {
-            $array = array(
-                'std_reason'=>$key->std_reason,
-                'std_paid'=>$key->std_paid,
-                'std_date'=>$key->std_date
-                );
-            $dataa[] = $array;
-          }
+        $this->db->from('student_payment');
+        $this->db->where("std_year",$year);
+        $query = $this->db->get();
+        $mpr = $query->result();
 
-       }
-       return $dataa;
+        if(isset($mpr)){
+            return $mpr;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
     function monthly_other_profit_reports()
     {
+        $year = date("Y");
         $this->db->select('*');
-        $this->db->from('student_other_payment'); 
-        $current_date = date('Y-m-d');
-        $interval =date('Y-m-d', strtotime('-30 days'));
-         $query = $this->db->get();
-        $data = $query->result();
-        foreach ($data as $key ) {
-        $date = date("Y-m-d",strtotime($key->otherpay_created_date));
+        $this->db->from('student_other_payment');
+        $this->db->where("other_year",$year);
+        $query = $this->db->get();
+        $mpr = $query->result();
 
-         if($date>$interval && $date<=$current_date)
-          {
-            $array = array(
-                'amt_reason'=>$key->amt_reason,
-                'paid_amt'=>$key->paid_amt,
-                'otherpay_created_date'=>$key->otherpay_created_date
-                );
-            $dataa[] = $array;
-          }
-
-       }
-
-       return $dataa;
+        if(isset($mpr)){
+            return $mpr;
+        }
+        else{
+            return 0;
+        }
     }
 
  function monthly_expense_reports()
     {
         $this->db->select('*');
         $this->db->from('expense'); 
-        $current_date = date('Y-m-d');
-        $interval =date('Y-m-d', strtotime('-30 days'));
-         $query = $this->db->get();
-        $data = $query->result();
-        foreach ($data as $key ) {
-        $date = date("Y-m-d",strtotime($key->expense_created_date));
+        $year = date('Y');
+        $this->db->where("expense_year",$year);
+        $query = $this->db->get();
+        $mer = $query->result();
 
-         if($date>$interval && $date<=$current_date)
-          {
-            $array = array(
-                'expense_reason'=>$key->expense_reason,
-                'expense_paid_amount'=>$key->expense_paid_amount,
-                'expense_created_date'=>$key->expense_created_date
-                );
-            $dataa[] = $array;
-          }
-
-       }
-      //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($mer)){
+            return $mer;
+        }
+        else{
+            return 0;
+        }
     }
 
-
+//-------------------------------------------------------------------------
 function monthly_staff_expense_reports()
     {
         $this->db->select('*');
-        $this->db->from('staff_salaries'); 
-        $current_date = date('Y-m-d');
-        $interval =date('Y-m-d', strtotime('-1 month'));
-    
+        $this->db->from('staff_salaries');
+        $year = date('Y');
+        $this->db->where("paid_year",$year);
         $query = $this->db->get();
-        $data = $query->result();
-        //echo '<pre>';print_r($data);die;
-        foreach ($data as $key ) {
-        $date = date("Y-m-d",strtotime($key->created_date));
+        $msr = $query->result();
 
-         if($date>$interval && $date<=$current_date)
-          {
-            $this->db->select('*');
-            $this->db->from('otherstaff');
-            $this->db->where('id',$key->fkstaff_id);
-            $query1 = $this->db->get();
-            $data1 = $query1->result(); 
-
-            $array = array(
-                'name'=>$data1[0]->name,
-                'paid_salary'=>$key->paid_salary,
-                'created_date'=>$key->created_date
-                );
-            $dataa[] = $array;
-          }
-
-       }
-     //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($msr)){
+            return $msr;
+        }
+        else{
+            return 0;
+        }
     } 
-
+//----------------------------------------------------------------
 function monthly_teacher_expense_reports()
     {
         $this->db->select('*');
-        $this->db->from('teacher_salaries'); 
-        $current_date = date('Y-m-d');
-        $interval =date('Y-m-d', strtotime('-1 month'));
-
-         $query = $this->db->get();
-        $data = $query->result();
-        foreach ($data as $key ) {
-        $date = date("Y-m-d",strtotime($key->created_date));
-
-         if($date>$interval && $date<=$current_date)
-          {
-            $array = array(
-                'paid_salary'=>$key->paid_salary,
-                'amount_reason'=>$key->amount_reason,
-                'created_date'=>$key->created_date
-                );
-            $dataa[] = $array;
-          }
-
-       }
-      //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        $this->db->from('teacher_salaries');
+        $year = date('Y');
+        $this->db->where("salary_year",$year);
+        $query = $this->db->get();
+        $mtr = $query->result();
+        if(isset($mtr)){
+            return $mtr;
+        }
+        else{
+            return 0;
+        }
     }   
 
     ///////////////////// END OF MONTHLY REPORTS////////////////////
@@ -591,7 +622,14 @@ function yearly_profit_reports()
           }
 
        }
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
  function yearly_other_profit_reports()
@@ -617,7 +655,14 @@ function yearly_profit_reports()
 
        }
 
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
   function yearly_expense_reports()
@@ -643,7 +688,14 @@ function yearly_profit_reports()
 
        }
       //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }   
 
 function yearly_staff_expense_reports()
@@ -677,7 +729,14 @@ function yearly_staff_expense_reports()
 
        }
      //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }
 
 function yearly_teacher_expense_reports()
@@ -704,7 +763,14 @@ function yearly_teacher_expense_reports()
 
        }
       //echo '<pre>';print_r($dataa);die;
-       return $dataa;
+        if(isset($dataa)){
+            return $dataa;
+        }
+
+
+        else{
+            return 0;
+        }
     }            
 
 }

@@ -65,7 +65,7 @@ class Reports extends CI_Controller
 	function weeklyvisitors()
 	{
 		$data['result'] = $this->reports_m->weeklyvisitors();
-		//echo '<pre>';print_r($data);die;
+//		echo '<pre>';print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/weekly_reports/weekly_visitors',$data);
@@ -145,14 +145,19 @@ class Reports extends CI_Controller
 	}
 
 	function dailyfinance()
-	{ 
-		$data['result'] = $this->reports_m->daily_finance_reports();
-		$data['other_result'] = $this->reports_m->daily_finance_report();
-		$data['expense_result'] = $this->reports_m->daily_expense_loss();
-		$data['staff_result'] = $this->reports_m->daily_staff_loss();
-		//echo '<pre>';print_r($data['staff_result']);die;
-		$data['daily_teacher_staff_loss'] = $this->reports_m->daily_teacher_staff_loss();	
-		//echo '<pre>';print_r($data['daily_teacher_staff_loss']);die;
+	{
+        /////////////////////////daily income////////////////////////////
+		$inc['result'] = $this->reports_m->fee_daily_finance();
+		$inc['other_result'] = $this->reports_m->otherfee_daily_finance();
+        $data['income'] = array_merge($inc['result'],$inc['other_result']);
+        /////////////////////////Daily expenses//////////////////////////////
+		$exp['expense_result'] = $this->reports_m->daily_expense();
+		$exp['staff_result'] = $this->reports_m->daily_staff();
+		$exp['daily_teacher_staff_loss'] = $this->reports_m->daily_teacher();
+        $data['expense'] =array_merge($exp['expense_result'],$exp['staff_result'],$exp['daily_teacher_staff_loss']);
+        ////////////////////////// for togather income and expense in one arry///////
+
+//		echo '<pre>';print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/daily_reports/daily_finance',$data);
@@ -168,7 +173,7 @@ class Reports extends CI_Controller
 		$data['other_expense_result'] = $this->reports_m->weekly_expense_reports();
 		$data['other_staff_expense_result'] = $this->reports_m->weekly_staff_expense_reports();	
 		$data['weekly_teacher_expense_reports'] = $this->reports_m->weekly_teacher_expense_reports();	
-		//echo '<pre>';print_r($data['weekly_teacher_expense_reports']);die;
+//		echo '<pre>';print_r($data);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/weekly_reports/weekly_finance',$data);
@@ -177,12 +182,16 @@ class Reports extends CI_Controller
 
 	function monthlyfinance()
 	{
-		$data['result'] = $this->reports_m->monthly_profit_reports();
-		$data['other_std_result'] = $this->reports_m->monthly_other_profit_reports();
-		$data['other_expense_result'] = $this->reports_m->monthly_expense_reports();
-		$data['other_staff_expense_result'] = $this->reports_m->monthly_staff_expense_reports();
-		$data['weekly_teacher_expense_reports'] = $this->reports_m->monthly_teacher_expense_reports();	
-		//echo '<pre>';print_r($data['other_staff_expense_result']);die;
+        //////////////////////// for income//////////////////////////////////////
+		$std['student_fee'] = $this->reports_m->monthly_profit_reports();
+		$std['other_std_result'] = $this->reports_m->monthly_other_profit_reports();
+        $data['income'] = array_merge($std['student_fee'],$std['other_std_result']);
+        //////////////////////////// for expense//////////////////////////////////
+		$exp['other_expense_result'] = $this->reports_m->monthly_expense_reports();
+		$exp['other_staff_expense_result'] = $this->reports_m->monthly_staff_expense_reports();
+		$exp['monthly_teacher_expense_reports'] = $this->reports_m->monthly_teacher_expense_reports();
+        $data['expense'] = array_merge($exp['other_expense_result'],$exp['other_staff_expense_result'],$exp['monthly_teacher_expense_reports']);
+//		echo '<pre>';print_r($data['expense']);die;
 		$this->load->view('include/header');
 		$this->load->view('include/sidebar');
 		$this->load->view('reports/monthly_reports/monthly_finance',$data);

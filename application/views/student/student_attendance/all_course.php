@@ -9,21 +9,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            
-            <?php if($role=="admin"){?>
-            Director Dashboard
-                <small><a href="<?= site_url() ?>student/">Student</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-               All Course
-            </small>
-            <?php } else if($role=="teacher"){?>
-            Teacher Dashboard
-              <small><a href="<?= site_url() ?>teacher/index">Teacher</a>
-                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-               All Course
-            </small>
-            <?php } ?>
 
+            <span class="text-capitalize"><?=$role; ?></span>
+            Dashboard
+            <small><a href="<?= site_url() ?>student/">Student</a>
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+               All Level
+            </small>
         </h1>
     </section>
     <!-- Main content -->
@@ -44,7 +36,7 @@
                             <thead>
                             <tr>
                                 <th>S.no</th>
-                                <th>Course Name</th>
+                                <th>Level Name</th>
                                 <th>Action</th>
                             </tr>
                             </thead>

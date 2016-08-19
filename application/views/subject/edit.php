@@ -7,7 +7,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-              Director Dashboard
+              Admin Dashboard
               <small><a href="<?=site_url()?>student/index"> Student</a>
                   <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                   <a href="<?=site_url()?>subject/index"> Subject</a>

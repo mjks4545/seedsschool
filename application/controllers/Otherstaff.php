@@ -15,7 +15,8 @@ class Otherstaff extends CI_Controller
     {
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-        $this->load->view('otherstaff/otherstaff_home');
+        $data['staff'] = $this->otherstaff_m->viewstaff();
+        $this->load->view('otherstaff/otherstaff_home',$data);
         $this->load->view('include/footer');
     }
 
@@ -86,6 +87,7 @@ class Otherstaff extends CI_Controller
         $id = $this->uri->segment(3);
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
+        $data['result'] = $this->otherstaff_m->staff_salaries($id);
         $data['staff'] = $this->otherstaff_m->view_staffdetails($id);
 //       echo '<pre>';print_r($data);die();
         $this->load->view('otherstaff/view_staffdetails', $data);
@@ -147,14 +149,14 @@ class Otherstaff extends CI_Controller
         $data = $this->otherstaff_m->salarypaymentpro();
         $data['staff'] = $this->otherstaff_m->view_staffdetails($id);
         $this->session->set_userdata("paymentdetail",$data);
-          // echo '<pre>';print_r($data);die();
+//           echo '<pre>';print_r($data);die();
         if ($data['result'] == 1) {
             $this->session->set_flashdata('msg', 'Sucessfully Added');
             $this->session->set_flashdata('type', 'success');
             redirect("otherstaff/payment_slip/");
 //            echo $id;
         }
-        if ($result == 0) {
+        if ($data['result'] == 0) {
             $this->session->set_flashdata('msg', 'Error');
             $this->session->set_flashdata('type', 'danger');
             redirect("otherstaff/paymentdetails/" . $id);

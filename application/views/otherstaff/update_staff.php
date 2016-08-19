@@ -69,7 +69,7 @@
 
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Address</label>
-                                    <input type="text" name="address"   minlength="3" maxlength="100" class="form-control" id="exampleInputEmail1" value="<?= $data->email ?>" required />
+                                    <input type="text" name="address"   minlength="3" maxlength="100" class="form-control" id="exampleInputEmail1" value="<?= $data->address ?>" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

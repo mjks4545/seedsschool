@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?php echo site_url()?>student/">Student</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?php echo site_url()?>studentpayment/viewstd">All Student</a>
@@ -121,6 +121,20 @@
 
 
                             </div>
+                            <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4">
+                                <div class="form-group has-feedback">
+                                    <label for="exampleInputEmail1">Year</label>
+                                    <select name="year" class="form-control"  required>
+                                        <?php $date = date("Y");
+                                        for($i=$date-5; $i<=$date+2; $i++){ ?>
+                                            <option value="<?=$i?>"><?=$i?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                </div>
+                            </div>
+
                             <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4">
                                 <div class="form-group has-feedback">
                                     <label for="exampleInputEmail1">Reason</label>

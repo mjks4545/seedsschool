@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url()?>otherstaff/">Staff</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url()?>otherstaff/viewstaff">View Staff</a>
@@ -25,9 +25,9 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
-                        <h3 class="box-title">Payment Details</h3>
+                        <h3 class="box-title">Payment Details of <?=$result[0]->name?></h3>
                         <a href="<?= site_url() ?>otherstaff/paysalary/<?=$id?>" type="button"
-                           class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Pay Salary</a>
+                           class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Pay Remuneration</a>
 
                     </div>
                     <!-- /.box-header -->
@@ -37,13 +37,13 @@
                             <thead>
                             <tr>
                                 <th>S.No</th>
-                                <th>Employee Name</th>
-                                <th>Total Salary</th>
-                                <th>Paid Salary</th>
-                                <th>Remain Salary</th>
+                                <th>Date</th>
                                 <th>Amount Reason</th>
                                 <th>Paid Month</th>
-                                <th>Date</th>
+
+                                <th>Total Remuneration</th>
+                                <th>Paid Remuneration</th>
+                                <th>Remain Remuneration</th>
 
                             </tr>
                             </thead>
@@ -51,14 +51,14 @@
                             <?php if ($result == 0) { ?>
                             <?php } else {
                                 $sno=1;
+                                $total_salary=0;
+                                $total_paid=0;
+                                $total_remain=0;
                                 foreach($result as $staff){?>
                                     <tr>
                                         <td><?php echo $sno ?></td>
-                                        <td><?php echo $staff->name; ?></td>
-                                        <td><?php echo $staff->total_salary; ?></td>
-                                        <td><?php echo $staff->paid_salary; ?></td>
-                                        <td><?php echo $staff->remaining_salary; ?></td>
-                                        <td><?php echo $staff-> amount_reason; ?></td>
+                                        <td><?=$staff->created_date?></td>
+                                        <td><?php echo $staff->amount_reason; ?></td>
                                         <td><?php  $staff->paid_month;
                                             switch ($staff->paid_month) {
                                                 case 1:
@@ -98,10 +98,23 @@
                                                     echo 'Dec';
                                                     break;
                                             }?></td>
-                                        <td><?php echo $staff-> created_date; ?></td>
-
+                                        <td><?php echo $staff->total_salary; ?></td>
+                                        <td><?php echo $staff->paid_salary; ?></td>
+                                        <td><?php echo $staff->remaining_salary; ?></td>
                                     </tr>
-                                    <?php $sno++; } }?>
+                                    <?php $sno++;   $total_paid = $total_paid+$staff->paid_salary;
+                                    $total_remain = $staff->remaining_salary;
+                                } }?>
+                            </tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="bg-info"><b>Total:</b></td>
+                                <td class="bg-info"><b><?php echo $total_salary = $total_paid+($total_remain); ?></b>.PKR</td>
+                                <td class="bg-info"><b><?php echo $total_paid; ?></b>.PKR</td>
+                                <td class="bg-info"><b><?php echo $total_remain; ?></b>.PKR</td>
+                            </tr>
                         </table>
                     </div>
                     <!-- /.box-body -->

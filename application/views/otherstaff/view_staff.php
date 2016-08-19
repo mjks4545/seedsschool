@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url()?>otherstaff/">Staff</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 View Staff
@@ -46,9 +46,6 @@
                             </thead>
 
                             <?php if ($staff == 0) { ?>
-                                <tr>
-                                    <td colspan="9">No Staff Found</td>
-                                </tr>
                             <?php } else {
                                 $sno=1;
                                 foreach($staff as $s){?>
@@ -78,11 +75,6 @@
                                         </td>
                                     </tr>
                                     <?php $sno++; } }?>
-                            <tr>
-                                <td colspan="8">
-                                    <?php echo $this->pagination->create_links(); ?>
-                                </td>
-                            </tr>
                           </tbody>
                         </table>
                     </div>

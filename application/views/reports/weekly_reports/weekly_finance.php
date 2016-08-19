@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url()?>reports/">Reports</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url()?>reports/weeklyreports">Weekly Reports</a>
@@ -43,7 +43,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if ($result == 0) { ?>
+                            <?php if ($result == 0) {
+                                $total_month = 0;
+                                ?>
 
                             <?php } else {
                                 $sno=1;
@@ -113,7 +115,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if ($other_expense_result == 0) { ?>
+                            <?php if ($other_expense_result == 0) {
+                                $total_month = 0;
+                                ?>
 
                             <?php } else {
                                 $sno=1;
@@ -143,7 +147,6 @@
                                                 <?php $sno++; $total_month = ($total_month+$row['paid_amt']);} }?>
 
              <?php if ($other_staff_expense_result == 0) { ?>
-
                                         <?php } else {
                                             $sno=1;
                                             foreach($other_staff_expense_result as $row){?>

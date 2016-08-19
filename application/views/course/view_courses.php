@@ -7,10 +7,10 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url()?>Academic/">Academic</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                View Courses
+                View Level
             </small>
         </h1>
     </section>
@@ -23,7 +23,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
-                        <h3 class="box-title">View Courses</h3>
+                        <h3 class="box-title">View Level</h3>
                         <a href="<?= site_url() ?>course/addcourseview" type="button"
                            class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Add Course</a>
 
@@ -34,8 +34,8 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Course Id</th>
-                                <th>Course Title</th>
+                                <th>S.No</th>
+                                <th>Level Title</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th class="text-center">Actions</th>
@@ -43,9 +43,10 @@
                             </thead>
                             <tbody>
                             <?php
+                             $sno=1;
                                 foreach($result as $course){?>
                                     <tr>
-                                        <td><?php echo $course->co_id; ?></td>
+                                        <td><?php echo $sno; ?></td>
                                         <td><?php echo $course->co_name; ?></td>
                                         <td><?php echo $course->created_date; ?></td>
                                         <td><?php echo $course->created_time; ?></td>
@@ -60,7 +61,7 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php } ?>
+                                    <?php $sno++; } ?>
                             </tbody>
 
                         </table>

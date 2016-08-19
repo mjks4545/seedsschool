@@ -1,5 +1,5 @@
 <style>
-    .course{
+    .Level{
         margin-top: 10px;
     }
 </style>
@@ -88,11 +88,32 @@
                                <span class="help-block with-errors" style="margin-left:10px; "></span>
                          </div>
                     </div>
-                     <div class="form-group has-feedback col-sm-12">
+                     <div class="col-sm-12">
+                         <!--for cnic-->
+
                          <div class="form-group has-feedback col-md-6">
-                             <label for="exampleInputEmail1">Select Course</label>
+                             <label for="exampleInputEmail1">CNIC</label>
+                             <input type="text" name="s_cnic"  class="form-control" pattern="[0-9]{13,13}" minlength="13" maxlength="13" id="exampleInputEmail1" placeholder="Enter CNIC" required />
+                             <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                             <span class="help-block with-errors" style="margin-left:10px; "></span>
+                         </div>
+                         <!--for gender-->
+                         <div class="form-group has-feedback col-md-6">
+                             <label for="exampleInputEmail1">Gender</label>
+                             <select name="s_gender" class="form-control"   required>
+                                 <option value="">Select Gender</option>
+                                 <option value="male">Male</option>
+                                 <option value="female">Female</option>
+                             </select>
+                             <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                             <span class="help-block with-errors" style="margin-left:10px; "></span>
+                         </div>
+                     </div>
+                     <div class=" col-sm-12">
+                         <div class="form-group has-feedback col-md-6">
+                             <label for="exampleInputEmail1">Select Level</label>
                              <select type="text" name="course" class="form-control" maxlength="50" minlength="3" placeholder="Select Course" required >
-                                 <option>Select Course</option>
+                                 <option value="">Select Level</option>
                                  <?php foreach( $course as $value ){ ?>
                                      <option value="<?=$value->co_id?>"><?=$value->co_name?></option>
                                  <?php } ?>
@@ -100,9 +121,6 @@
                              <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                              <span class="help-block with-errors" style="margin-left:10px; "></span>
                          </div>
-                         <!-- for image -->
-
-
                          <div class="form-group has-feedback col-md-6">
                              <label for="exampleInputEmail1">Picture</label>
                              <input type="file" name="img"  class="form-control" required />

@@ -8,6 +8,10 @@ var Events = function(){
         console.log('events created');
 	add_another_subject();
 	get_teacher();
+	student_class_fee();
+	student_class_fee_total();
+	student_class_fee_total1();
+	
     };
     
     // -------------------------------------------------------------------------
@@ -91,6 +95,67 @@ var Events = function(){
     
     // -------------------------------------------------------------------------
     
+    var student_class_fee = function(){
+	
+	$(".concession").keyup(function () {
+	    
+	    var $id = $(this).attr('id');
+	    var topay = $("#subject_fee_" + $id ).val() - $(this).val();
+	    $("#fee_pay_" + $id ).val(topay);
+	    
+	    
+	    
+	});
+                                   
+	
+    }
+    
+    // -------------------------------------------------------------------------
+    
+    var student_class_fee_total = function(){
+	
+	$('.concession').keyup(function () {
+	    
+	    var admission = $('#add_fee').val();
+	    var counter   = $('#counter').val();
+	    var $addition = 0;
+	    console.log(counter);
+	    for( $i = 1; $i <= counter ; $i++){
+		console.log('hi');
+		$addition = parseInt( $addition ) + parseInt( $('#fee_pay_' + $i).val() ); 
+		
+	    }
+	    console.log($addition);
+	    var addition  =  parseInt( admission ) + $addition;
+	    $('#total_fee').val( addition );
+	    
+	});
+	
+    }
+    
+    // -------------------------------------------------------------------------
+    var student_class_fee_total1 = function(){
+	
+	$('#add_fee').keyup(function () {
+	    
+	    var admission = $('#add_fee').val();
+	    var counter   = $('#counter').val();
+	    var $addition = 0;
+	    console.log(counter);
+	    for( $i = 1; $i <= counter ; $i++){
+		console.log('hi');
+		$addition = parseInt( $addition ) + parseInt( $('#fee_pay_' + $i).val() ); 
+		
+	    }
+	    console.log($addition);
+	    var addition  =  parseInt( admission ) + $addition;
+	    $('#total_fee').val( addition );
+	    
+	});
+	
+    }
+    // -------------------------------------------------------------------------
+
     this.__construct();
 
 };

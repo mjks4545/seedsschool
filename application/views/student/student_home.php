@@ -1,12 +1,26 @@
+<style>
+    td, th {
+        text-align: center;
+    }
+</style>
+<?php
+$session = $this->session->userdata('session_data');
+$id= $session['id'];
+$role = $session['role'];  ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
-            <small> <a href="<?= site_url()?>academic/">Academic Section </a> <i class="fa fa-chevron-circle-right" aria-hidden="true"></i> Student Home</small>
+            <span class="text-capitalize"><?=$role; ?></span>
+            Dashboard
+            <small><a href="<?= site_url() ?>admin/">
+                    <span class="text-capitalize"><?=$role; ?></span>
+                    </a>
+                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                View Students
+            </small>
         </h1>
     </section>
-
     <!-- Main content -->
     <section class="content">
         <div class="row">
@@ -15,79 +29,79 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                    </div><!-- /.box-header -->
-                    <div class="row">
-                        <div class="col-lg-1 col-xs-4"></div>
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <h3>...</h3>
-                                    <p>Add New Student</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-user-plus"></i>
-                                </div>
-                                <a href="<?= site_url()?>student/addstudent" class="small-box-footer">
-                                    Click here  <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>...</h3>
-                                    <p>View Students Details</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url()?>student/viewstudents" class="small-box-footer">
-                                    Click here  <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>...</h3>
-                                    <p>Attendance</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-table" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url()?>studentattendance/allcourse" class="small-box-footer">
-                                    Click here  <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                    </div><!-- /.row -->
-     <!--------------------for 2nd row----------------------------->
-                    <div class="row">
-                        <div class="col-lg-1 col-xs-4"></div>
-                        <div class="col-lg-3 col-xs-6">
-                            <!-- small box -->
-                            <div class="small-box bg-yellow-active">
-                                <div class="inner">
-                                    <h3>...</h3>
-                                    <p>Student Payment</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-money" aria-hidden="true"></i>
-                                </div>
-                                <a href="<?= site_url()?>studentpayment/viewstd" class="small-box-footer">
-                                    Click here  <i class="fa fa-arrow-circle-right"></i>
-                                </a>
-                            </div>
-                        </div><!-- ./col -->
-                      </div><!-- ./row-->
-                </div>
-            </div><!-- /.box -->
-        </div>
-</div>
-</section>
-</div>
+                        <?php $this->load->view('include/alert'); ?>
+                        <h3 class="box-title">View Students</h3>
+                        <?php if($role=="admin" || $role=="receptionist"){?>
+                        <a href="<?= site_url() ?>student/studentlevel" type="button" class="btn btn-success pull-right">
+                            <i class="fa fa-money"></i>&nbsp;&nbsp;&nbsp;Create Payment Slip</a>
+                        <?php } if($role=="admin" || $role=="teacher" || $role=="receptionist"){?>
+                            <a href="<?= site_url() ?>studentattendance/allcourse" type="button"
+                           class="btn btn-success pull-right"><i class="fa fa-calendar"></i>&nbsp;&nbsp;&nbsp;Attendance</a>
+                        <?php } if($role=="admin" || $role=="receptionist"){?>
+                            <a href="<?= site_url() ?>studentpayment/viewstd" type="button"
+                           class="btn btn-success pull-right"><i class="fa fa-graduation-cap"></i>&nbsp;&nbsp;&nbsp;Payment Detail</a>
+                        <a href="<?= site_url() ?>student/addstudent" type="button" class="btn btn-success pull-right">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            &nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;Student
+                        </a>
+                        <?php } ?>
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <?php if($role=="admin" || $role=="receptionist"){ ?>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>S.no</th>
+                                <th>Student Name</th>
+                                <th>Father Name</th>
+                                <th>Level</th>
+                                <th>Contact</th>
+                                <th>Status</th>
 
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            if ($result==0) {?>
+                            <?php } else {
+                                $sno = 1;
+                                foreach ($result as $array) { ?>
+                                    <tr>
+                                        <td><?= $sno ?></td>
+                                        <td><?= $array->student_name ?></td>
+                                        <td><?= $array->std_father_name ?></td>
+                                        <td><?= $array->co_name ?></td>
+                                        <td><?= $array->student_contact ?></td>
+                                        <td><?php  if($array->student_status==1){?>
+                                                <i class="label label-success">Active</i>
+                                            <?php }else{ ?>
+                                                <i class="label label-danger">Deactive</i>
+                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <a href="<?= site_url() ?>student/studentdetails/<?= $array->student_id ?>"
+                                               type="button" class="btn btn-primary">
+                                                <i class="fa fa-eye" alt="View details of this Visitor"
+                                                   aria-hidden="true"></i>
+                                                &nbsp;&nbsp;&nbsp;View Details</a>&nbsp;&nbsp;&nbsp;
+                                        </td>
+                                    </tr>
+                                    <?php $sno++;
+                                }
+                            } ?>
+                        </table>
+                        <?php } ?>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.box -->
+        </div>
+
+    </section>
+</div>
 

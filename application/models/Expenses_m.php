@@ -8,11 +8,15 @@ class Expenses_m extends CI_Model{
             $reason = $this->input->post('reason');
             $paid_to = $this->input->post('paid_to');
             $paid_amount = $this->input->post('amount');
+            $year = $this->input->post('year');
+            $month = $this->input->post('month');
             $expense_created_date = date('d-M-Y');
 
             $insert_array = array(
                 'expense_reason' =>$reason,
                 'expense_paid_to'=>$paid_to,
+                'expense_month'=>$month,
+                'expense_year'=>$year,
                 'expense_paid_amount'=>$paid_amount,
                 'expense_created_date'=>$expense_created_date,
                 );

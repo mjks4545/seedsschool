@@ -35,7 +35,7 @@
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"
                                       style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
-                                    <input type="submit" class="btn btn-primary pull-right" value="Search Student" name="search">
+                                    <input type="submit" class="btn btn-primary pull-right" value="Search Expense" name="search">
                                 </div>
 
                             </form>

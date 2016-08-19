@@ -90,6 +90,34 @@
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <!--for cnic-->
+
+                                <div class="form-group has-feedback col-md-6">
+                                    <label for="exampleInputEmail1">CNIC</label>
+                                    <input type="text" name="s_cnic"  value="<?=$data->s_cnic?>" class="form-control" pattern="[0-9]{13,13}" minlength="13" maxlength="13" id="exampleInputEmail1" placeholder="Enter CNIC" required />
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                </div>
+                                <!--for gender-->
+                                <div class="form-group has-feedback col-md-6">
+                                    <label for="exampleInputEmail1">Gender</label>
+                                    <select name="s_gender" class="form-control"   required>
+                                       <?php if($data->s_gender=="male"){ ?>
+                                        <option value="">Select Gender</option>
+                                        <option value="male" selected>Male</option>
+                                        <option value="female">Female</option>
+                                       <?php }else{?>
+
+                                           <option value="">Select Gender</option>
+                                           <option value="male">Male</option>
+                                           <option value="female" selected>Female</option>
+                                        <?php } ?>
+                                    </select>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                </div>
+                            </div>
                         </div><!-- /.box-body -->
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary col-sm-1 pull-right ">Update</button>

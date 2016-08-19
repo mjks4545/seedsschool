@@ -3,7 +3,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Director Dashboard
+            Admin Dashboard
             <small>
               <a href="<?php echo site_url()?>admin/">Admin</a>
               <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
@@ -39,9 +39,9 @@
                         </a>
                       </div>
                     </div><!-- ./col -->
-                   <div class="col-lg-3 col-xs-6">
+                   <!--<div class="col-lg-3 col-xs-6">
                       <!-- small box -->
-                      <div class="small-box bg-green">
+                     <!-- <div class="small-box bg-green">
                         <div class="inner">
                           <h3>...</h3>
                           <p>Weekly Reports</p>
@@ -49,10 +49,10 @@
                         <div class="icon">
                             <i class="fa fa-male" aria-hidden="true"></i>
                         </div>
-                          <a href="<?= site_url()?>reports/weeklyreports" class="small-box-footer">
+                          <a href="<?/*= site_url()*/?>reports/weeklyreports" class="small-box-footer">
                           Click here  <i class="fa fa-arrow-circle-right"></i>
                         </a>
-                      </div>
+                      </div>--
                     </div><!-- ./col -->
                     <div class="col-lg-3 col-xs-6">
                       <!-- small box -->
@@ -68,10 +68,6 @@
                         </a>
                       </div>
                     </div><!-- ./col -->
-                    
-                 </div><!-- /.row -->
-                  <div class="row">
-                    <div class="col-lg-1 col-xs-4"></div>
                     <div class="col-lg-3 col-xs-6">
                       <!-- small box -->
                       <div class="small-box bg-aqua">

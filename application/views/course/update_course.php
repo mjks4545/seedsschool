@@ -7,12 +7,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Update Course
-            <small><a href="<?= site_url()?>course/">Courses</a>
+            Update Level
+            <small><a href="<?= site_url()?>course/">Levels</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <a href="<?= site_url()?>course/viewcourses">View Courses</a>
+                <a href="<?= site_url()?>course/viewcourses">View Levels</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Update Course
+                Update Level
             </small>
         </h1>
     </section>
@@ -27,7 +27,7 @@
                         <?php
                         $this->load->view('include/alert');
                         ?>
-                        <h3 class="box-title">Update Course</h3>
+                        <h3 class="box-title">Update Level</h3>
                         <a href="<?= site_url()?>course/viewcourses" class="pull-right"> Back</a>
                     </div><!-- /.box-header -->
                     <!-- form start -->
@@ -37,7 +37,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-2"></div>
                                 <div class="form-group has-feedback col-md-5">
-                                    <label for="exampleInputEmail1">Course Title</label>
+                                    <label for="exampleInputEmail1">Level Title</label>
                                     <input type="text" name="course_title" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?= $array->co_name?>" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>

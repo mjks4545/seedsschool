@@ -3,7 +3,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url()?>admin/">Home</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Expenses Home

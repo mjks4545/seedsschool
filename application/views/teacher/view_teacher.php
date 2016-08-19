@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Director Dashboard
+            Admin Dashboard
             <small><a href="<?= site_url()?>teacher/">Teacher</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 View Teachers
@@ -46,9 +46,6 @@
                             </thead>
                             <tbody>
                             <?php if ($teachers == 0) { ?>
-                                <tr>
-                                    <td>No Visitor Found</td>
-                                </tr>
                             <?php } else {
                                 $sno=1;
                                 foreach($teachers as $t){?>

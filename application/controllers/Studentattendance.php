@@ -29,7 +29,7 @@ class Studentattendance extends CI_Controller
         $co_id = $this->uri->segment(3);
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-        if($role=='admin'){
+        if($role=='admin' || $role=="receptionist"){
         $data['result'] = $this->student_attendance_m->allclass($co_id);
         }else if($role=='teacher'){
         $data['result'] = $this->student_attendance_m->allclass_t($co_id);
@@ -55,7 +55,7 @@ class Studentattendance extends CI_Controller
     //------------------------------------------------------------------
     function takeattendacepro()
     {
-
+        $result = $this->student_attendance_m->teacher_attandance();
         $co_id = $this->uri->segment(3);
         $cls_id = $this->uri->segment(4);
         $result = $this->student_attendance_m->takeattendancepro($co_id, $cls_id);

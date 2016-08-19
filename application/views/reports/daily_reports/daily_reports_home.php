@@ -3,7 +3,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Director Dashboard
+            Admin Dashboard
             <small>
               <a href="<?php echo site_url()?>admin/">Admin</a>
               <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
