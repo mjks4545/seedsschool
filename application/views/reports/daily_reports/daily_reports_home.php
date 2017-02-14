@@ -72,11 +72,34 @@
                     </div><!-- ./col -->
                     
                  </div><!-- /.row -->
-                                   
+                   <div class="row"> <!-- second row -->
+                   </div>                
                   </div>
                 </div><!-- /.box -->
-              </div>
-            </div>
+              </div><!-- /first .row end -->
+               <div class="row" style="background-color:#fff;"><!-- 2nd /.row -->
+            
+                <div class="row">
+                    <div class="col-lg-1 col-xs-4"></div>
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-green">
+                        <div class="inner">
+                          <h3>...</h3>
+                          <p>Students Teacher wise Report </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <a href="<?= site_url()?>reports/daily_teacher_wise_student" class="small-box-footer">
+                          Click here  <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div><!-- ./col -->
+                 </div>
+                   
+              </div><!-- /.row -->
+             
         </section>
     </div>
               

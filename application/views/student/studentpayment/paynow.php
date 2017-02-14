@@ -90,7 +90,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4">
                                 <div class="form-group has-feedback">
                                     <label for="exampleInputEmail1">Amount Pay</label>
-                                    <input type="text" name="amountpay" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Enter Amount" required/>
+                                    <input type="text" name="amountpay" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Enter Amount" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -138,7 +138,7 @@
                             <div class="col-md-4 col-sm-4 col-xs-4 col-md-offset-4">
                                 <div class="form-group has-feedback">
                                     <label for="exampleInputEmail1">Reason</label>
-                                    <input type="text" name="reason" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="Monthly Fee" readonly/>
+                                    <input type="text" name="reason" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" value="Monthly Fee" readonly/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

@@ -14,6 +14,38 @@
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Visitor Weekly Record
             </small>
+            <small style="float:right">
+                <form action="<?=base_url()?>reports/monthlyvisitors" method="post">
+                    <select name="months">
+                        <option>Select Month</option>
+                        <option value="Jan">Jan</option>
+                        <option value="Feb">Feb</option>
+                        <option value="Mar">Mar</option>
+                        <option value="Apr">Apr</option>
+                        <option value="May">May</option>
+                        <option value="Jun">Jun</option>
+                        <option value="Jul">Jul</option>
+                        <option value="Aug">Aug</option>
+                        <option value="Sept">Sept</option>
+                        <option value="Oct">Oct</option>
+                        <option value="Nov">Nov</option>
+                        <option value="Dec">Dec</option>
+                    </select>
+                    <select name="years">
+                        <option>Select Year</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+                    <input type="submit" name="submitDate" value="submit" class="btn btn-primary btn-xs">
+                </form>
+            </small>
         </h1>
     </section>
     <!-- Main content -->

@@ -46,13 +46,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php if ($result == 0) { ?>
+                            <?php if (!empty($result)) { ?>
 
-                            <?php } else {
+                            <?php 
                                 $total_paid = 0;
                                 $total_remain=0;
                                 $sno=1;
-                                foreach($result as $d){?>
+                                foreach($result as $d): ?>
                                     <tr>
                                         <td><?php echo $sno?></td>
                                         <td><?php echo $d->std_date?></td>
@@ -63,7 +63,8 @@
                                         <td><?php echo $d->std_remain?></td>
 
                                     </tr>
-                                    <?php $sno++; $total_paid=$total_paid+$d->std_paid;$total_remain=$d->std_remain; } }?>
+                                    <?php $sno++; $total_paid=$total_paid+$d->std_paid;$total_remain=$d->std_remain; ?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             <tr>
                                 <td></td>
@@ -74,7 +75,7 @@
                                 <td class="bg-info"><b><?php echo $total_paid; ?>.PKR</b></td>
                                 <td class="bg-info"><b><?php echo $total_remain; ?>.PKR</b></td>
                             </tr>
-
+                            <?php } ?>
                         </table>
                     </div>
                     <!-- /.box-body -->

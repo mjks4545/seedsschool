@@ -14,6 +14,12 @@
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Students Daily Record
             </small>
+            <small style="float:right">
+                <form action="<?=base_url()?>reports/dailystudents" method="post">
+                    <input type="date" name="dailyDate">
+                    <input type="submit" name="submitDate" value="submit" class="btn btn-primary btn-xs">
+                </form>
+            </small>
         </h1>
     </section>
     <!-- Main content -->
@@ -26,6 +32,7 @@
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
                         <h3 class="box-title">Students Details</h3>
+
                         <a href="<?= site_url() ?>reports/dailyreports" class="pull-right"> Back</a>
                        
                     </div>

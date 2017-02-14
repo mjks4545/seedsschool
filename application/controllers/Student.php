@@ -14,15 +14,15 @@ class Student extends CI_Controller
 //-------------------------------------------------------------------
     function index()
     {
+        $result['result'] = $this->student_m->view_students();
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-        $result['result'] = $this->student_m->view_students();
         $this->load->view('student/student_home',$result);
         $this->load->view('include/footer');
 
     }
 
-    //------------------------------------------------------------------------------------------------------------------
+    // ------------------------------------------------------------------------------------ 
     function addstudent()
     {
         $data['course'] = $this->class_m->get_course();
@@ -34,10 +34,36 @@ class Student extends CI_Controller
 
     }
 
+     //----------------------------------------------------------------------------------------- 
+    function check_as_visitor()
+    {
+
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('visitor/v_check_as_visitor', $data);
+        $this->load->view('include/footer');
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    function visitor_student()
+    {
+          
+        $contact = $this->input->post('contact');
+        $data['course'] = $this->class_m->get_course();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/addstudent', $data);
+        $this->load->view('include/footer');
+     
+
+    }
+
     //------------------------------------------------------------------------------------------------------------------
     function addstudentpro()
     {
         $data['result'] = $this->student_m->addstudentpro();
+
         if ($data['result'] == 0) {
             $this->session->set_flashdata('msg', 'Error');
             $this->session->set_flashdata('type', 'danger');
@@ -366,34 +392,191 @@ class Student extends CI_Controller
     function chalanperstudent($clfee_id)
     {
         $data['std_info']=$this->student_m->chalanperstudent($clfee_id);
-//         echo '<pre>';print_r($data);die();
+         if(!$data['std_info'][0]==''){
+         // echo '<pre>';print_r($data);die();
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('student/chalan/studentperclass_slip',$data);
         $this->load->view('include/footer');
 
+    }else{
+        $this->session->set_flashdata('mg','No record found');
+        redirect('student/clstudent/5');
+    }
+    }
+    //-----------------------------------------------------------------
+    function chalan_search()
+    {
+        
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/v_chalansearchview');
+        $this->load->view('include/footer');
+
+    }
+         //-----------------------------------------------------------------
+    function get_chalan_by_no()
+    {
+        $chalan_number=$this->input->post('chalan_number');
+        $result['chalan_number'] = $this->student_m->get_chalan_by_no($chalan_number);
+        
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/v_chalannumber', $result);
+        $this->load->view('include/footer');
+
+    }
+     //-----------------------------------------------------------------
+    function get_chalan_by_class()
+    {
+         $chalan_class=$this->input->post('chalan_class');
+        $result['chalan_class'] = $this->student_m->get_chalan_by_class($chalan_class);
+        //echo '<pre>'; var_dump($result);die;
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/v_chalanclass', $result);
+        $this->load->view('include/footer');
+
+    }
+     //-----------------------------------------------------------------
+    function get_chalan_by_roll()
+    {
+         $student_id=$this->input->post('student_id');
+        $result['student_id'] = $this->student_m->get_chalan_by_roll($student_id);
+        //echo '<pre>'; var_dump($result);die;
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/v_chalanrollnumber', $result);
+        $this->load->view('include/footer');
+
+    }
+     //-----------------------------------------------------------------
+    function chalan_paid_home($student_id)
+    {
+           
+         $data['std_info']=$this->student_m->chalan_for_paid($student_id);
+         //echo '<pre>';var_dump($data);die;
+         if(!$data['std_info'][0]==''){
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/chalan/v_chalanpaidprint',$data);
+        $this->load->view('include/footer');
+    }else{
+        $this->session->set_flashdata('message', 'No Record Found');
+        redirect('student/studentlevel');
+    }
+    }
+      //-----------------------------------------------------------------
+    function chalan_status()
+    {
+          $chalan_number = $this->input->post('chalan_number');
+          $this->student_m->chalan_status($chalan_number);
+         
+            redirect('student/chalan_search');
+          
+    }
+
+
+    //-----------------------------------------------------------------
+    function add_chalan_number()
+    {
+       
+        
+      if(isset($_POST['chalan_button'])){
+
+        $this->student_m->add_chalan_number();
+
+       $result['printid'] = $this->student_m->get_chalan_id($data);
+        $printid = $result['printid'][0]['print_id'];
+        // //echo '<pre>'; print_r($printid) ;die;
+
+        $class_data = array(  
+                          'fkey' => $printid, 
+                        'class' => $this->input->post('class'),
+                        'type_of_fee' =>$this->input->post('type_of_fee') 
+                     
+            );
+     $this->student_m->add_chalan_class($class_data);
+         
+        redirect('student/clstudent/5');
+       } 
+       
+        
     }
 //-----------------------------------------------------------------
     function chalanperclass($cl_id)
     {
         $data['std_info']=$this->student_m->chalanperclass($cl_id);
-//         echo '<pre>';print_r($data["std_info"]);die();
+         // echo '<pre>';print_r($data["std_info"]);die();
+        if($data['std_info']=='')
+        {
+            $this->session->set_flashdata('msg','This Class have no student ');
+        $this->session->set_flashdata('type','info');
+        redirect('student/studentlevel/');
+    }
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('student/chalan/chalanperclass_slip',$data);
         $this->load->view('include/footer');
-
+     
+     
     }
-//-----------------------------------------------------------------
+    //-----------------------------------------------------------------
+    
     function chalanperlevel($co_id)
     {
         $data['std_info']=$this->student_m->chalanperlevel($co_id);
-//         echo '<pre>';print_r($data["std_info"]);die();
+         //echo '<pre>';print_r($data["std_info"]);die();
+        if($data['std_info'] == 0){
+            $this->session->set_flashdata('msg','This level have no student!');
+             $this->session->set_flashdata('type','info');
+             redirect('student/studentlevel');
+
+            }
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('student/chalan/chalanpercourse_slip',$data);
         $this->load->view('include/footer');
+    
 
     }
-    //-----------------------------------------
+       
+    // -----------------------------------------
+
+    public function change_status( $id, $status ){
+
+        $data = [
+            'student_status'  => $status
+        ];
+        $this->db->where('student_id', $id);
+        $this->db->update('student',$data);
+        redirect( site_url() . 'student' );
+    }
+
+    // -----------------------------------------
+    function get_complete_payment_details(){
+        
+        $student_id     = $this->uri->segment(3);
+        $data           = $this->student_m->get_complete_payment_details( $student_id );
+        $result['trf']  = $this->student_m->get_complete_trf($student_id);
+        $result['data'] = $this->student_m->get_complete_payment_details_pro( $data );
+        
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('student/detailedfeeview',$result);
+        $this->load->view('include/footer');
+        
+    }
+
+    // -----------------------------------------
+
+    function student_class_left( $student_id, $status, $class_fee_id ){
+
+        $result = $this->student_m->student_class_left( $status, $class_fee_id );
+        redirect( site_url() . 'student/studentdetails/' . $student_id );
+
+    }
+
+    // -----------------------------------------
+
 }

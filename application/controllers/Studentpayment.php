@@ -18,17 +18,30 @@ class Studentpayment extends CI_Controller{
        $this->load->view('student/studentpayment/viewstd', $data);
        $this->load->view('include/footer');
    }
+    
     //---------------------------------------------------------------
+    
     function studentclass(){
+        
         $st_id = $this->uri->segment(3);
-        $data['result'] = $this->studentpayment_m->studentclass($st_id);
+        $data['result']  = $this->studentpayment_m->studentclass($st_id);
+        $data['other_payments'] = $this->studentpayment_m->get_other_payments( $st_id );
+        
+        foreach( $data['result'] as $result ){
+        
+            $data['payment'][] = $this->studentpayment_m->student_payments( $result->classfee_id );
+        
+        }
+
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-//        echo "<pre>";print_r($data); die();
         $this->load->view('student/studentpayment/student_class', $data);
         $this->load->view('include/footer');
+
     }
+
     //---------------------------------------------------------------
+    
     function paynow(){
         $classfee_id = $this->uri->segment(3);
         $st_id = $this->uri->segment(4);
@@ -63,17 +76,23 @@ class Studentpayment extends CI_Controller{
     }
 
     //----------------------------------------------------------------
+    
     function slip(){
+
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
-        $data = $this->session->userdata("paymentdetail");
-            //   echo "<pre>";print_r($data); die();
-
+        $student_id = $this->session->userdata("student_id");
+        $data['student']       = $this->studentpayment_m->get_student_data($student_id);
+        $data['paymentdetail'] = $this->session->userdata("paymentdetail");
+        if( $this->session->userdata("otherpayments") ){
+            $data['otherpayments'] = $this->session->userdata("otherpayments");
+        }    
         $this->load->view('student/studentpayment/payment_slip',$data);
         $this->load->view('include/footer');
 
 
     }
+
     //----------------------------------------------------------------
     function classpaymentdetail(){
         $classfee_id=$this->uri->segment(3);
@@ -87,6 +106,7 @@ class Studentpayment extends CI_Controller{
     }
 
     //------------------------------------------------------------------
+    
     function otherpay(){
         $std_id=$this->uri->segment(3);
         $data['result']=$this->studentpayment_m->otherpay($std_id);
@@ -122,6 +142,7 @@ class Studentpayment extends CI_Controller{
     }
     //----------------------------------------------------------------
     function otherpayment_slip(){
+    
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $data = $this->session->userdata("otherpaymentdetail");
@@ -133,15 +154,29 @@ class Studentpayment extends CI_Controller{
 
     }
     //-----------------------------------------------------------------
+    
     function viewotherpaymentdetail($std_id)
     {
+        
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $data['result']=$this->studentpayment_m->otherpaymentdetail($std_id);
-//        echo "<pre>"; print_r($data); die;
+//      echo "<pre>"; print_r($data); die;
         $this->load->view('student/studentpayment/otherpaymentdetail',$data);
         $this->load->view('include/footer');
+
     }
-    //-----------------------------------------------------------------
+
+    // -----------------------------------------------------------------
+
+    public function pay_fee(){
+
+        $this->studentpayment_m->pay_fee();
+        redirect( site_url() . 'studentpayment/slip' );
+
+    }
+
+    // -----------------------------------------------------------------
 
 }
+

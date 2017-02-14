@@ -4,7 +4,7 @@
     }
 
     .name {
-        margin-top: 10px;2
+        margin-top: 10px;
     }
 
     .ad {

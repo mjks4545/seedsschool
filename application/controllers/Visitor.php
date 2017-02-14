@@ -31,12 +31,17 @@ class Visitor extends CI_Controller
 
     }
 
+
     //-------------------------------------------------------------
     function visitoraddpro()
     {
         $session = $this->session->userdata('session_data');
         $role = $session['role']; 
-
+        $result = $this->visitor_m->visitor_exist();
+        if($result == 0){
+            $this->session->set_flashdata('visitor_exist', 'Visitor already exist!');
+            redirect("visitor/addvisitor");
+        }elseif($result == 1){
         $result = $this->visitor_m->addvisitorpro();
 
         if ($result == 1) {
@@ -59,6 +64,7 @@ class Visitor extends CI_Controller
             redirect("visitor/addvisitor");
         }
     }
+}
    //--------------------------------------------------------------------
    function viewvisitors()
    {
@@ -135,6 +141,7 @@ class Visitor extends CI_Controller
 
 
  }
+
  //------------------------------------------------------------------------
 }
 

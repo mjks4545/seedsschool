@@ -16,7 +16,6 @@ class Home extends CI_Controller
     {
         $role = $this->input->post('role');
         $result = $this->main_m->loginpro();
-//        echo $result;die;
         if($result==0)
         {
             $this->session->set_flashdata('error','Incorrect Email or Password or Role');
@@ -28,9 +27,14 @@ class Home extends CI_Controller
             $this->session->set_flashdata('type','success');
             if($role =='admin')
             {
-            $this->session->set_flashdata('msg','Welcome Director Dashboard');
-            $this->session->set_flashdata('type','success');                
-            redirect("graphical/index");
+                $this->session->set_flashdata('msg','Welcome Director Dashboard');
+                $this->session->set_flashdata('type','success');                
+                redirect("graphical/index");
+            }else if( $role == 'director' )
+            {
+                $this->session->set_flashdata('msg','Welcome Director Dashboard');
+                $this->session->set_flashdata('type','success');                
+                redirect("director/index");
             } 
             else if($role =='teacher')
             {
@@ -38,7 +42,7 @@ class Home extends CI_Controller
                 $this->session->set_flashdata('type','success');
                 redirect('admin/');
             }
-            else if($role =='student')
+            else if($role =='student' || $role == 'parent')
             {
                 $this->session->set_flashdata('msg','Welcome to student Dashboard');
                 $this->session->set_flashdata('type','success');
@@ -57,7 +61,8 @@ class Home extends CI_Controller
                 $this->session->set_flashdata('msg','Welcome to Receptionist Dashboard');
                 $this->session->set_flashdata('type','success');
                 redirect('reception/index');
-            }            
+            }  
+                        
 
         }
         if($result==2){

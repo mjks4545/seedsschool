@@ -8,7 +8,8 @@
     <section class="content-header">
         <h1>
             Admin Dashboard
-            <small><a href="<?= site_url() ?>admin/">Admin</a>
+            <?php //echo '<pre>'; print_r($student);die; ?>
+            <small><a href="<?php echo site_url() ?>student/studentlevel">Student view</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 View Students
             </small>
@@ -23,7 +24,9 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
-                        <h3 class="box-title">Class Students</h3>
+                        <h3 class="box-title">Class Students<span class="alert-danger">
+                            <?php echo $this->session->flashdata('mg'); ?>
+                        </span></h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->

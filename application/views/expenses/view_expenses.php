@@ -1,5 +1,3 @@
-
-
 <style>
     td, th {
         text-align: center;
@@ -18,6 +16,40 @@
     </section>
     <!-- Main content -->
     <section class="content">
+        <div class="row">
+            <form action="<?= site_url(); ?>expenses/by_months" method="post" >
+                <div class="col-md-12">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1">Select Month</label>
+                        <select class="form-control" name="month" required >
+                            <option>Select Month</option>
+                            <?php foreach( $months_years['month'] as $month ){
+                                ?>
+                                <option value="<?= $month; ?>" ><?= $month; ?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="exampleInputEmail1">Select Year</label>
+                        <select class="form-control" name="year" required >
+                            <option>Select Month</option>
+                            <?php foreach( $months_years['year'] as $year ){
+                                ?>
+                                <option value="<?= $year; ?>"><?= $year; ?></option>
+                                <?php
+                            }?>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <label for="exampleInputEmail1">&nbsp;</label><br>
+                        <input class="btn btn-success" type="submit" value="Submit" name="submit">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <br>
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
@@ -68,30 +100,39 @@
                             </tr>-->
                             </thead>
                             <tbody>
+                            <?php $grand_total = 0; ?>
                             <?php if ($result == 0) { ?>
 
                             <?php } else {
-                                foreach($result as $row){?>
+                                foreach($result as $row => $values){
+                                ?>
                                 <tr>
-                                    <td><?=$row->expense_reason?></td>
+                                    <td><?= $row; ?></td>
                                    <?php
                                    $date=$start_date;
 
                                    for($d=1; $d<=$datediff+1; $d++){?>
+                                        
                                         <td>
-                                            <?php if($row->expense_created_date==$date){
-                                                echo $row->expense_paid_amount;
-                                            } ?>
+                                            <?php 
+                                                foreach($values as $value){
+                                                    
+                                                    if($value->expense_created_date==$date){
+                                                        $grand_total += $value->expense_paid_amount;
+                                                        echo $value->expense_paid_amount;
+                                                    }
+                                                } 
+                                            ?>
                                         </td>
-
                                        <?php
                                        $date = date("d-M-Y", strtotime("+1 day", strtotime($date)));
+
                                       } ?>
                                 </tr>
 
                             <?php } ?>
                                 <tr style="background:#777777; color:#FFF; ">
-                                <td>Total:</td>
+                                <td>Total: <?= $grand_total; ?></td>
                                     <?php
                                     $date=$start_date;
 
@@ -99,23 +140,22 @@
                                         ?><td>
 
                                        <?php
-                                        $total = 0;
-                                        foreach($result as $row) {
-                                            ?>
-
+                                            $total = 0;
+                                            foreach($result as $row) {
+                                        ?>
                                             <?php
-                                            if($row->expense_created_date==$date) {
-                                                 $total = $total+$row->expense_paid_amount;
+                                            foreach( $row as $single_row ){
+                                                if($single_row->expense_created_date==$date) {
+                                                    $total = $total+$single_row->expense_paid_amount;
+                                                }
                                             }
                                         } echo $total;  ?>
-
-
                                         <?php
-                                        $date = date("d-M-Y", strtotime("+1 day", strtotime($date)));
-                                     ?>
+                                            $date = date("d-M-Y", strtotime("+1 day", strtotime($date)));
+                                        ?>
                                         </td>
                             <?php } }?>
-                            </tr>
+                            </tr> 
                            </tbody>
                         </table>
                     </div>

@@ -113,14 +113,12 @@
                                      
                                       <button type="submit" class="btn btn-info">Change Password</button>
                                     </form>
-
                                 </div>
-                               
                               </div> 
                             </div>
                         </div>  
 
-
           <?php }?>
+
 </section>
 </div>            

@@ -48,7 +48,7 @@ class Subject_m extends CI_Model
         $num = $query->num_rows();
         $config['base_url'] = site_url()."subject/index/";
         $config['total_rows'] = $num;
-        $config['per_page'] = 10;
+        $config['per_page'] = 50;
         $config['num_links'] = 4;
         $config['uri_segment'] = 3;
         $this->pagination->initialize($config);

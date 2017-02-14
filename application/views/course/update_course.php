@@ -38,7 +38,7 @@
                                 <div class="col-md-2"></div>
                                 <div class="form-group has-feedback col-md-5">
                                     <label for="exampleInputEmail1">Level Title</label>
-                                    <input type="text" name="course_title" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?= $array->co_name?>" required/>
+                                    <input type="text" name="course_title" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" value="<?= $array->co_name?>" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

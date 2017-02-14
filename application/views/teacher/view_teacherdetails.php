@@ -21,7 +21,7 @@ $role = $session['role']; ?>
 
             <small>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <a href="<?= site_url() ?>teacher">Teacher</a>
+                <a href="<?= site_url() ?>admin">Teacher</a>
                 <?php if ($role == "admin") { ?>
                 <a href="<?= site_url() ?>teacher/">Teacher</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
@@ -209,33 +209,44 @@ $role = $session['role']; ?>
                             </div>
 
 
-                            <!------------table start----------------------------------->
+                            <!------------table start------------------------------------>
                             <div class="box-body">
                                 <table id="example2" class="table table-bordered table-hover" style="margin-top:20px;">
                                     <thead>
                                     <tr>
                                         <th>S.No</th>
                                         <th>Subject</th>
+                                    <?php if($_SESSION['session_data']['role'] != 'teacher'){ ?>    
                                         <th>Percentage</th>
                                         <td>Total</td>
+                                        <td>Action</td>
+                                    <?php }?>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <?php if ($subject == 0) {
                                     } else {
                                         $sno = 1;
+                                        $tID = $teachers[0]->id;
                                         foreach ($subject as $sub) {
                                             ?>
                                             <tr>
+
                                                 <td><?= $sno; ?></td>
                                                 <td><?= $sub->su_name; ?></td>
+                                            <?php if($_SESSION['session_data']['role'] != 'teacher'){ ?>    
                                                 <td><?= $sub->comission . "&nbsp;%"; ?></td>
+                                            
                                                 <?php $per = $sub->comission / 100;?>
                                                 <?php $salary = $per * $teacher_pesi = $this->teacher_m->sallrypersubject($sub->t_id, $sub->su_id);?>
                                                 <td><?php if ($salary == '') {
                                                     } else {
                                                         echo $salary;
                                                     } ?></td>
+                                                   
+                                                <td><a href="<?= base_url() ?>Teacher/editSubjectTeacher/<?= $sub->sub_id; ?>/<?= $tID; ?>" class="btn btn-warning btn-xs">Edit</a>
+                                                <a href="<?= base_url() ?>Teacher/deleteSubjectTeacher/<?= $sub->sub_id; ?>/<?= $tID; ?>" class="btn btn-danger btn-xs">Delete</a></td>
+                                            <?php } ?>     
                                             </tr>
                                             <?php $sno++;
                                         }
@@ -257,7 +268,7 @@ $role = $session['role']; ?>
                                 <hr>
                             </div>
                             <div class="col-md-12"><h3>Class Information</h3></div>
-                            <!------------table start----------------------------------->
+                            <!------------table start------------------------------------>
                             <div class="box-body">
                                 <table id="example2" class="table table-bordered table-hover" style="margin-top:20px;">
                                     <thead>
@@ -297,10 +308,11 @@ $role = $session['role']; ?>
                             <!------------table end------------------------------------->
 
                         </div>
-                        <!-- for teacher Salary Detail -->
+                        <!-- for teacher Salary Detail -->    
                         <div class="col-md-12">
                             <hr>
                         </div>
+                        <?php if($_SESSION['session_data']['role'] != 'teacher'){ ?>
                         <div class="col-md-12">
                             <h3>Remuneration Information
                                 <small>
@@ -310,7 +322,7 @@ $role = $session['role']; ?>
                                 </small>
                             </h3>
                         </div>
-                        <!------------table start----------------------------------->
+                        <!------------table start------------------------------------>
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
@@ -381,6 +393,7 @@ $role = $session['role']; ?>
                                             <td><?php echo $t->total_salary; ?></td>
                                             <td><?php echo $t->paid_salary; ?></td>
                                             <td><?php echo $t->remaining_salary; ?></td>
+                                            <td><a class="btn btn-danger" href="<?= site_url(); ?>teacher/get_teacher_futherdetails/<?= $t->sa_id; ?>" >View Details</a></td>
 
                                         </tr>
                                         <?php $sno++;
@@ -399,10 +412,12 @@ $role = $session['role']; ?>
                                     </td>
                                     <td class="bg-info"><b><?php echo $total_paid; ?></b>.PKR</td>
                                     <td class="bg-info"><b><?php echo $total_remain; ?></b>.PKR</td>
+                                    <td></td>
                                 </tr>
                             </table>
                         </div>
-                        <!------------table end------------------------------------->
+                        <?php } ?>
+                        <!------------table end-------------------------------------->
 
                     </div>
                     <!-- end of teacher Salary Detail -->

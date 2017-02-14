@@ -66,35 +66,37 @@ class Bank_m extends CI_Model
     //----------------------------------------------------------------------
     function deposit()
     {
-        $b_id = $this->uri->segment(3);
-        $t_way = $this->input->post("t_type");
-        $ch_num = $this->input->post("ch_no");
-        $detail = $this->input->post("detail");
-        $amount = $this->input->post("amount");
+
+        $b_id    = $this->uri->segment(3);
+        $t_way   = $this->input->post("t_type");
+        $ch_num  = $this->input->post("ch_no");
+        $detail  = $this->input->post("detail");
+        $amount  = $this->input->post("amount");
+        $date    = $this->input->post("date");
         if (!empty($ch_num)) {
             $insert = array(
-                "fkbank_id" => $b_id,
-                "t_amount" => $amount,
-                "t_chknum" => $ch_num,
-                "t_way" => $t_way,
-                "t_detail" => $detail,
-                "t_date" => date("d-M-Y"),
-                "t_time" => date("h:i a"),
-                "t_month" => date("M"),
-                "t_year" => date("Y"),
-                "t_type" => 1
+                "fkbank_id"   => $b_id,
+                "t_amount"    => $amount,
+                "t_chknum"    => $ch_num,
+                "t_way"       => $t_way,
+                "t_detail"    => $detail,
+                "t_date"      => $date,
+                "t_time"      => date("h:i a"),
+                "t_month"     => date("M"),
+                "t_year"      => date("Y"),
+                "t_type"      => 1
             );
         } else {
             $insert = array(
                 "fkbank_id" => $b_id,
-                "t_amount" => $amount,
-                "t_way" => $t_way,
-                "t_detail" => $detail,
-                "t_date" => date("d-M-Y"),
-                "t_time" => date("h:i a"),
-                "t_month" => date("M"),
-                "t_year" => date("Y"),
-                "t_type" => 1
+                "t_amount"  => $amount,
+                "t_way"     => $t_way,
+                "t_detail"  => $detail,
+                "t_date"    => $date,
+                "t_time"    => date("h:i a"),
+                "t_month"   => date("M"),
+                "t_year"    => date("Y"),
+                "t_type"    => 1
             );
         }
         $result = $this->db->insert("bank_transection", $insert);
@@ -103,39 +105,42 @@ class Bank_m extends CI_Model
         } else {
             return 0;
         }
-    }//----------------------------------------------------------------------
+    }
+
+    //----------------------------------------------------------------------
 
     function withdraw()
     {
-        $b_id = $this->uri->segment(3);
-        $t_way = $this->input->post("t_type");
-        $ch_num = $this->input->post("ch_no");
-        $detail = $this->input->post("detail");
-        $amount = $this->input->post("amount");
+        $b_id    = $this->uri->segment(3);
+        $t_way   = $this->input->post("t_type");
+        $ch_num  = $this->input->post("ch_no");
+        $detail  = $this->input->post("detail");
+        $amount  = $this->input->post("amount");
+        $date    = $this->input->post("date");
         if (!empty($ch_num)) {
             $insert = array(
                 "fkbank_id" => $b_id,
-                "t_amount" => $amount,
-                "t_chknum" => $ch_num,
-                "t_way" => $t_way,
-                "t_detail" => $detail,
-                "t_date" => date("d-M-Y"),
-                "t_time" => date("h:i a"),
-                "t_month" => date("M"),
-                "t_year" => date("Y"),
-                "t_type" => 0
+                "t_amount"  => $amount,
+                "t_chknum"  => $ch_num,
+                "t_way"     => $t_way,
+                "t_detail"  => $detail,
+                "t_date"    => $date,
+                "t_time"    => date("h:i a"),
+                "t_month"   => date("M"),
+                "t_year"    => date("Y"),
+                "t_type"    => 0
             );
         } else {
             $insert = array(
                 "fkbank_id" => $b_id,
-                "t_amount" => $amount,
-                "t_way" => $t_way,
-                "t_detail" => $detail,
-                "t_date" => date("d-M-Y"),
-                "t_time" => date("h:i a"),
-                "t_month" => date("M"),
-                "t_year" => date("Y"),
-                "t_type" => 0
+                "t_amount"  => $amount,
+                "t_way"     => $t_way,
+                "t_detail"  => $detail,
+                "t_date"    => $date,
+                "t_time"    => date("h:i a"),
+                "t_month"   => date("M"),
+                "t_year"    => date("Y"),
+                "t_type"    => 0
             );
         }
         $result = $this->db->insert("bank_transection", $insert);
@@ -226,4 +231,27 @@ class Bank_m extends CI_Model
        }
     }
     //----------------------------------------------------------------------
+    function bankupdate($id){
+        $this->db->select('*');
+        $this->db->where('b_id', $id);
+        $query = $this->db->get('bank');
+        $result = $query->result();
+        return $result;
+
+    }
+    //----------------------------------------------------------------------
+    function bankupdateprocess($id){
+        $data = array('b_name' => $this->input->post('bank_name'),
+                    'b_account_no' => $this->input->post('account_number'),
+                    'b_branch' => $this->input->post('branch'),
+                    'b_account_title' => $this->input->post('account_title'),
+                    'b_date' => $this->input->post('bdate'),
+                    'b_month' => $this->input->post('bmonth'),
+                    'b_year' => $this->input->post('byear'),
+                    'b_status' => $this->input->post('bstatus'),
+                 );
+        $this->db->where('b_id', $id);
+        $this->db->update('bank', $data);
+        redirect('bank');
+    }
 }

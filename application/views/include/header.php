@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Seeds School Of Exellence</title>
+    <title>Seeds School of Excellence in Education and Developmental Studies</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -49,7 +49,7 @@
     $role = $session['role']; ?>
     <header class="main-header">
         <!-- Logo -->
-        <?php if ($role == "admin" || $role=="teacher") { ?>
+        <?php if ($role == "admin" || $role=="teacher" || $role=="director" ) { ?>
             <a href="<?php echo site_url() ?>admin/" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>S</b>S</span>
@@ -74,7 +74,7 @@
             </a>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
-                    <?php if ($role == "admin") { ?>
+                    <?php if ( $role=="director") { ?>
                         <li role="presentation">
                             <a href="<?= site_url() ?>graphical">Home</a>
                         </li>
@@ -105,14 +105,17 @@
     </header>
     <script>
         $(function () {
-            $("#example1").DataTable();
+            $("#example1").DataTable({
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+            });
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,
                 "ordering": true,
                 "info": true,
-                "autoWidth": false
+                "autoWidth": false,
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
             });
         });
     </script>

@@ -34,13 +34,13 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <input type="text" name="name" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Enter Name Like Physics" required/>
+                                    <input type="text" name="name" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Enter Name Like Physics" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Duration</label>
-                                    <input type="text" name="duration" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Enter Duration like 4 months" required/>
+                                    <input type="text" name="duration" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Enter Duration like 4 months" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

@@ -23,7 +23,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
-                        <h3 class="box-title">View Level</h3>
+                        <h3 class="box-title">View Level</h3>&nbsp;&nbsp;&nbsp;<h4><span class="alert-danger"><?php echo $this->session->flashdata('message');?> </span></h4>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->

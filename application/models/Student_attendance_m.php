@@ -30,6 +30,7 @@ class Student_attendance_m extends CI_Model
         $this->db->join("subject", "subject.su_id=class.su_id");
         $this->db->join("teacher", "teacher.id=class.t_id");
         $this->db->join("course", "course.co_id=class.co_id");
+        $this->db->where("class.class_status", '1');
 //        $this->db->join("teacher_subject","teacher_subject.sub_id=class.su_id");
         $query = $this->db->get();
         return $query->result();
@@ -54,17 +55,18 @@ class Student_attendance_m extends CI_Model
     //-----------------------------------------------------------------
     function takeattendance($cl_id)
     {
+        
         $this->db->select("*");
         $this->db->from("student_class_fee");
-        $this->db->where("fkclass_id", $cl_id);
         $this->db->join("student", "student.student_id=student_class_fee.fkstudent_id");
         $this->db->join("class", "class.cl_id=student_class_fee.fkclass_id");
         $this->db->join("teacher", "teacher.id=class.t_id");
+        $this->db->join("course","course.co_id=class.co_id");
         $this->db->where("student_status", '1');
         $this->db->where("st_class_fee_status", '1');
+        $this->db->where("student_class_fee.fkclass_id", $cl_id);
+        // $this->db->join("teacher_subject","teacher_subject.sub_id=class.su_id");
 
-//        $this->db->join("course","course.co_id=class.co_id");
-//        $this->db->join("teacher_subject","teacher_subject.sub_id=class.su_id");
         $query = $this->db->get();
         $num = $query->num_rows();
         if ($num == 0) {
@@ -72,14 +74,17 @@ class Student_attendance_m extends CI_Model
         } else {
             return $query->result();
         }
+        
     }
 
     //-----------------------------------------------------------------
     function takeattendancepro($co_id, $cls_id)
     {
-        $total = $this->input->post("total_num");
+        $total = $this->input->post('total_num');
+
         $date = $this->input->post('date');
-        $date = $this->input->post('date');
+          
+        
         /* for date to split and convert*/
         $date = date("d-M-Y", strtotime($date));
         $month = date("M", strtotime($date));
@@ -98,12 +103,14 @@ class Student_attendance_m extends CI_Model
                     "fkclass_id" => $cls_id,
                     "fkstudent_id" => $this->input->post("student_id_" . $i),
                     "status" => $this->input->post("status_" . $i),
+                    "homework" => $this->input->post("homework_" . $i),
                     "att_date" => $date,
                     "time" => $time,
                     "month" => $month,
                     "year" => $year,
                 );
                 $result = $this->db->insert("student_attendance", $att);
+               // print_r($result);die;
             }
             if ($result) {
                 return 1;
@@ -157,6 +164,7 @@ class Student_attendance_m extends CI_Model
     }
 
     //-----------------------------------------------------------------
+
     function attendancedetail($st_id, $cl_id, $co_id)
     {
         $this->db->select("*");
@@ -164,14 +172,15 @@ class Student_attendance_m extends CI_Model
         $this->db->where("fkclass_id", $cl_id);
         $this->db->where("fkstudent_id", $st_id);
         $this->db->order_by("st_attendance_id", "desc");
-        $this->db->join("student", "student.student_id=student_attendance.fkstudent_id");
-        $this->db->join("class", "class.cl_id=student_attendance.fkclass_id");
-        $this->db->join("subject", "subject.su_id=class.su_id");
+        // $this->db->join("student", "student.student_id=student_attendance.fkstudent_id");
+        // $this->db->join("class", "class.cl_id=student_attendance.fkclass_id");
+        // $this->db->join("subject", "subject.su_id=class.su_id");
 //        $this->db->join("course","course.co_id=class.co_id");
 //        $this->db->join("teacher_subject","teacher_subject.sub_id=class.su_id");
         $query = $this->db->get();
         return $query->result();
     }
+
     //-----------------------------------------------------------------
 
 
@@ -202,31 +211,35 @@ class Student_attendance_m extends CI_Model
 
     function teacher_attandance()
     {
-
+        $this->db->select('*');
+        $this->db->from('teacher_attendence');
         $this->db->where('date', $this->input->post('date'));
         $this->db->where('class_id', $this->input->post('class_id'));
         $this->db->where('fkteacher_id', $this->input->post('teacher_id'));
-        $query = $this->db->get('teacher_attendence');
+        $query = $this->db->get();
         $result = $query->result();
+       // print_r($result);die;
         if (empty($result)) {
 
             $month = date("M", strtotime($this->input->post('date')));
             $year = date("Y", strtotime($this->input->post('date')));
-            $data = [
+            $data = array(
                 'fkteacher_id' => $this->input->post('teacher_id'),
                 'status' => 'p',
                 'date' => $this->input->post('date'),
                 'month' => $month,
                 'year' => $year,
                 'class_id' => $this->input->post('class_id'),
-            ];
+            );
 
             $insert = $this->db->insert('teacher_attendence', $data);
+
             return $insert;
 
         }
 
-        return 0;
+        $this->db->set('status', 'p');
+        $this->db->update('teacher_attendence');
 
     }
 
@@ -296,5 +309,46 @@ class Student_attendance_m extends CI_Model
             }
         }
     }
-//------------------------------------------------------------------------
+    
+    //------------------------------------------------------------------------
+    
+    public function attendancedetail_by_months( $st_id, $cl_id, $co_id ){
+
+        $this->db->select("*");
+        $this->db->from("student_attendance");
+        $this->db->where("fkclass_id", $cl_id);
+        $this->db->where("fkstudent_id", $st_id);
+        $this->db->order_by("st_attendance_id", "desc");
+        $this->db->where('month', $this->input->post('month'));
+        $this->db->where('year', $this->input->post('year'));
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    //------------------------------------------------------------------------
+
+    public function attendancedetail_months(){
+
+        $this->db->select('month,year');
+                      $this->db->from('student_attendance');
+            $query  = $this->db->get();
+            $result = $query->result();
+            $array  = [];
+            $array['month'] = [];
+            $array['year']  = [];
+            foreach( $result as $month_year ){
+                if( !in_array($month_year->month, $array['month']) ){
+                    $array['month'][] = $month_year->month;
+                }
+                if( !in_array($month_year->year, $array['year']) ){
+                    $array['year'][] = $month_year->year;
+                }
+            }
+            return $array;
+
+    }
+
+    //------------------------------------------------------------------------
+
 }

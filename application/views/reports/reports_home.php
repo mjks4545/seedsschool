@@ -1,4 +1,3 @@
-
 <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -70,7 +69,7 @@
                     </div><!-- ./col -->
                     <div class="col-lg-3 col-xs-6">
                       <!-- small box -->
-                      <div class="small-box bg-aqua">
+                      <div class="small-box bg-fuchsia">
                         <div class="inner">
                           <h3>...</h3>
                           <p>Yearly Reports </p>
@@ -84,7 +83,103 @@
                       </div>
                     </div><!-- ./col -->
                   </div>
-                  
+                  <div class="row">
+                  <div class="col-lg-1 col-xs-4"></div>
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-blue-gradient">
+                        <div class="inner">
+                          <h3>...</h3>
+                          <p>Students Reports </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <a href="<?= site_url()?>reports/Students_reports" class="small-box-footer">
+                          Click here  <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div><!-- ./col -->
+                     
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-red">
+                        <div class="inner">
+                          <h3>...</h3>
+                          <p>Balance Reports </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <a href="<?= site_url()?>reports/balance_search" class="small-box-footer">
+                          Click here  <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-green">
+                        <div class="inner">
+                          <h3>...</h3>
+                          <p>Payments Reports </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <a href="<?= site_url()?>reports/paid_students" class="small-box-footer">
+                          Click here  <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div><!-- ./col -->
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-1 col-xs-4"></div>
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-green">
+                        <div class="inner">
+                          <h3>...</h3>
+                          <p>Teachers Reports </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <a href="<?= site_url()?>reports/paid_teachers_reports" class="small-box-footer">
+                          Click here  <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-green">
+                        <div class="inner">
+                          <h3>...</h3>
+                          <p>Loss and Profit Reports </p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <a href="<?= site_url()?>reports/loss_profit_reports_search" class="small-box-footer">
+                          Click here  <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div><!-- ./col -->
+                    <div class="col-lg-3 col-xs-6">
+                      <!-- small box -->
+                      <div class="small-box bg-green">
+                        <div class="inner">
+                          <h3>...</h3>
+                          <p>Seeds Shares</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </div>
+                        <a href="<?= site_url()?>reports/seeds_share_teacher_wise" class="small-box-footer">
+                          Click here  <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      </div>
+                    </div><!-- ./col -->
+                  </div>
                    
                   </div>
                 </div><!-- /.box -->

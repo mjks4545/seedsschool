@@ -1,29 +1,24 @@
 <style>
-    td, th {
-        text-align: center;
+    .chbx {
+        position: relative;
+        margin-top: 30px;
     }
 </style>
-<?php
-$session = $this->session->userdata('session_data');
-$id = $session['id'];
-$role = $session['role']; ?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1 class="text-capitalize">
-            <?=$role?> Dashboard
-            <small><a href="<?= site_url()?>teacher/">Teacher</a>
+        <h1>
+            Teacher Pay Salary
+<!--            <small><a href="<?= site_url() ?>student/addstudent">Student Personal Info</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                                    <?php if($result['salary']!=0){ ?>
-                <a href="<?= site_url()?>teacher/paymentdetails/<?= $result[0]->t_id?>">Payment Details</a>
-                
+                <a href="<?= site_url() ?>student/studentclasses">Student Classes</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                <?php } ?>
-                Pay Remuneration
-            </small>
+                Student Class Fee
+            </small>-->
         </h1>
     </section>
     <!-- Main content -->
+    <?php $this->load->view('include/alert') ?>
     <section class="content">
         <div class="row">
             <!-- left column -->
@@ -31,96 +26,143 @@ $role = $session['role']; ?>
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <?php $this->load->view('include/alert'); ?>
-                        <h3 class="box-title">Pay Remuneration</h3>
+                        <h2 class="box-title text-primary ">Pay Salary</h2>
+                        <!-- <a href="<?= site_url() ?>studentpayment/pay_fee" class="pull-right"> Back</a> -->
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <div class="box-body">
-                <?php if($result['salary']!=0){ ?>   
-                     <form role="form" data-toggle="validator" action="<?= site_url()?>teacher/salarypaymentpro/" method="post">
+
+                    <form role="form" data-toggle="validator" action="<?= site_url() ?>teacher/teacher_payments"
+                          method="post">
+                        <div class="box-body">
                             <div class="col-md-12">
-                                <div class="form-group col-md-3"></div>
-                                <input type="hidden" name="teacher_id" value="<?= $result[0]->t_id?>">
-                                <div class="form-group has-feedback col-md-5">
-                                    <label for="exampleInputEmail1">Total Remuneration</label>
-                                    <input type="text" name="total_salary" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?=$result['salary']?>" readonly/>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                <div class="col-md-9"></div>
+                                <div class="form-group has-feedback col-md-3">
+                                    <!-- <label for="exampleInputEmail1">Admission Fee</label>
+                                    <input type="text" name="admission_fee" id="add_fee" class="form-control"
+                                           maxlength="50"
+                                           minlength="1" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                          style="margin-right: 20px;"></span>
+                                    <span class="help-block with-errors" style="margin-left:10px; "></span> -->
+                                </div>
+                            </div>
+                            <?php
+                            $i = 1;
+                            $total = 0;
+                            foreach ($result as $data) { 
+                                $j = $i - 1;
+                                if( $data->payment != null ){
+                            ?>
+                                <div class="col-md-12">
+                                    <div class="form-group has-feedback col-md-3">
+                                        <input type="hidden" name="student[<?php echo $i; ?>][std_cls_fee_id]"
+                                               value="<?php echo $data->classfee_id; ?>">
+                                        <input type="hidden" name="student[<?php echo $i; ?>][student_id]"
+                                               value="<?php echo $data->fkstudent_id; ?>">
+                                        <label for="exampleInputEmail1">Student Name</label>
+                                        <input type="text" name="student[<?= $i; ?>][student_name]" readonly class="form-control"
+                                               maxlength="50" minlength="1" id="exampleInputEmail1"
+                                               value="<?= $data->student_name ?>" required/>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                              style="margin-right: 20px;"></span>
+                                        <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                    </div>
+                                    <div class="form-group has-feedback col-md-3">
+                                        <label for="exampleInputEmail1">Subject Name</label>
+                                        <input type="text" id="<?= $i ?>_student_fee"
+                                               name="student[<?= $i ?>][subject_name]" class="form-control" readonly
+                                               maxlength="50" minlength="1" value="<?= $data->su_name; ?>" required/>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                              style="margin-right: 20px;"></span>
+                                        <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                    </div>
+                                    <?php $v = 1;?>
+                                    <?php foreach( $data->payment as $payment ){ ?>
+                                        <?php
+                                        if( $payment->std_paid <= 0 ){
+                                            continue;
+                                        }
+                                        ?>
+                                        <?php if( $v != 1 ){ ?>
+                                            <div class="col-md-3" ></div>
+                                            <div class="col-md-3" ></div>
+                                        <?php } ?>
+                                        <?php if( $payment->neglect_teacher_percentage == 0 ){ 
+                                            $teacher_payment = ($data->comission/100) * $payment->std_paid;
+                                            $total += $teacher_payment;
+                                        }else{
+                                            $teacher_payment = $payment->std_paid;
+                                            $total += $teacher_payment;
+                                        }?>    
+                                        <div class="form-group has-feedback col-md-2">
+                                            <label for="exampleInputEmail1">Amount to be Paid</label>
+                                            <input type="text" id="<?= $i ?>" name="student[<?= $i; ?>][payment][<?=$v-1?>][amount_to_paid]"
+                                                   class="form-control amount_paid" value="<?= $teacher_payment ?>" required />
+                                            <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                                  style="margin-right: 20px;"></span>
+                                            <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                        </div>
+                                        <div class="form-group has-feedback col-md-2">
+                                            <label for="exampleInputEmail1">Paid Date</label>
+                                            <input type="text" id="<?= $i ?>" name="student[<?= $i; ?>][payment][<?=$v-1?>][paid_amount]"
+                                                   readonly class="form-control amount_paid" value="<?= $payment->std_date ?>" required />
+                                            <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                                  style="margin-right: 20px;"></span>
+                                            <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                        </div>
+                                        <div class="form-group has-feedback col-md-2">
+                                            <center>
+                                                <label for="exampleInputEmail1">Amount Paid</label><br>
+                                                <input type="checkbox" id="<?= $i ?>" name="student[<?= $i; ?>][payment][<?=$v-1?>][amount_paid]"
+                                                        value="<?= $payment->p_id ?>" />
+                                                <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                                      style="margin-right: 20px;"></span>
+                                                <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                            </center>
+                                        </div>
+                                    <?php $v++;} ?>
+                                </div>
+                                <?php $i++;
+                            }}  ?>
+                            <input type="hidden" name="total" value="<?= $total; ?>">
+                            <input type="hidden" name="t_id" value="<?= $result[0]->t_id; ?>">
+                            <input type="hidden" value="<?= $i - 1; ?>" id="counter" name="counter" >
+<!--                            <div class="col-md-12">
+                                <div class="col-md-6">
+                                     end for concision
+                                </div>
+                                <div class="col-md-3" style="position: relative;left: 50px;top: 10px;"><b>Total Paid Fee</b>
+                                </div>
+                                <div class="form-group has-feedback col-md-3">
+                                    <input type="text" name="total_paid_fee" class="form-control" maxlength="50"
+                                           readonly minlength="1" placeholder="Total Fee" id="total_paid_fee" value="0" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                          style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group col-md-3"></div>
-                                <div class="form-group has-feedback col-md-5">
-                                    <label for="exampleInputEmail1">Paid Month</label>
-                                    <select  name="paid_month"  class="form-control">
-                                        <option value="01">Jan</option>
-                                        <option value="02">Feb</option>
-                                        <option value="03">Mar</option>
-                                        <option value="04">Apr</option>
-                                        <option value="05">May</option>
-                                        <option value="06">Jun</option>
-                                        <option value="07">Jul</option>
-                                        <option value="08">Aug</option>
-                                        <option value="09">Sep</option>
-                                        <option value="10">Oct</option>
-                                        <option value="11">Nov</option>
-                                        <option value="12">Dec</option>
-                                    </select>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                <div class="col-md-6"></div>
+                                <div class="col-md-3" style="position: relative;left: 50px;top: 10px;"><b>Total Remaning Fee</b>
+                                </div>
+                                <div class="form-group has-feedback col-md-3">
+                                    <input type="text" name="total_ramaining_fee" class="form-control" maxlength="50"
+                                           readonly minlength="1" placeholder="Total Fee" id="total_ramaining_fee" value="0" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                          style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group col-md-3"></div>
-                                <div class="form-group has-feedback col-md-5">
-                                    <label for="exampleInputEmail1">Year</label>
-                                    <select name="salary_year" class="form-control"  required>
-                                        <?php $date = date("Y");
-                                                for($i=$date-5; $i<=$date+2; $i++){ ?>
-                                                    <option value="<?=$i?>"><?=$i?></option>
-                                                <?php } ?>
-                                     </select>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
-                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
-                                </div>
-                            </div>
-                         <div class="col-md-12">
-                                <div class="form-group col-md-3"></div>
-                                <div class="form-group has-feedback col-md-5">
-                                    <label for="exampleInputEmail1">Reason</label>
-                                    <input type="text" name="reason" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" required/>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
-                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group col-md-3"></div>
-                                <div class="form-group has-feedback col-md-5">
-                                    <label for="exampleInputEmail1">Enter Amount</label>
-                                    <input type="text" name="amount" class="form-control" maxlength="50" minlength="2" id="exampleInputEmail1" required/>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
-                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="col-md-2"></div>
-                                <div>
-                                    <button type="submit" class="btn btn-primary col-sm-1">Save</button>
-                                </div>
-                            </div>
-                        </form>
-                        <?php } else{
-                            echo '<h1>No data</h1>';    
-                            }?>
-                    </div>
-                    <!-- /.box-body -->
+                            </div>-->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary col-sm-1 pull-right ">Finish
+                            </button>
+                        </div>
+                    </form>
+
                 </div>
                 <!-- /.box -->
             </div>
-            <!-- /.box -->
         </div>
-
     </section>
 </div>
-

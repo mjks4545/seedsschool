@@ -48,6 +48,7 @@
                                 <th>Time</th>
                                 <th>Starting Date</th>
                                 <th>Ending Date</th>
+                                 <th>No Of Slots</th>
                                 <th>Action</th>
                                 <th class="text-center">Status</th>
                             </tr>
@@ -67,6 +68,7 @@
 				    <td><?=$row->time;?></td>
 				    <td><?=$row->s_date;?></td>
 				    <td><?=$row->e_date;?></td>
+                    <td><?=$row->no_slots;?></td>
 				    <td>
                         <a href="<?=site_url()?>class_c/updateclass/<?= $row->cl_id?>" class="btn btn-primary">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>

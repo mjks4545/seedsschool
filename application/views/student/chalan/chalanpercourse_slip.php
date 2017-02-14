@@ -12,20 +12,24 @@
     <!-- Left side column. contains the logo and sidebar -->
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <?php if(!empty($std_info)){?>
+        <?php // if(!empty($std_info)){?>
         <div class="row no-print">
             <br/>
             <div class="col-xs-10 col-xs-offset-1">
                 <a class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</a>
-                <a href="<?php echo site_url() ?>student/studentlevel/<?php echo $std_info[0][0]->co_id;?>"  class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                <a href="<?php echo site_url();?>student/studentlevel/<?php echo $this->uri->segment(3);?>"  class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                     Back</a>
             </div>
         </div>
         <div class="clearfix"></div>
+        <?php if(!empty($std_info[0])) { ?>
         <?php
         $sno = 1;
-        foreach($std_info as $row){
-            ?>        <!-- Content Header (Page header) -->
+        foreach($std_info[0] as $row){
+
+            ?> 
+            <?php //echo '<pre>';print_r($row); die;?>
+                   <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h3>
                     Fee Information        <span><?php
@@ -76,11 +80,11 @@
                         From
                         <address>
                             <strong>
-                                <?php echo $row[0]->student_name; ?>
+                                <?php echo $row->student_name; ?>
                             </strong><br>
-                            Address: <?php echo $row[0]->student_address; ?><br>
-                            Phone: <?php echo  $row[0]->student_contact; ?><br>
-                            Email: <?php echo $row[0]->student_email; ?>
+                            Address: <?php echo $row->student_address; ?><br>
+                            Phone: <?php echo  $row->student_contact; ?><br>
+                            Email: <?php echo $row->student_email; ?>
                         </address>
                     </div><!-- /.col -->
                     <div class="col-sm-4 invoice-col">
@@ -93,7 +97,8 @@
                         $total_remain=0;
                         $total_paid =0;
                         $total = 0;
-                        foreach($row as $r){
+                        foreach($std_info[0] as $r){
+                             //echo '<pre>';print_r($r);die;
                            $total_remain = $total_remain+$r->std_remain;
                             $date = $r->std_date;
                             $total = $total+$r->std_payment;
@@ -120,7 +125,7 @@
                             <tbody>
                             <?php
                             $no = 1;
-                            foreach($row as $r){?>
+                            foreach($std_info[1] as $r){?>
                             <tr>
                                 <td><?=$no; ?></td>
                                 <td><?=$r->co_name;?></td>
@@ -161,10 +166,13 @@
                 </div><!-- /.row -->
                 <!-- this row will not appear when printing -->
             </section><!-- /.content -->
+            
             <div class="page-break"></div>
-            <?php $sno++; } }else{ ?>
-            <h2>No Class is found in This Course</h2>
-        <?php } ?>
+            <?php $sno++; }?> <!-- end of file -->
+            <?php }else{ ?> <!--end if-->
+             
+                <h3> No Record Found </h3>
+                <?php } ?>
     </div><!-- /.content-wrapper -->
 </div><!-- ./wrapper -->
 </body>

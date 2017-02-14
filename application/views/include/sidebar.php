@@ -6,7 +6,7 @@
             $id= $session['id']; $role = $session['role'];
 
                                 ?> 
-            <?php if($role=='admin'){?> 
+            <?php if( $role=='admin' ){?> 
           <!-- search form -->
           <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
@@ -21,7 +21,7 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
          
           <ul class="sidebar-menu">
-           <?php if($role=='admin'){?> 
+           <?php if($role=='admin' || $role=='director' ){?> 
             <li class="header">SEEDS SCHOOL OF EXCELLENCE</li>
 
             <li>
@@ -41,19 +41,32 @@
               </ul>
             </li>
 
-			<li>
+		         <li>
                 <a href="">
                   <i class="fa fa-table"></i> <span>Classes</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li class="active"><a href="<?=  site_url()?>classcontroller/add_class"><i class="fa fa-circle-o"></i> Add class</a></li>
-                <li><a href="<?= site_url()?>classcontroller/view_class"><i class="fa fa-circle-o"></i> View Expenses</a></li>
+                <li class="active"><a href="<?=  site_url()?>class_c/add"><i class="fa fa-circle-o"></i> Add class</a></li>
+                <li><a href="<?= site_url()?>class_c/"><i class="fa fa-circle-o"></i> View Classes</a></li>
               </ul>
             </li>
-
+            <li>
+                <a href="">
+                  <i class="fa fa-table"></i> <span>Student Section</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li class="active"><a href="<?=  site_url()?>student/"><i class="fa fa-circle-o"></i> View Student</a></li>
+                <li><a href="<?= site_url()?>student/visitor_student"><i class="fa fa-circle-o"></i> Add Student</a></li>
+              </ul>
+            </li>
             <li>
               <a href="<?= site_url()?>teacher/index">
                 <i class="fa fa-user"></i> <span>Teacher</span>
+              </a>
+            </li>
+            <li>
+              <a href="<?= site_url()?>student/chalan_search">
+                <i class="fa fa-user"></i> <span>Search Chalan</span>
               </a>
             </li>
             <li>
@@ -85,7 +98,13 @@
                 <i class="fa fa-cog"></i> <span>Setting</span> 
               </a> 
             </li>
-
+            <?php if( $role == 'director' ){ ?>
+              <li>
+                <a href="<?= site_url()?>admin/define_break_even">
+                  <i class="fa fa-cog"></i> <span>Break Even</span> 
+                </a> 
+              </li>
+            <?php } ?>
             <li>
               <a href="<?php echo base_url();?>search">
                 <i class="fa fa-search"></i> <span>Searches</span> 
@@ -94,7 +113,7 @@
           <?php } elseif($role=="teacher") {?>
 
             <li>
-              <a href="<?php echo base_url();?>teacher/index">
+              <a href="<?php echo base_url();?>admin">
                 <i class="fa fa-user"></i> <span>Teacher</span> 
               </a> 
             </li> 

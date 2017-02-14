@@ -16,15 +16,18 @@
             <br/>
             <div class="col-xs-10 col-xs-offset-1">
                 <a class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</a>
-                <a href="<?php echo site_url() ?>student/levelclass/<?php echo $std_info[0][0]->co_id;  ?>"  class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                <a href="<?php echo site_url() ?>student/levelclass/<?php echo $std_info[0][0]->co_id?>"  class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                     Back</a>
             </div>
         </div>
         <div class="clearfix"></div>
+         <?php if(!empty($std_info[0])) { ?>
         <?php
         $sno = 1;
-        foreach($std_info as $row){
-        ?>        <!-- Content Header (Page header) -->
+        foreach($std_info[0] as $row){
+        ?>       
+         <!-- Content Header (Page header) -->
+        
         <section class="content-header">
             <h3>
                 Fee Information        <span><?php
@@ -52,7 +55,7 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
 
-                    <img src="<?php echo site_url() ?>public/img/logo.jpg" class="img-responsive" style="height:100px;margin-bottom:-40px;  "/>
+                    <img src="<?php echo site_url() ?>public/img/logo.jpg" class="img-responsive" style="height:100px;margin-bottom:-40px; "/>
                     <h2 class="page-header text-center">
                         Seeds School of Excellence
                         <small class="pull-right" style="margin-right:20px; ">Date&nbsp;:&nbsp;<?php echo date("d-M-Y"); ?></small>
@@ -75,11 +78,11 @@
                     From
                     <address>
                         <strong>
-                            <?php echo $row[0]->student_name; ?>
+                            <?php echo $row->student_name; ?>
                         </strong><br>
-                        Address: <?php echo $row[0]->student_address; ?><br>
-                        Phone: <?php echo  $row[0]->student_contact; ?><br>
-                        Email: <?php echo $row[0]->student_email; ?>
+                        Address: <?php echo $row->student_address; ?><br>
+                        Phone: <?php echo  $row->student_contact; ?><br>
+                        Email: <?php echo $row->student_email; ?>
                     </address>
                 </div><!-- /.col -->
                 <div class="col-sm-4 invoice-col">
@@ -88,8 +91,8 @@
 
                         ?></b><br>
                     <br>
-                    <b>Fee Month&nbsp;: &nbsp;<?=$row[0]->std_month  ?></b><br>
-                    <b>Payment Due:</b> <?=$row[0]->std_remain.".Rs"  ?> <br>
+                    <b>Fee Month&nbsp;: &nbsp;<?=$row->std_month  ?></b><br>
+                    <b>Payment Due:</b> <?=$row->std_remain.".Rs"  ?> <br>
                 </div><!-- /.col -->
             </div><!-- /.row -->
 
@@ -108,9 +111,9 @@
                         <tbody>
                         <tr>
                             <td>1</td>
-                            <td><?=$row[0]->co_name;?></td>
-                            <td><?=$row[0]->su_name;?></td>
-                            <td><?=$row[0]->std_reason  ?></td>
+                            <td><?=$row->co_name;?></td>
+                            <td><?=$row->su_name;?></td>
+                            <td><?=$row->std_reason  ?></td>
                         </tr>
                         </tbody>
                     </table>
@@ -128,15 +131,15 @@
                         <table class="table">
                             <tr>
                                 <th style="width:50%">Total Balance:</th>
-                                <td><?=$row[0]->std_remain  ?></td>
+                                <td><?=$row->std_remain  ?></td>
                             </tr>
                             <tr>
                                 <th>Last Paid</th>
-                                <td><?=$row[0]->std_paid ?></td>
+                                <td><?=$row->std_paid ?></td>
                             </tr>
                             <tr>
                                 <th>Remain</th>
-                                <td><?=$row[0]->std_remain  ?></td>
+                                <td><?=$row->std_remain  ?></td>
                             </tr>
                         </table>
                     </div>
@@ -144,8 +147,12 @@
             </div><!-- /.row -->
             <!-- this row will not appear when printing -->
         </section><!-- /.content -->
+       
             <div class="page-break"></div>
         <?php $sno++; } ?>
     </div><!-- /.content-wrapper -->
+     <?php }else{ ?>
+        <h3>No Record Found</h3>
+        <?php }?>
 </div><!-- ./wrapper -->
 </body>

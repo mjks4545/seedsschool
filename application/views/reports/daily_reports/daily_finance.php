@@ -215,13 +215,13 @@
                                     <tbody>
                                     <?php
                                     $sno=1;
-                                    foreach ($expense as $ex) {
-
-                                        if (isset($ex->expense_id)) {
-                                            if ($ex->expense_paid_amount!= 0) {
+                                    foreach ($expense as $row => $values) {
+                                       
+                                        if ( !empty( $values ) ) {
+                                            if ( !empty( $values ) ) {
                                                 echo "<tr>";
                                                 echo "<td>" . $sno . "</td>";
-                                                echo "<td>" . $ex->expense_reason . "</td>";
+                                                echo "<td>" . $row . "</td>";
                                                 $start_date = date("d-M-Y", strtotime(date('01-' . ('M') . date('Y'))));
                                                 //  end date of the month
                                                 $end_date = date("d-M-Y", strtotime('-1 second', strtotime('+1 month', strtotime(date('01-' . ('M') . date('Y'))))));
@@ -233,63 +233,16 @@
                                                 $current_date = date("d-M-Y");
                                                 for ($i = 1; $i <= $datediff + 1; $i++) {
                                                     echo "<td>";
-                                                    if ($ex->expense_created_date == $interval) {
-                                                        echo $ex->expense_paid_amount;
-                                                    }
-                                                    echo "</td>";
-                                                    $interval = date("d-M-Y", strtotime("+1 day", strtotime($interval)));
-                                                }
-                                                echo "</tr>";
-                                                $sno++;
-                                            }
-                                        }
-                                        // for other  stdent payment
-                                        if (isset($ex->id)) {
-                                            if ($ex->paid_salary != 0) {
-                                                echo "<tr>";
-                                                echo "<td>" . $sno . "</td>";
-                                                echo "<td>" . $ex->amount_reason . "</td>";
-                                                $start_date = date("d-M-Y", strtotime(date('01-' . ('M') . date('Y'))));
-                                                //  end date of the month
-                                                $end_date = date("d-M-Y", strtotime('-1 second', strtotime('+1 month', strtotime(date('01-' . ('M') . date('Y'))))));
-                                                //  number of days between tow days
-                                                $datediff = $end_date - $start_date;
-
-
-                                                $interval = $start_date; //date('d-M-Y', strtotime('-8 days'));
-                                                $current_date = date("d-M-Y");
-                                                for ($i = 1; $i <= $datediff + 1; $i++) {
-                                                    echo "<td>";
-                                                    if ($ex->created_date == $interval) {
-                                                        echo $ex->paid_salary;
-                                                    }
-                                                    echo "</td>";
-                                                    $interval = date("d-M-Y", strtotime("+1 day", strtotime($interval)));
-                                                }
-                                                echo "</tr>";
-                                                $sno++;
-                                            }
-                                        }
-                     ////////////////////// for teacher salary///////////
-                                        // for other  stdent payment
-                                        if (isset($ex->sa_id)) {
-                                            if ($ex->paid_salary!= 0) {
-                                                echo "<tr>";
-                                                echo "<td>" . $sno . "</td>";
-                                                echo "<td>" . $ex->amount_reason . "</td>";
-                                                $start_date = date("d-M-Y", strtotime(date('01-' . ('M') . date('Y'))));
-                                                //  end date of the month
-                                                $end_date = date("d-M-Y", strtotime('-1 second', strtotime('+1 month', strtotime(date('01-' . ('M') . date('Y'))))));
-                                                //  number of days between tow days
-                                                $datediff = $end_date - $start_date;
-
-
-                                                $interval = $start_date; //date('d-M-Y', strtotime('-8 days'));
-                                                $current_date = date("d-M-Y");
-                                                for ($i = 1; $i <= $datediff + 1; $i++) {
-                                                    echo "<td>";
-                                                    if ($ex->created_date == $interval) {
-                                                        echo $ex->paid_salary;
+                                                    foreach( $values as $value ){
+                                                        if( $row != 'Paid To Teacher' && $row != 'Staff Salary' ){
+                                                            if ($value->expense_created_date == $interval) {
+                                                                echo $value->expense_paid_amount;
+                                                            }
+                                                        }else{
+                                                            if ($value->created_date == $interval) {
+                                                                echo $value->paid_salary;
+                                                            }
+                                                        }
                                                     }
                                                     echo "</td>";
                                                     $interval = date("d-M-Y", strtotime("+1 day", strtotime($interval)));
@@ -321,22 +274,16 @@
                                                 <?php
                                                 $month = date('M', strtotime("01-" . $i . "-2010"));
                                                 $total = 0;
-                                                foreach ($expense as $ex) {
-                                                    if (isset($ex->expense_id)) {
-                                                        if ($ex->expense_created_date == $interval) {
-                                                            $total = $total+$ex->expense_paid_amount;
-                                                        }
-                                                    }
-                                                    if (isset($ex->id)) {
-                                                        if ($ex->created_date == $interval) {
-                                                            $total = $total+$ex->paid_salary;
-
-                                                        }
-                                                    }
-                                                    if (isset($ex->sa_id)) {
-                                                        if ($ex->created_date == $interval) {
-                                                            $total = $total+$ex->paid_salary;
-
+                                                foreach ($expense as $row => $amount) {
+                                                    foreach ($amount as $value) {
+                                                        if( $row != 'Paid To Teacher' && $row != 'Staff Salary' ){
+                                                            if ($value->expense_created_date == $interval) {
+                                                                $total += $value->expense_paid_amount;
+                                                            }
+                                                        }else{
+                                                            if ($value->created_date == $interval) {
+                                                                $total += $value->paid_salary;
+                                                            }
                                                         }
                                                     }
                                                 }

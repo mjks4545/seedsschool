@@ -30,11 +30,14 @@ class Studentattendance extends CI_Controller
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         if($role=='admin' || $role=="receptionist"){
-        $data['result'] = $this->student_attendance_m->allclass($co_id);
+            
+            $data['result'] = $this->student_attendance_m->allclass($co_id);
+        
         }else if($role=='teacher'){
-        $data['result'] = $this->student_attendance_m->allclass_t($co_id);
+            
+            $data['result'] = $this->student_attendance_m->allclass_t($co_id);
+            
         }
-//        echo "<pre>";print_r($data); die();
         $this->load->view('student/student_attendance/all_class', $data);
         $this->load->view('include/footer');
     }
@@ -105,19 +108,44 @@ class Studentattendance extends CI_Controller
     }
 
     //---------------------------------------------------------------
+    
     function attendancedetail()
     {
+
+        $data['months_years'] = $this->student_attendance_m->attendancedetail_months();
         $st_id = $this->uri->segment(3);
         $cl_id = $this->uri->segment(4);
         $co_id = $this->uri->segment(5);
-        $data['result']=$this->student_attendance_m->attendancedetail($st_id,$cl_id,$co_id);
-//        echo "<pre>";print_r($data); die();
+        $data['result'] = $this->student_attendance_m->attendancedetail($st_id,$cl_id,$co_id);
+        //echo "<pre>";print_r($data); die();
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $data['co_id']=$co_id;
         $data['cl_id']=$cl_id;
         $this->load->view('student/student_attendance/attendance_detail', $data);
         $this->load->view('include/footer');
+
     }
-    //---------------------------------------------------------------
+
+    // ---------------------------------------------------------------
+
+    public function by_months(){
+        
+        $data['months_years'] = $this->student_attendance_m->attendancedetail_months();
+        $st_id = $this->uri->segment(3);
+        $cl_id = $this->uri->segment(4);
+        $co_id = $this->uri->segment(5);
+        $data['result'] = $this->student_attendance_m->attendancedetail_by_months($st_id,$cl_id,$co_id);
+        //echo "<pre>";print_r($data); die();
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data['co_id']=$co_id;
+        $data['cl_id']=$cl_id;
+        $this->load->view('student/student_attendance/attendance_detail', $data);
+        $this->load->view('include/footer');
+
+    }
+
+    // ---------------------------------------------------------------
+
 }

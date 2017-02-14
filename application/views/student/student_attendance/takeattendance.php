@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="form-group has-feedback col-sm-5 col-xs-6">
                                     <label for="exampleInputEmail1">Date</label>
-                                    <input type="date" name="date" class="form-control" required/>
+                                    <input type="text" name="date" class="form-control" value="<?= date('Y-m-d'); ?>" readonly required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"
                                           style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>

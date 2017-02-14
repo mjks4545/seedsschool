@@ -33,24 +33,44 @@
                         <div class="box-body">
                             
                                 <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
-                                    <label for="exampleInputEmail1">Reason</label>
-                                    <input type="text" name="reason" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Reason" required/>
+                                    <label for="exampleInputEmail1">Head</label>
+                                    <select name="head" class="form-control" required >
+                                        <option>Select a Head</option>
+                                        <?php
+                                            $heads = [ 'Miscellanous','Repair','Travelling','Photostate','Utality','Office Stationary','Refreshment','Sadqa','Printing','Food','Salary','Maintance','Paid To Teachers', 'Salary','Promotion','Other' ]; 
+                                            foreach( $heads as $head ) { 
+                                                echo "<option value='$head'>$head</option>";
+                                            }        
+                                        ?>
+                                    </select>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
                                     <label for="exampleInputEmail1">Paid To</label>
-                                    <input type="text" name="paid_to" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Paid To" required/>
+                                    <input type="text" name="paid_to" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Paid To" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
                                     <label for="exampleInputEmail1">Amount</label>
-                                    <input type="text" name="amount" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Paid Amount" required/>
+                                    <input type="text" name="amount" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Paid Amount" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
-                            <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
+                                <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
+                                    <label for="exampleInputEmail1">Reason</label>
+                                    <input type="text" name="reason" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Reason" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                </div>
+                                <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
+                                    <label for="exampleInputEmail1">Date</label>
+                                    <input type="date" name="date" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
+                                    <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                </div>
+                            <!-- <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
                                 <label for="exampleInputEmail1">Month</label>
                                 <select type="text" name="month" class="form-control" placeholder="Select Month" required >
                                     <option value="">Select Month</option>
@@ -69,8 +89,8 @@
                                 </select>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                 <span class="help-block with-errors" style="margin-left:10px; "></span>
-                            </div>
-                            <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
+                            </div> -->
+                            <!-- <div class="form-group has-feedback col-sm-6 col-sm-offset-3">
                                 <label for="exampleInputEmail1">Year</label>
                                 <select name="year" class="form-control"  required>
                                     <?php $date = date("Y");
@@ -80,7 +100,7 @@
                                 </select>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                 <span class="help-block with-errors" style="margin-left:10px; "></span>
-                            </div>
+                            </div> -->
                             
                             
                         </div>

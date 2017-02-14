@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AttendanceController extends CI_Controller {
+    
+    // -------------------------------------------------------------------------
+
     function __construct() {
         parent::__construct();
         $session = $this->session->userdata("session_data");
@@ -11,6 +14,8 @@ class AttendanceController extends CI_Controller {
         }
     }
     
+    // -------------------------------------------------------------------------
+
     public function find_teacher(){
               
         $this->load->view('include/header');
@@ -33,9 +38,6 @@ class AttendanceController extends CI_Controller {
         $result              = $query->result();
         $result['result']    = $result[0];
         
-//        echo '<pre>';
-//        print_r($result);
-//        die();
         if( empty($result['result'])){
             redirect( site_url() . 'attendancecontroller/find_teacher');
         }else{
@@ -53,6 +55,8 @@ class AttendanceController extends CI_Controller {
         $this->load->view('attendance/teacher_classes');
         $this->load->view('include/footer');
     }
+    
+    // -------------------------------------------------------------------------
 
     public function get_students()
     {
@@ -63,25 +67,28 @@ class AttendanceController extends CI_Controller {
         }
     }
 
+    // -------------------------------------------------------------------------
+    
     public function get_student_att()
     {
         //$clas = $this->input->post('C');
         $std = $this->input->post('S');
         $date = $this->input->post('D');
         if ($date != "") {
-        $sql = $this->db->query("SELECT name , Attendance , Att_Date FROM students s INNER JOIN users u On s.fkuser_id = u.u_id INNER JOIN std_att sa ON s.s_id = sa.Std_Id WHERE sa.Std_Id = ".$std." AND sa.Att_Date = '".$date."'");
+            $sql = $this->db->query("SELECT name , Attendance , Att_Date FROM students s INNER JOIN users u On s.fkuser_id = u.u_id INNER JOIN std_att sa ON s.s_id = sa.Std_Id WHERE sa.Std_Id = ".$std." AND sa.Att_Date = '".$date."'");
         }
         else
         {
-        $sql = $this->db->query("SELECT name , Attendance , Att_Date FROM students s INNER JOIN users u On s.fkuser_id = u.u_id INNER JOIN std_att sa ON s.s_id = sa.Std_Id WHERE sa.Std_Id = ".$std);
+            $sql = $this->db->query("SELECT name , Attendance , Att_Date FROM students s INNER JOIN users u On s.fkuser_id = u.u_id INNER JOIN std_att sa ON s.s_id = sa.Std_Id WHERE sa.Std_Id = ".$std);
         }
         $data = array('Att'=>$sql);
         echo $this->load->view('students/student_attendance_record' , $data , TRUE);
-   }
+    }
+    
+    // -------------------------------------------------------------------------
 
     function attendence()
     {
- 
         $rollno = $this->input->post('RollNo');
         $attendence = $this->input->post('atte');
         $ClassNo = $this->input->post('ClassNo');
@@ -94,9 +101,11 @@ class AttendanceController extends CI_Controller {
             );
         $this->load->model('insert_model');
         echo $this->insert_model->insertAtt($data);
-
     }
-  function showAllAtt()
+    
+    // -------------------------------------------------------------------------
+
+    function showAllAtt()
     {
         $id = $this->uri->segment(3);
         $this->load->model('insert_model');
@@ -106,20 +115,25 @@ class AttendanceController extends CI_Controller {
         $this->load->view('attendance/showAllAtt',$data);
         $this->load->view('include/footer');
 
-    }  
+    }
+    
+    // -------------------------------------------------------------------------
 
- function seeDailyAtt()
- {
-    $id = $this->uri->segment(3);
-    $date = date('Y-m-d');
-    $this->load->model('insert_model');
-    $data['attendance']  = $this->insert_model->getTodayAtt($date,$id);
-     $this->load->view('include/header');
-     $this->load->view('include/sidebar');
-   $this->load->view('attendance/todayAtt',$data);
-      $this->load->view('include/footer');
+    function seeDailyAtt()
+    {
+        $id = $this->uri->segment(3);
+        $date = date('Y-m-d');
+        $this->load->model('insert_model');
+        $data['attendance']  = $this->insert_model->getTodayAtt($date,$id);
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $this->load->view('attendance/todayAtt',$data);
+        $this->load->view('include/footer');
 
- }    
+    }
+ 
+    // -------------------------------------------------------------------------
+ 
 }
 
 

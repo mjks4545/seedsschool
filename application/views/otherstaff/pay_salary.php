@@ -39,7 +39,7 @@
                                 <input type="hidden" name="staff_id" value="<?= $array->id?>">
                                 <div class="form-group has-feedback col-md-5">
                                     <label for="exampleInputEmail1">Total Salary</label>
-                                    <input type="text" name="total_salary" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?= $array->salary?>" readonly/>
+                                    <input type="text" name="total_salary" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" value="<?= $array->salary?>" readonly/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -84,7 +84,7 @@
                                 <div class="form-group col-md-3"></div>
                                 <div class="form-group has-feedback col-md-5">
                                     <label for="exampleInputEmail1">Reason</label>
-                                    <input type="text" name="reason" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" required/>
+                                    <input type="text" name="reason" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -93,7 +93,7 @@
                                 <div class="form-group col-md-3"></div>
                                 <div class="form-group has-feedback col-md-5">
                                     <label for="exampleInputEmail1">Enter Amount</label>
-                                    <input type="text" name="amount" class="form-control" maxlength="50" minlength="2" id="exampleInputEmail1" required/>
+                                    <input type="text" name="amount" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

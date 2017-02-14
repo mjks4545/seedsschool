@@ -21,7 +21,7 @@
                          <a href="<?= site_url()?>teacher/" class="pull-right"> Back</a>
                      </div><!-- /.box-header -->
                      <!-- form start -->
-					 <!----------form---------------------->
+					 <!----------form-->
 					 <form role="form" data-toggle="validator" action="<?=site_url()?>teacher/teacheraddclasspro/<?=$id?>" method="post">
                          <div class="box-body">
                            <div class="col-md-12">

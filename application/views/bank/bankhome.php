@@ -111,7 +111,7 @@ $role = $session['role']; ?>
                                 <th>Branch</th>
                                 <th>Account Title</th>
                                 <th>Status</th>
-                                <th colspan="3" class="text-center">Action</th>
+                                <th colspan="4" class="text-center">Action</th>
                             </tr>
                             <?php
                             $sno = 1;
@@ -205,6 +205,16 @@ $role = $session['role']; ?>
                                                                 <span class="help-block with-errors"
                                                                       style="margin-left:10px; "></span>
                                                             </div>
+                                                            <div class="form-group has-feedback">
+                                                              <label for="exampleInputEmail1">Date</label>
+                                                              <input type="date" name="date" class="form-control"
+                                                                     maxlength="300" minlength="3" id="exampleInputEmail1"
+                                                                     placeholder="Branch" required/>
+                                                              <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                                                    style="margin-right: 20px;"></span>
+                                                              <span class="help-block with-errors"
+                                                                    style="margin-left:10px; "></span>
+                                                          </div>
                                                         </div>
                                                         <div class="box-footer">
                                                             <button type="submit" class="btn btn-primary btn-block">Save
@@ -293,6 +303,16 @@ $role = $session['role']; ?>
                                                                 <span class="help-block with-errors"
                                                                       style="margin-left:10px; "></span>
                                                             </div>
+                                                            <div class="form-group has-feedback">
+                                                              <label for="exampleInputEmail1">Date</label>
+                                                              <input type="date" name="date" class="form-control"
+                                                                     maxlength="300" minlength="3" id="exampleInputEmail1"
+                                                                     placeholder="Branch" required/>
+                                                              <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                                                    style="margin-right: 20px;"></span>
+                                                              <span class="help-block with-errors"
+                                                                    style="margin-left:10px; "></span>
+                                                          </div>
 
                                                             <div class="box-footer">
                                                                 <button type="submit" class="btn btn-primary btn-block">
@@ -384,9 +404,15 @@ $role = $session['role']; ?>
                                 <?php
                                 /* ////////////////////////// end of detail//////////////////////////// */
                                 echo "</td>";
+                                ?>
+                                
+                                 <td><a href="<?= base_url() ?>bank/bankupdate/<?= $bnk->b_id;?>" class="btn btn-primary btn-sm">Update</a></td>
+
+                                <?php
                                 echo "</tr>";
                                 $sno++;
-                            } ?>
+                                ?>
+                      <?php } ?>
                         </table>
                     </div>
                 </div>

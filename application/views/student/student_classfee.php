@@ -32,7 +32,7 @@
                     <!-- /.box-header -->
                     <!-- form start -->
 
-                    <form role="form" data-toggle="validator" action="<?= site_url() ?>student/studentclassfeepro/"
+                    <form role="form" data-toggle="validator" action="<?= site_url() ?>student/studentclassfeepro"
                           method="post">
                         <div class="box-body">
                             <div class="col-md-12">
@@ -58,7 +58,7 @@
                                                value="<?php echo $data->fkstudent_id; ?>">
                                         <label for="exampleInputEmail1">Subject Name</label>
                                         <input type="text" name="subject_name" readonly class="form-control"
-                                               maxlength="50" minlength="3" id="exampleInputEmail1"
+                                               maxlength="50" minlength="1" id="exampleInputEmail1"
                                                value="<?= $data->su_name ?>" required/>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"
                                               style="margin-right: 20px;"></span>
@@ -68,12 +68,12 @@
                                         <label for="exampleInputEmail1">Subject Fee</label>
                                         <input type="text" id="subject_fee_<?= $i ?>"
                                                name="subject_fee_<?php echo $i; ?>" class="form-control" readonly
-                                               maxlength="50" minlength="3" value="<?= $data->fee ?>" required/>
+                                               maxlength="50" minlength="1" value="<?= $data->fee ?>" required/>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"
                                               style="margin-right: 20px;"></span>
                                         <span class="help-block with-errors" style="margin-left:10px; "></span>
                                     </div>
-                                    <div class="form-group has-feedback col-md-3">
+                                    <div class="form-group has-feedback col-md-2">
                                         <label for="exampleInputEmail1">Concession</label>
                                         <input type="text" id="<?= $i ?>" name="concession"
                                                class="form-control concession" required />
@@ -81,10 +81,18 @@
                                               style="margin-right: 20px;"></span>
                                         <span class="help-block with-errors" style="margin-left:10px; "></span>
                                     </div>
-                                    <div class="form-group has-feedback col-md-3">
+                                    <div class="form-group has-feedback col-md-2">
                                         <label for="exampleInputEmail1">Fee To Pay</label>
                                         <input type="text" id="fee_pay_<?= $i ?>" name="fee_to_pay_<?php echo $i; ?>"
                                                readonly class="form-control" value="0" maxlength="50" required/>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                              style="margin-right: 20px;"></span>
+                                        <span class="help-block with-errors" style="margin-left:10px; "></span>
+                                    </div>
+                                    <div class="form-group has-feedback col-md-2">
+                                        <label for="exampleInputEmail1">Starting Date</label>
+                                        <input type="date" id="starting_<?= $i ?>" name="starting_<?php echo $i; ?>"
+                                               class="form-control" value="0" maxlength="50" required/>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"
                                               style="margin-right: 20px;"></span>
                                         <span class="help-block with-errors" style="margin-left:10px; "></span>
@@ -112,7 +120,7 @@
                                 </div>
                                 <div class="form-group has-feedback col-md-3">
                                     <input type="text" name="total_fee" class="form-control" maxlength="50"
-                                           minlength="3" placeholder="Total Fee" id="total_fee" required/>
+                                           minlength="1" placeholder="Total Fee" id="total_fee" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"
                                           style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>

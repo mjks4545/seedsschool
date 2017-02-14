@@ -7,7 +7,6 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h3>
-                Invoice:
                 <span><?php
                     $length = 10;
                     $characters = '0123456789';
@@ -15,8 +14,6 @@
                     for ($i = 0; $i < $length; $i++) {
                         $randomString .= $characters[rand(0, strlen($characters) - 1)];
                     }
-                    echo  $randomString;
-
                     ?></span>
             </h3>
         </section>
@@ -25,120 +22,116 @@
             <div class="callout callout-info" style="margin-bottom: 0!important;">
                 <h4><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Note:</h4>
                 This page has been enhanced for printing.Press Ctrl+P.
-                <?php // print_r($teacher); ?>
-                <?php // print_r($paymentdetail); ?>
+                                <!--<pre>
+                                <?php /* print_r($arr); */?>
+                                <?php /* print_r($std_info); */?>
+                                --><?php /* print_r($class_info); */?>
             </div>
         </div>
-
         <!-- Main content -->
         <section class="invoice">
             <!-- title row -->
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
-
-                        <img src="<?php echo site_url() ?>public/img/logo.jpg" class="img-responsive" style="height:100px;margin-bottom:-40px;  "/>
-                    <h2 class="page-header text-center">
-                        Seeds School of Excellence
+                    <img src="<?php echo site_url() ?>public/img/logo.jpg" class="img-responsive" style="height:50px;margin-bottom:-40px;  "/>
+                    <h6 style="font-size: 18px" class="page-header text-center">
+                        &nbsp;&nbsp;Seeds School of Excellence in Education and Developmental Studies
                         <small class="pull-right" style="margin-right:20px; ">Date&nbsp;:&nbsp;<?php echo date("d-M-Y"); ?></small>
+                    </h6>
+                    <h2 class="page-header text-center">
+                        <!-- <small class="pull-left" style="margin-right:20px; ">Teacher Name : <?= $result[0]['teacher_name']; ?></small> -->
+                        Teacher Name : <?= $result[0]['teacher_name']; ?>
+                        <!-- <small class="pull-right" style="margin-right:20px; ">Invoice&nbsp;:&nbsp;<?=$randomString;?></small> -->
                     </h2>
-                </div><!-- /.col -->
-            </div>
-            <!-- info row -->
-            <div class="row invoice-info">
-                <div class="col-sm-4 invoice-col">
-                    From
-                    <address>
-                        <strong>Seeds School of Excellence</strong><br>
-                        University Town Peshawar,<br>
-                        KPK,Pakistan<br>
-                        Phone:091-5845678<br>
-                        Email: info@seedsschool.com
-                    </address>
-                </div><!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                    To
-                    <address>
-                        <strong>
-                            <?php echo $teacher[0]->name; ?>
-                        </strong><br>
-                        <?php echo $teacher[0]->address; ?><br>
-                        Phone: <?php echo $teacher[0]->contact; ?><br>
-                        Email: <?php echo $teacher[0]->email; ?>
-                    </address>
-                </div><!-- /.col -->
-                <div class="col-sm-4 invoice-col">
-                    <b>Invoice #<?php
-                        echo  $randomString;
+                    <div class="row invoice-info">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-xs-12 table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>Student Name</th>
+                                            <th>Level Name</th>
+                                            <th>Subject Name</th>
+                                            <th>Amount Paid</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            $i = 1;
+                                            $total_remaning = 0; 
+                                            foreach( $result as $teacher_payment ) {
 
-                        ?></b><br>
-                    <br>
-                    <b>Payment Month&nbsp;: &nbsp;<?php $month = $paymentdetail['arr']['paid_month'];
-                        $month_p = date('F',strtotime("01-".$month."-2001"));
-                        echo $month_p;
-                        ?></b><br>
-                    <b>Payment Due:</b> <?php echo $paymentdetail['arr']['total_salary']."&nbsp;.Rs";?><br>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
+                                        ?>
+                                        <tr>
+                                            <td><?= $i;?></td>
+                                            <td><?= $teacher_payment['student_name']?></td>
+                                            <td><?= $teacher_payment['level']?></td>
+                                            <td><?= $teacher_payment['subject_name']?></td>
+                                            <td><?= $teacher_payment['amount_paid'];$total_remaning += $teacher_payment['amount_paid']?></td>
+                                        </tr>
+                                        <?php 
+                                                $i++;
+                                            } 
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
 
-            <!-- Table row -->
-            <div class="row">
-                <div class="col-xs-12 table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>S.No</th>
-                            <th>Detail</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><?php echo  $paymentdetail['arr']['amount_reason'];?></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
+                            <!-- <div style="margin-left:12px;">
+                                Recieved with thanks from:&nbsp;<strong>
+                                    <?php echo $std_info[0]->student_name; ?>
+                                </strong><br />
+                                for month<strong>
+                                   &nbsp;&nbsp;<?php $month = $arr['std_month'];
+                                $month_p = date('F',strtotime("01-".$month."-2001"));
+                                    $year = $arr['std_year'];
+                                    echo $month_p;?>&nbsp;<?php echo $year; 
+                                    ?>
+                                </strong><br />
+                                on account of
 
-            <div class="row">
-                <!-- accepted payments column -->
-                <div class="col-xs-6">
 
-                </div><!-- /.col -->
-                <div class="col-xs-6">
-                    <p class="lead">Amount Detail</p>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <tr>
-                                <th style="width:50%">Total:</th>
-                                <td><?php echo $paymentdetail['arr']['paid_salary']+($paymentdetail['arr']['remaining_salary']);?></td>
-                            </tr>
-                            <tr>
-                                <th>Paid</th>
-                                <td><?php echo $paymentdetail['arr']['paid_salary'];?></td>
-                            </tr>
-                            <tr>
-                                <th>Remain</th>
-                                <td><?php echo $paymentdetail['arr']['remaining_salary'];?></td>
-                            </tr>
-                            <tr>
-                                <th>Total Paid:</th>
-                                <td><?php echo $paymentdetail['arr']['paid_salary']."&nbsp;.Rs";?></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
+
+                            </div> -->
+
+                             <div class="row">
+                                <!-- accepted payments column -->
+                                <div class="col-xs-6">
+                                </div><!-- /.col -->
+                                <div class="col-xs-6">
+                                    <p class="lead">Amount Total</p>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tr>
+                                                <th style="width:50%;">Paid:</th>
+                                                <td><?=$total_remaning?></td>
+                                            </tr>
+                                            <!-- <tr>
+                                                <th>Total Paid:</th>
+                                                <td><?=$total_paid?></td>
+                                            </tr> -->
+                                        </table>
+                                    </div>
+                                </div><!-- /.col -->
+                            </div><!-- /.row -->
+
+
+                        </div>
+                    </div>    
+                </div>
+            </div>    
+
 
             <!-- this row will not appear when printing -->
-           <div class="row no-print">
+            <div class="row no-print">
                 <div class="col-xs-12">
                     <a class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</a>
-                    <a  href="<?php echo site_url() ?>teacher/paymentdetails/<?php echo $paymentdetail['arr']['fkteacher_id'];  ?>" class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                         Back</a>
                 </div>
             </div>
         </section><!-- /.content -->
         <div class="clearfix"></div>
     </div><!-- /.content-wrapper -->
-  </div><!-- ./wrapper -->
+</div><!-- ./wrapper -->

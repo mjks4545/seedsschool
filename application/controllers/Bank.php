@@ -119,4 +119,18 @@ class  Bank extends CI_Controller
         }
     }
     //------------------------------------------------------------------------
+    function bankupdate(){
+        $id = $this->uri->segment(3);
+        $this->load->view('include/header');
+        $this->load->view('include/sidebar');
+        $data['result'] = $this->bank_m->bankupdate($id);
+        $this->load->view("bank/bankupdate",$data);
+        $this->load->view("include/footer");
+
+    }
+    //------------------------------------------------------------------------
+    function bankupdateprocess(){
+        $id = $this->uri->segment(3);
+        $this->bank_m->bankupdateprocess($id);
+    }
 }

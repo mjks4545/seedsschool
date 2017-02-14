@@ -24,7 +24,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h2 class="box-title text-primary ">Step-II</h2>
-                        <a href="<?= site_url() ?>student/addstudent" class="pull-right"> Back</a>
+                        <a href="<?= site_url() ?>student/check_as_visitor" class="pull-right"> Back</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -41,6 +41,7 @@
                                     <th>Teacher Name</th>
                                     <th>Class Timing</th>
                                     <th>Class Fee</th>
+                                    <th>Free Slots</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                                 </thead>
@@ -67,7 +68,7 @@
                                             <td><?php echo $re->name; ?></td>
                                             <td><?php echo $re->time ?></td>
                                             <td><?php echo $re->fee; ?></td>
-
+                                            <td><?= $re->no_slots?></td>
                                             <td>
                                                 <input type="checkbox" name="select_<?php echo $sno; ?>">
                                             </td>

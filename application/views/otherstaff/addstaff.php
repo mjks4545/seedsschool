@@ -31,13 +31,13 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <input type="text" name="name" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Enter Name" required/>
+                                    <input type="text" name="name" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Enter Name" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Contact number</label>
-                                    <input type="text" name="contact" maxlength="15"  pattern="(?=.*\d).{7,}" minlength="11" class="form-control" id="exampleInputEmail1" placeholder="Enter Contact Number" required />
+                                    <input type="text" name="contact" maxlength="15"  minlength="1" class="form-control" id="exampleInputEmail1" placeholder="Enter Contact Number" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -45,7 +45,7 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">CNIC</label>
-                                    <input type="text" name="cnic" maxlength="15"  pattern="(?=.*\d).{13,13}" class="form-control" id="exampleInputEmail1" placeholder="Enter Cnic Number" required />
+                                    <input type="text" name="cnic" maxlength="15"  class="form-control" id="exampleInputEmail1" placeholder="Enter Cnic Number" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -53,9 +53,13 @@
                                     <label>Type</label>
                                     <select  name="type"  id="type" class="form-control">
                                         <option> Select type</option>
+                                        <option value="accountsofficer">Accounts Officer</option>
                                         <option value="receptionist">Receptionist</option>
                                         <option value="Librarian">Librarian</option>
                                         <option value="gatekeeper">Gate Keeper</option>
+                                        <option value="gardner">Gardner</option>
+                                        <option value="officeassistant">Office Assistant</option>
+                                        <option value="officeboy">Office Boy</option>
                                         <option value="other">Other</option>
                                     </select>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
@@ -65,14 +69,14 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Salary</label>
-                                    <input type="text" name="salary" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Enter salary" required/>
+                                    <input type="text" name="salary" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Enter salary" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
 
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Address</label>
-                                    <input type="text" name="address"   minlength="3" maxlength="100" class="form-control" id="exampleInputEmail1" placeholder="Enter Address" required />
+                                    <input type="text" name="address"   minlength="1" maxlength="100" class="form-control" id="exampleInputEmail1" placeholder="Enter Address" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

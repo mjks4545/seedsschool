@@ -1,4 +1,4 @@
-<body class="hold-transition skin-blue sidebar-mini">
+<body window.onload="print.window();" class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <!-- Left side column. contains the logo and sidebar -->
 
@@ -7,11 +7,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h3>
+                
                 Fee Information        <span><?php
-                    $randomString= date("d").date("m").date("Y");
-                    echo  $randomString;
-
+                    $randomString = 'SSE-' . date("d").date("m").date("Y") . $std_info[0]->student_id;
+                    echo $randomString;
                     ?></span>
+
             </h3>
         </section>
 
@@ -27,7 +28,9 @@
         </div>
 
         <!-- Main content -->
+       
         <section class="invoice">
+
             <!-- title row -->
             <div class="row">
                 <div class="col-sm-12 col-xs-12">
@@ -63,10 +66,11 @@
                     </address>
                 </div><!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                    <b>Fee Slip #<?php
+                    <b>Fee Slip # <?php
                         echo  $randomString;
 
                         ?></b><br>
+                        
                     <br>
                     <b>Fee Month&nbsp;: &nbsp;<?=$std_info[0]->std_month  ?></b><br>
                     <b>Payment Due:</b> <?=$std_info[0]->std_remain.".Rs"  ?> <br>
@@ -124,12 +128,30 @@
             <!-- this row will not appear when printing -->
             <div class="row no-print">
                 <div class="col-xs-12">
-                    <a class="btn btn-default" onclick="window.print();"><i class="fa fa-print"></i> Print</a>
+                 <form role = "form" method="post" action="<?php echo site_url('student/add_chalan_number'); ?>">
+                 <!-- this is for chalan number -->
+                    <input type="hidden" name="chalan_number" value="<?php echo $randomString; ?>">
+                    <input type="hidden" name="student_id" value="<?php echo $std_info[0]->student_id; ?>">
+                    <input type="hidden" name="payment_date" value="<?php echo date('YYYY-MM-DD'); ?>">
+                    <input type="hidden" name="fee_month" value="<?php echo $std_info[0]->std_month ; ?>">
+                    <input type="hidden" name=" total_balance" value="<?php echo $std_info[0]->std_remain; ?>">
+                    <input type="hidden" name="last_paid" value="<?php echo $std_info[0]->std_paid; ?>">
+                    <input type="hidden" name="remain" value="<?php echo $std_info[0]->std_remain; ?>">
+                     <input type="hidden" name="class" value="<?php echo $std_info[0]->su_name; ?>">
+
+                    <input type="hidden" name="type_of_fee" value="<?php echo $std_info[0]->std_reason; ?>">
+                    <input type="hidden" name="student_name" value="<?php echo $std_info[0]->student_name; ?>">
+                     <?php echo $std_info[0]->student_name; ?>
+
+                    <button type="submit" name="chalan_button" onclick="window.print();"><i class="fa fa-print"></i> Print</button>
                     <a href="<?php echo site_url() ?>student/clstudent/<?php echo $std_info[0]->fkclass_id;  ?>"  class="btn btn-success pull-right"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
                         Back</a>
+                    </form>
                 </div>
             </div>
+              
         </section><!-- /.content -->
+       
         <div class="clearfix"></div>
     </div><!-- /.content-wrapper -->
 </div><!-- ./wrapper -->

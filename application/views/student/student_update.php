@@ -37,13 +37,13 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Name</label>
-                                    <input type="text" name="student_name" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?= $data->student_name?>" required/>
+                                    <input type="text" name="student_name" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" value="<?= $data->student_name?>" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Father Name</label>
-                                    <input type="text" name="father_name" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?= $data->std_father_name?>" required/>
+                                    <input type="text" name="father_name" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" value="<?= $data->std_father_name?>" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -51,13 +51,13 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Contact number</label>
-                                    <input type="text" name="student_contact" maxlength="15"  pattern="(?=.*\d).{7,}" minlength="11" class="form-control" id="exampleInputEmail1" value="<?= $data->student_contact?>" required />
+                                    <input type="text" name="student_contact" maxlength="15"  minlength="1" class="form-control" id="exampleInputEmail1" value="<?= $data->student_contact?>" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Guardian Contact</label>
-                                    <input type="text" name="guardian_contact" maxlength="15"  pattern="(?=.*\d).{7,}" minlength="11" class="form-control" id="exampleInputEmail1" value="<?= $data->std_guardian_contact?>" required />
+                                    <input type="text" name="guardian_contact" maxlength="15"   minlength="1" class="form-control" id="exampleInputEmail1" value="<?= $data->std_guardian_contact?>" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -65,13 +65,13 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Current School Name</label>
-                                    <input type="text" name="current_school" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?= $data->current_school?>" required/>
+                                    <input type="text" name="current_school" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" value="<?= $data->current_school?>" />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Student Fb Id</label>
-                                    <input type="text" name="facebook_id" class="form-control" id="exampleInputEmail1" value="<?= $data->facebook_id?>" required />
+                                    <input type="text" name="facebook_id" class="form-control" id="exampleInputEmail1" value="<?= $data->facebook_id?>" />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="<?= $data->student_email?>" required />
+                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="<?= $data->student_email?>" />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
@@ -95,7 +95,7 @@
 
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">CNIC</label>
-                                    <input type="text" name="s_cnic"  value="<?=$data->s_cnic?>" class="form-control" pattern="[0-9]{13,13}" minlength="13" maxlength="13" id="exampleInputEmail1" placeholder="Enter CNIC" required />
+                                    <input type="text" name="s_cnic"  value="<?=$data->s_cnic?>" class="form-control"  minlength="1" maxlength="13" id="exampleInputEmail1" placeholder="Enter CNIC" />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

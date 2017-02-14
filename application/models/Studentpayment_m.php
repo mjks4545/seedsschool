@@ -23,7 +23,9 @@ class Studentpayment_m extends CI_Model
         $this->db->where("fkstudent_id", $st_id);
         $this->db->join("student", "student.student_id=student_class_fee.fkstudent_id");
         $this->db->join("class", "class.cl_id=student_class_fee.fkclass_id");
+        $this->db->join("course", "course.co_id=class.co_id");
         $this->db->join("subject", "subject.su_id=class.su_id");
+        $this->db->where("student_class_fee.st_class_fee_status", 1);
         $query = $this->db->get();
         return $query->result();
     }
@@ -96,6 +98,7 @@ class Studentpayment_m extends CI_Model
                 'std_date' => $std_date,
                 'std_year' => $this->input->post('year'),
                 'std_reason' => $std_reason,
+                'student_notification' => 1
             );
 
             $result_1 = $this->db->insert('student_payment', $inser_array);
@@ -110,6 +113,7 @@ class Studentpayment_m extends CI_Model
                 'std_date' => $std_date,
                 'std_year' => $this->input->post('year'),
                 'std_reason' => $std_reason,
+                'student_notification' => 1
             );
             $result_1 = $this->db->insert('student_payment', $inser_array);
         }
@@ -493,5 +497,115 @@ class Studentpayment_m extends CI_Model
 
         return $data;
     }
-//-----------------------------------------------------------------------
+    
+    //-----------------------------------------------------------------------
+
+    public function student_payments( $id ){
+
+        $this->db->order_by('p_id', 'desc');
+        $this->db->where( 'fkstudentclassfee_id', $id);
+        return $this->db->get('student_payment')->result();
+
+    }
+
+    // ----------------------------------------------------------------------
+
+    public function get_other_payments( $student_id ){
+
+        $this->db->where( 'fkstudent_id', $student_id);
+        $this->db->order_by('otherpay_id', 'desc');
+        $query  = $this->db->get('student_other_payment');
+        $result = $query->result();
+        return $result[0];
+        
+    }
+
+    // ------------------------------------------------------------------------
+
+    public function pay_fee(){
+        
+        $date  = date("d-M-Y");
+        $month = date('M');
+        $year  = date("Y");
+        $session_data = [];
+        // echo '<pre>';
+        // print_r($_POST);
+        // die;
+        foreach( $_POST['student'] as $student ){
+            
+            if(isset( $student['neglect_percentage'] )){
+                $student['neglect_percentage'] = 1;
+            }else{
+                $student['neglect_percentage'] = 0;
+            }
+            
+            $data = [
+                'fkstudentclassfee_id'          =>       $student['std_cls_fee_id'],
+                'std_payment'                   =>       $student['student_fee'],
+                'std_paid'                      =>       $student['student_paid_fee'],
+                'std_remain'                    =>       $student['student_remaning_fee'],
+                'std_discount'                  =>       $student['discount'],
+                'std_reason_dis'                =>       $student['reason'],
+                'std_reason'                    =>       'Monthly Fee',
+                'std_month'                     =>       $month,
+                'std_year'                      =>       $year,
+                'std_date'                      =>       $date,
+                'neglect_teacher_percentage'    =>       $student['neglect_percentage'],
+                'f_starting_date'               =>       $student['starting_date']
+            ];
+
+            if( $student['student_paid_fee'] != 0 ){
+                $this->db->insert( 'student_payment', $data );
+                $payment_id = $this->db->insert_id();
+                $result = $this->student_m->insert_notification('Montly Fee Has been Paid', 'Montly Fee Paid', 'student_payment', $payment_id, 'p_id');    
+                $student_id = $student['student_id'];
+                $data['subject_name'] =  $student['subject_name'];
+                $session_data[] = $data;
+            }else{
+                $student_id = $student['student_id'];
+            }
+
+        }
+
+        $this->session->set_userdata("paymentdetail", $session_data);
+        $this->session->set_userdata("student_id", $student_id);
+
+        
+        if( isset( $_POST['admission_fee_due'] ) ){
+            
+            $admission_data = [
+
+               'fkstudent_id'          => $student_id,
+               'total_amt'             => $this->input->post( 'admission_fee_due' ),
+               'paid_amt'              => $this->input->post( 'admission_fee_paid' ),
+               'otherfee_remain'       => $this->input->post( 'admission_fee_balance' ),
+               'other_discount'        => $this->input->post( 'admission_fee_paid_discount' ),
+               'other_reason'          => $this->input->post( 'admission_fee_paid_reason' ),
+               'amt_reason'            => 'Admission Fee',
+               'other_month'           => $month,
+               'other_year'            => $year,
+               'otherpay_created_date' => $date
+
+            ];
+
+            $this->db->insert( 'student_other_payment', $admission_data );
+            $trf_id = $this->db->insert_id();
+            $result = $this->student_m->insert_notification('TRF Has been Paid', 'TRF Paid', 'student_other_payment', $trf_id, 'otherpay_id');
+            $this->session->set_userdata("otherpayments", $admission_data);
+        }
+
+    }
+
+    // ------------------------------------------------------------------------
+
+    public function get_student_data( $student_id ){
+
+        $this->db->where('student_id', $student_id);
+        $query = $this->db->get('student')->result();
+        return $query[0];
+
+    }
+
+    // ------------------------------------------------------------------------
+
 }

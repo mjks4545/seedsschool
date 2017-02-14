@@ -4,7 +4,7 @@
     }
 
     .name {
-        margin-top: 10px;2
+        margin-top: 10px;
     }
 
     .ad {
@@ -24,7 +24,7 @@ $role = $session['role'];  ?>
 
             <?php
             foreach ($result as $data) {
-                if($role=="admin"){?>
+                if($role=="admin" || $role=="director" ){?>
             <small><a href="<?= site_url() ?>student/">Student</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 <a href="<?= site_url() ?>student/viewstudents/<?= $data->student_id?>">View Student</a>
@@ -44,7 +44,7 @@ $role = $session['role'];  ?>
                         <?php $this->load->view('include/alert'); ?>
 
                         <h3 class="box-title">Student Details</h3>
-                        <?php if($role=="admin"){?>
+                        <?php if($role=="admin" || $role=="director"){?>
                         <button type="button" class="btn btn-info pull-right" data-toggle="modal" data-target="#myModal">Upload Image</button>
                         <!-- for student img-->
                         <!-- Modal -->
@@ -92,7 +92,7 @@ $role = $session['role'];  ?>
                     <div class="box-body">
 
                             <div class="col-md-12 "><h3>Personal Information</h3>
-                                <?php if($role=="admin"){?>
+                                <?php if($role=="admin" || $role=="director" ){?>
                                 <a href="<?= site_url()?>student/updatestudent/<?= $data->student_id?>"style="position:relative;bottom: 30px;" class="btn btn-info pull-right" type="button">Update</a>
                                 <?php } ?>
                             </div>
@@ -175,7 +175,7 @@ $role = $session['role'];  ?>
                         <div class="col-md-12"><hr></div>
                         <div class="col-md-12 ">
                             <h3>Subject Information
-                                <?php if($role=="admin"){?>
+                                <?php if($role=="admin" || $role=="director" ){?>
                                 &nbsp;<a class="btn btn-info btn-xs" href="<?php echo site_url("student/add_newclass/".$data->student_id); ?>">
                                     Add New class
                                 </a>
@@ -191,9 +191,10 @@ $role = $session['role'];  ?>
                                 <th>Teacher Name</th>
                                 <th>Class Timing</th>
                                 <th>Fee</th>
-                                <th>Attendence Detail</th>
-                                <?php if($role=="admin"){?>
-                                <th class="text-center">Actions</th>
+                                <th>Attendence / Home work</th>
+                                <th>View Result</th>
+                                <?php if($role=="admin" || $role=="director" ){?>
+                                <th colspan="2" class="text-center">Actions</th>
                                 <?php } ?>
                             </tr>
                             </thead>
@@ -211,7 +212,8 @@ $role = $session['role'];  ?>
                                 <td><?= $cls->time?></td>
                                 <td><?= $cls->to_be_pay?></td>
                                 <td><a class="btn  btn-xs btn-info" href="<?php echo site_url()?>studentattendance/attendancedetail/<?=$cls->fkstudent_id.'/'. $cls->fkclass_id.'/'.$cls->co_id?>">Attendance Detail</a></td>
-                                <?php if($role=="admin"){?>
+                                <td><a class="btn  btn-xs btn-info" href="<?php echo site_url()?>examination/result_for_student/<?=$cls->fkstudent_id.'/'. $cls->fkclass_id.'/'.$cls->co_id?>">View Result</a></td>
+                                <?php if($role=="admin" || $role=="director" ){?>
                                 <td>
                                   <?php if($cls->st_class_fee_status==1){ ?>
                                     <a href="<?= site_url() ?>student/studentclassstatus/<?php echo $cls->fkstudent_id.'/0/'.$cls->classfee_id;?>"  type="button" class="btn btn-success">
@@ -222,6 +224,17 @@ $role = $session['role'];  ?>
                                         <i class="fa fa-times-circle-o" aria-hidden="true"></i>
                                         &nbsp;&nbsp;&nbsp;Deactive</a>
                                 <?php  }?>
+                                </td>
+                                <td>
+                                    <?php if($cls->class_left == 0){ ?>
+                                        <a href="<?= site_url() ?>student/student_class_left/<?php echo $cls->fkstudent_id.'/1/'.$cls->classfee_id; ?>"  type="button" class="btn btn-warning">
+                                            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                                            &nbsp;&nbsp;&nbsp;Mark as Left</a>
+                                    <?php } else { ?>
+                                        <a href="<?= site_url() ?>student/student_class_left/<?php echo $cls->fkstudent_id.'/0/'.$cls->classfee_id; ?>"  type="button" class="btn btn-danger">
+                                            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                                            &nbsp;&nbsp;&nbsp;Left</a>
+                                    <?php  }?>    
                                 </td>
                                 <?php } ?>
                             </tr>
@@ -240,10 +253,12 @@ $role = $session['role'];  ?>
                             </tr>
                         </table>
                          <div class="col-md-12"><hr></div>
+                         <?php if($role=="admin" || $role=="director" ){?>
                         <div class="col-md-12 "><h3>Financial Information
                                 <a class="btn btn-info btn-xs" href="<?php echo site_url().'studentpayment/studentclass/'.$data->student_id; ?>">Payment Detail</a>
                             </h3>
                         </div>
+                        <?php } ?>
                         <div class="col-md-12"><h4><b>Monthly Fee<b></h4>
                         </div>
                         <table id="example1" class="table table-bordered table-striped">
@@ -254,6 +269,7 @@ $role = $session['role'];  ?>
                                 <th>Total Paid Amount</th>
                                 <th>Remaining Amount</th>
                                 <th>Advance Amount</th>
+                                <th>Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -282,6 +298,9 @@ $role = $session['role'];  ?>
                                               }
                                               else { echo 0;}
                                             ?>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-warning" href="<?= site_url(); ?>student/get_complete_payment_details/<?= $this->uri->segment(3); ?>"> View Details
                                         </td>
                             </tr>
                         </table>

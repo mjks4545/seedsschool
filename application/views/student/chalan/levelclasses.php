@@ -8,7 +8,7 @@
     <section class="content-header">
         <h1>
             Admin Dashboard
-            <small><a href="<?= site_url() ?>admin/">Admin</a>
+            <small><a href="<?php echo site_url(); ?>student/studentlevel/<?php echo $this->uri->segment(3) ?>">Level Classes</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 View Students
             </small>

@@ -1,7 +1,8 @@
 <?php
 $session = $this->session->userdata('session_data');
 $id = $session['id'];
-$role = $session['role']; ?>
+$role = $session['role']; 
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -24,8 +25,8 @@ $role = $session['role']; ?>
                         <h3 class="box-title">View Teachers</h3>
 
                         <div class="btn-group pull-right">
-                            <?php if ($role == "admin" || $role == "receptionist") { ?>
-                                <?php if ($role == "admin") { ?>
+                            <?php if ($role == "admin" || $role == "receptionist" || $role == 'director' ) { ?>
+                                <?php if ($role == "admin" || $role == 'director') { ?>
                                     <a href="<?= site_url() ?>teacher/teachernewattendance" type="button"
                                        class="btn btn-success"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Take
                                         Attendance</a>
@@ -43,7 +44,7 @@ $role = $session['role']; ?>
                         </div>
                     </div>
                     <!-- /.box-header -->
-                    <!-- form start -->
+                     
                     <div class="box-body">
                         <div class="table-responsive">
                             <table id="example1" class="table table-bordered table-striped table-responsive">
@@ -54,7 +55,7 @@ $role = $session['role']; ?>
                                     <th>Contact Number</th>
                                     <th>Teacher CNIC</th>
                                     <th>Address</th>
-                                    <?php if ($role == "admin") { ?>
+                                    <?php if ($role == "admin" || $role == 'director') { ?>
                                         <th>Status</th>
                                     <?php } ?>
                                     <th class="text-center">Actions</th>
@@ -63,17 +64,17 @@ $role = $session['role']; ?>
                                 <tbody>
                                 <?php if ($teachers == 0) { ?>
                                 <?php } else {
-                                    $sno = 1;
-                                    foreach ($teachers as $t) {
+                                    $sno = 0;
+                                    foreach ($teachers as $t) { $sno++;
                                         ?>
-                                        <?php if ($role == "admin" || $role == "receptionist") { ?>
+                                        <?php if ($role == "admin" || $role == "receptionist" || $role == 'director') { ?>
                                             <tr>
                                                 <td><?php echo $sno; ?></td>
                                                 <td><?php echo $t->name; ?></td>
                                                 <td><?php echo $t->contact; ?></td>
                                                 <td><?php echo $t->cnic ?></td>
                                                 <td><?php echo $t->address; ?></td>
-                                            <?php if ($role=="admin") { ?>
+                                            <?php if ($role=="admin" || $role == 'director') { ?>
                                                 <td><?php if ($t->t_status == 1) { ?>
                                                         <a href="<?= site_url() ?>teacher/status/0/<?= $t->id ?>"
                                                            class="btn btn-success btn-sm ">
@@ -102,7 +103,7 @@ $role = $session['role']; ?>
                                                            aria-hidden="true"></i>
                                                         &nbsp;&nbsp;Payment Details</a>
                                                 </td>
-                                            <?php if ($role=="admin") { ?>
+                                            <?php if ($role=="admin" || $role == 'director' ) { ?>
                                                 <td>
                                                     <a href="<?= site_url() ?>teacher/deleteteacher/<?= $t->id ?>"
                                                        onclick="return confirm('Do You Want To Delete This?')"
@@ -140,8 +141,11 @@ $role = $session['role']; ?>
                                             <?php $sno++;
                                         }
                                     }
+
                                 } ?>
+                                </tbody>
                             </table>
+                            <?php echo $this->pagination->create_links(); ?>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -152,6 +156,7 @@ $role = $session['role']; ?>
         </div>
 
     </section>
-</div>
+    </div>
+
 
 

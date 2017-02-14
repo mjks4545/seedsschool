@@ -10,6 +10,9 @@ $role = $session['role']; ?>
             Dashboard
             <small>Home</small>
         </h1>
+        <a href="<?=  site_url()?>admin/add_auto_montly_fee" class="btn btn-primary pull-right">Add Monthly Fee</a>
+        <a href="<?=  site_url()?>admin/send_daily_reports" class="btn btn-primary pull-right">Daily Reports</a>
+        <br><br><br>
     </section>
     <!-- Main content -->
     <section class="content">
@@ -24,39 +27,9 @@ $role = $session['role']; ?>
                     <!-- /.box-header -->
                     <div class="row">
                         <div class="col-lg-1 col-xs-4"></div>
+ 
 
-                        <!--   <div class="col-lg-3 col-xs-6">
-                        
-                        <div class="small-box bg-orange">
-                            <div class="inner">
-                                <h3>...</h3>
-                                <p>Gate Keeper</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-street-view" aria-hidden="true"></i></div>
-                            <a href="<?= site_url() ?>gatekeeper/index" class="small-box-footer">
-                                Click here  <i class="fa fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div> --><!-- ./col -->
-
-                        <!--    <div class="col-lg-3 col-xs-6">
-                        
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>...</h3>
-                                <p>Reception</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa fa-desktop" aria-hidden="true"></i>
-                            </div>
-                            <a href="<?= site_url() ?>reception/index" class="small-box-footer">
-                                Click here  <i class="fa fa-arrow-circle-right"></i>
-                            </a>
-                        </div>
-                    </div> --><!-- ./col -->
-
-                        <?php if ($role == "admin") { ?>
+                        <?php if ($role == "admin" || $role == "director" ) { ?>
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-yellow">
@@ -66,7 +39,8 @@ $role = $session['role']; ?>
                                         <p>Visitors Details</p>
                                     </div>
                                     <div class="icon">
-                                        <i class="fa fa-suitcase" aria-hidden="true"></i></div>
+                                        <i class="fa fa-suitcase" aria-hidden="true"></i>
+                                    </div>
                                     <a href="<?= site_url() ?>visitor/index" class="small-box-footer">
                                         Click here <i class="fa fa-arrow-circle-right"></i>
                                     </a>
@@ -74,7 +48,7 @@ $role = $session['role']; ?>
                             </div>
                             <!-- ./col -->
                         <?php } ?>
-                        <?php if ($role == "admin" || $role == "teacher") { ?>
+                        <?php if ( $role == "admin" || $role == "director" ) { ?>
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-green">
@@ -85,14 +59,14 @@ $role = $session['role']; ?>
                                     <div class="icon">
                                         <i class="fa fa-male" aria-hidden="true"></i>
                                     </div>
-                                    <a href="<?= site_url() ?>teacher/index" class="small-box-footer">
+                                    <a href="<?= site_url() ?>teacher/viewteacher" class="small-box-footer">
                                         Click here <i class="fa fa-arrow-circle-right"></i>
                                     </a>
                                 </div>
                             </div>
                             <!-- ./col -->
                         <?php } ?>
-                        <?php if ($role == "admin") { ?>
+                        <?php if ($role == "admin" || $role == "director" ) { ?>
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-aqua">
@@ -111,14 +85,14 @@ $role = $session['role']; ?>
                             </div>
                             <!-- ./col -->
                         <?php } ?>
-                        <?php if ($role == "admin") { ?>
+                        <?php if ($role == "admin" || $role == "director" ) { ?>
                     </div>
                     <!-- /.row -->
                     <!-- for new row-->
                     <div class="row">
                         <div class="col-lg-1 col-xs-4"></div>
                         <?php } ?>
-                        <?php if ($role == "admin") { ?>
+                        <?php if ($role == "admin" || $role == "director" ) { ?>
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-aqua">
@@ -136,7 +110,7 @@ $role = $session['role']; ?>
                             </div>
                             <!-- ./col -->
                         <?php } ?>
-                        <?php if ($role == "admin") { ?>
+                        <?php if ($role == "admin" || $role == "director" ) { ?>
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-aqua">
@@ -155,14 +129,14 @@ $role = $session['role']; ?>
                             </div>
                             <!-- ./col -->
                         <?php } ?>
-                        <?php if ($role == "admin" || $role == "teacher") { ?>
+                        <?php if ( $role == "admin" || $role == "director" ) { ?>
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
                                 <div class="small-box bg-aqua">
                                     <div class="inner">
                                         <h3>...</h3>
 
-                                        <p>Students Section</p>
+                                        <p>Student Section</p>
                                     </div>
                                     <div class="icon">
                                         <i class="fa fa-graduation-cap"></i>
@@ -172,15 +146,56 @@ $role = $session['role']; ?>
                                     </a>
                                 </div>
                             </div>
-                            <!-- ./col -->
+                            
+                             <!-- ./col -->
+                        <?php } ?>
+                         <?php if ( $role == "teacher") { ?>
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3>...</h3>
+
+                                        <p>Attendance</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <a href="<?= site_url() ?>teacher/take_teacher_attendance/" class="small-box-footer">
+                                        Click here <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                             <!-- ./col -->
+                        <?php } ?>
+                        <?php if ( $role == "teacher") { ?>
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-aqua">
+                                    <div class="inner">
+                                        <h3>...</h3>
+
+                                        <p>Teacher detail</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <a href="<?= site_url() ?>teacher/viewteacherdetails/<?php echo $id;?>" class="small-box-footer">
+                                        Click here <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                             <!-- ./col -->
                         <?php } ?>
 
-                        <?php if ($role == "admin") { ?>
+                        <?php if ( $role == "admin" || $role == "director" ) { ?>
                     </div>
                     <div class="row">
                         <div class="col-lg-1 col-xs-4"></div>
                         <?php }
-                        if ($role == "admin") { ?>
+                        if ($role == "admin" || $role == "director" ) { ?>
                             <!--for searches-->
                             <div class="col-lg-3 col-xs-6">
                                 <!-- small box -->
@@ -198,6 +213,44 @@ $role = $session['role']; ?>
                                 </div>
                             </div>
                             <!-- ./col -->
+                             <?php } ?>
+                            <!-- ./col -->
+                            <?php if ($role == "admin" || $role == "teacher" || $role == "director" ) { ?>
+                            <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3>...</h3>
+
+                                        <p>Teacher Syllabus</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <a href="<?= site_url() ?>teacher/get_all_classes/" class="small-box-footer">
+                                        Click here <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php if( $role == 'teacher'){ echo '</div><div class="row"><div class="col-lg-1 col-xs-4"></div>'; }?>
+                            <!-- clo examination -->
+                             <div class="col-lg-3 col-xs-6">
+                                <!-- small box -->
+                                <div class="small-box bg-yellow">
+                                    <div class="inner">
+                                        <h3>...</h3>
+                                        <p>Examination</p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <a href="<?= site_url() ?>Examination" class="small-box-footer">
+                                        Click here <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php if( $role == 'teacher'){ echo '</div>'; }?>
+                            <!-- end exam-->
                         <?php } ?>
                         <!--for searches-->
                     </div>
@@ -205,7 +258,7 @@ $role = $session['role']; ?>
             </div>
             <!-- /.box -->
         </div>
-</div>
+ 
 </section>
 </div>
               

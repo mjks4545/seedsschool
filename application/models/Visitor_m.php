@@ -3,6 +3,21 @@
 class Visitor_m extends CI_Model
 {
     //-------------------------------------------------------------
+    function visitor_exist()
+    {
+        $contact = $this->input->post('contact');
+        $this->db->select('*');
+        $this->db->from('visitor');
+        $this->db->where('contact', $contact);
+        $query=$this->db->get();
+        $visitor_exist = $query->result();
+        if($visitor_exist){
+            return 0;
+        }else{
+        return 1;
+    }
+    }
+    //-------------------------------------------------------------
     function addvisitorpro()
     {
         $name = $this->input->post('name');
@@ -10,13 +25,16 @@ class Visitor_m extends CI_Model
         $reason = $this->input->post('reason');
         $address = $this->input->post('address');
         $relationship = $this->input->post('relationship');
-        $gender = $this->input->post('gender');
-        $cnic = $this->input->post('cnic');
+        /*$gender = $this->input->post('gender');
+        $cnic = $this->input->post('cnic');*/
         $note = $this->input->post('note');
         $date = date("d-M-Y");
+        
         $v_month = date("M");
         $v_year = date("Y");
         $time = date("h:i:sa");
+        //check if record already exist on contact basis
+        
         $insrt = array(
             'name' => $name,
             'contact' => $contact,
@@ -24,8 +42,8 @@ class Visitor_m extends CI_Model
             'address' => $address,
             'relationship' => $relationship,
             'note' => $note,
-            'v_gender' => $gender,
-            'v_cnic' => $cnic,
+            /*'v_gender' => $gender,
+            'v_cnic' => $cnic,*/
             'date' => $date,
             'time' => $time,
             'v_month' => $v_month,
@@ -77,6 +95,18 @@ class Visitor_m extends CI_Model
             $data[] = $row;
         }
         return $data;
+    }
+    //-------------------------------------------------------------------
+    function check_as_visitor($contact)
+    {
+         
+           
+          $this->db->where('contact',$contact);
+         $query = $this->db->get('visitor');
+       // $query = $this->db->query($sql);
+        $result = $query->result();
+         
+        return $result;
     }
 
     function status($id)

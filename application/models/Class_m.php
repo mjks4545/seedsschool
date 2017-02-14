@@ -10,6 +10,7 @@ class Class_m extends CI_Model
 	$sdate            = $this->input->post('sdate');
 	$timestamp        = strtotime($sdate);
 	$sdate        	  = date("d-M-Y", $timestamp);
+	$no_slots         = $this->input->post('no_slots');
 	$endingdate       = date("d-M-Y", strtotime("+4 months", strtotime($sdate)));
 	$counter          = $this->input->post('counter');
 	$date             = date("d-M-Y");
@@ -33,6 +34,7 @@ class Class_m extends CI_Model
 		'fee'     => $fee,
 		'time'    => $time,
 		's_date'  => $sdate,
+		'no_slots'=> $no_slots,
 		'date'    => $date,
 		'e_date'  => $endingdate
 
@@ -54,6 +56,7 @@ class Class_m extends CI_Model
 		$sdate = $this->input->post('sdate');
 		$timestamp        = strtotime($sdate);
 		$sdate        	  = date("d-M-Y", $timestamp);
+		$no_slots         = $this->input->post('no_slots');
 		$endingdate       = date("d-M-Y", strtotime("+4 months", strtotime($sdate)));
 		$time = $this->input->post('time_1');
 		$fee = $this->input->post('fee_1');
@@ -69,6 +72,7 @@ class Class_m extends CI_Model
 			'fee'		=> $fee,
 			'time'		=> $time,
 			's_date'	=> $sdate,
+			'no_slots'  => $no_slots,
 			'date'		=> $date,
 			'e_date' 	=> $endingdate,
 		);
@@ -87,37 +91,29 @@ class Class_m extends CI_Model
     function get( $id = null ){
 
         $this->db->select('*');
-	$query = $this->db->get('class');
-        $num = $query->num_rows();
-        $config['base_url'] = site_url()."class_c/index/";
-        $config['total_rows'] = $num;
-        $config['per_page'] = 10;
-        $config['num_links'] = 4;
-        $config['uri_segment'] = 3;
         $this->db->join('subject','subject.su_id = class.su_id');
         $this->db->join('course','course.co_id = class.co_id');
         $this->db->join('teacher','teacher.id = class.t_id');
         $this->db->order_by('cl_id','desc');
-        $this->pagination->initialize($config);
-        $query = $this->db->get('class', $config['per_page'], $this->uri->segment(3));
-	return $query->result();
+        $query = $this->db->get('class');
+		return $query->result();
 	
     }
     
     // -------------------------------------------------------------------------
     function update( $id = null , $value = null ){
 	
-	if( $id == null ){
+		if( $id == null ){
+		
+		    return 0;
+		
+		}
 	
-	    return 0;
+		$update = [
+		    'class_status' => $value
+		];
 	
-	}
-	
-	$update = [
-	    'class_status' => $value
-	];
-	
-	return $this->db->update( 'class', $update , [ 'cl_id' => $id ] );
+		return $this->db->update( 'class', $update , [ 'cl_id' => $id ] );
 	
     }
     

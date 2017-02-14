@@ -29,11 +29,13 @@ if(isset($error) ){
           <div class="form-group has-feedback">
              <select class="form-control" name="role">
         <option>Login As</option>
+        <option value="director">Director</option>
         <option value="admin">Admin</option>
         <option value="teacher">Teacher</option>
         <option value="student">student</option>
         <option value="receptionist">receptionist</option>
         <option value="gatekeeper">Gate Keeper</option>
+        <option value="parent">Parent</option>
       </select>
           </div>
           <div class="row">

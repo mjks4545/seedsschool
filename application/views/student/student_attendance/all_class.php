@@ -39,9 +39,6 @@
                                 <th>Teacher</th>
                                 <th>Subject</th>
                                 <th>Time</th>
-                                <?php if($role=="admin" ||$role =="teacher"){ ?>
-                                <th>Today Attendance</th>
-                                <?php } ?>
                                 <th>Take Attendance</th>
                                 <th>Detail</th>
                             </tr>
@@ -63,18 +60,11 @@
                                         <td><?= $array->name ?></td>
                                         <td><?= $array->su_name ?></td>
                                         <td><?= $array->time ?></td>
-                                        <td><a class="btn btn-success" href="<?=site_url()?>studentattendance/todayattendance/<?=$array->cl_id ?>/<?=$array->co_id ?>">
+                                        <td><a class="btn btn-success" href="<?=site_url()?>studentattendance/takeattendace/<?=$array->cl_id ?>/<?=$array->co_id ?>">
                                                 <span class="fa fa-table"></span>
                                                 Today Attendance
                                             </a>
                                         </td>
-                                      <?php if($role=="admin" ||$role =="teacher"){ ?>
-                                        <td><a class="btn btn-success" href="<?=site_url()?>studentattendance/takeattendace/<?=$array->cl_id ?>/<?=$array->co_id ?>">
-                                                <span class="fa fa-table"></span>
-                                                Take Attendance
-                                            </a>
-                                        </td>
-                                        <?php } ?>
                                         <td><a class="btn btn-success" href="<?=site_url()?>studentattendance/classattendance/<?=$array->cl_id ?>/<?=$array->co_id ?>">
                                                 <span class="fa fa-eye"></span>
                                                 View Detail

@@ -14,6 +14,12 @@
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                 Visitor Daily Record
             </small>
+            <small style="float:right">
+                <form action="<?=base_url()?>reports/dailyvisitors" method="post">
+                    <input type="date" name="dailyDate">
+                    <input type="submit" name="submitDate" value="submit" class="btn btn-primary btn-xs">
+                </form>
+            </small>
         </h1>
     </section>
     <!-- Main content -->

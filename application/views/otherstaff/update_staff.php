@@ -43,17 +43,22 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">CNIC</label>
-                                    <input type="text" name="cnic" maxlength="15"  pattern="(?=.*\d).{13,13}" class="form-control" id="exampleInputEmail1" value="<?= $data->cnic ?>" required />
+                                    <input type="text" name="cnic" maxlength="15"   class="form-control" id="exampleInputEmail1" value="<?= $data->cnic ?>" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
                                 <div class="form-group has-feedback col-md-6">
                                     <label>Type</label>
                                     <select  name="type"  id="type" class="form-control">
-                                        <option ><?= $data->type ?></option>
-                                        <option value="Clerk">Clerk</option>
-                                        <option value="Receptionist">Receptionist</option>
+                                        <option value="<?= $data->type ?>"><?= $data->type ?></option>
+                                        <option value="accountsofficer">Accounts Officer</option>
+                                        <option value="receptionist">Receptionist</option>
                                         <option value="Librarian">Librarian</option>
+                                        <option value="gatekeeper">Gate Keeper</option>
+                                        <option value="gardner">Gardner</option>
+                                        <option value="officeassistant">Office Assistant</option>
+                                        <option value="officeboy">Office Boy</option>
+                                        <option value="other">Other</option>
                                     </select>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
@@ -62,14 +67,14 @@
                             <div class="col-md-12">
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Salary</label>
-                                    <input type="text" name="salary" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" value="<?= $data->salary ?>" required/>
+                                    <input type="text" name="salary" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" value="<?= $data->salary ?>" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>
 
                                 <div class="form-group has-feedback col-md-6">
                                     <label for="exampleInputEmail1">Address</label>
-                                    <input type="text" name="address"   minlength="3" maxlength="100" class="form-control" id="exampleInputEmail1" value="<?= $data->address ?>" required />
+                                    <input type="text" name="address"   minlength="1" maxlength="100" class="form-control" id="exampleInputEmail1" value="<?= $data->address ?>" required />
                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
                                 </div>

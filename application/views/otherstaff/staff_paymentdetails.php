@@ -3,6 +3,7 @@
         text-align: center;
     }
 </style>
+<?php //echo '<pre>'; print_r($result);die();?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -25,6 +26,7 @@
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <?php $this->load->view('include/alert'); ?>
+                        
                         <h3 class="box-title">Payment Details of <?=$result[0]->name?></h3>
                         <a href="<?= site_url() ?>otherstaff/paysalary/<?=$id?>" type="button"
                            class="btn btn-success pull-right"><i class="glyphicon glyphicon-plus"></i>&nbsp;&nbsp;&nbsp;Pay Remuneration</a>

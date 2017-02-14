@@ -64,6 +64,7 @@ class ExpenseController extends CI_Controller {
     public function create_expense_after_post(){
 	
 	$created_date   = mdate("%y-%m-%d");
+    
 	$counter	= $this->input->post('number-d');
 	
 	for( $i=1; $i <= $counter ; $i++ ){

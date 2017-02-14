@@ -98,17 +98,6 @@ class Teacher_m extends CI_Model
     {
         $this->db->select("*");
         $query = $this->db->get("teacher");
-        $num = $query->num_rows();
-        $config2['base_url'] = site_url() . "teacher/viewteacher";
-        $config2['total_rows'] = $num;
-        $config2['per_page'] = 10;
-        $config2['num_links'] = 4;
-        //config for bootstrap pagination class integration
-        $config2['uri_segment'] = 3;
-        $this->db->order_by('id', 'desc');
-        $this->pagination->initialize($config2);
-        $query = $this->db->get('teacher', $config2['per_page'], $this->uri->segment(3));
-
         if ($query->num_rows() > 0) {
             $result = $query->result();
             foreach ($result as $row) {
@@ -180,7 +169,7 @@ class Teacher_m extends CI_Model
 
     //---------------------------------------------------------------------------
 
-    function get_teacher($id = null)
+    function get_teacher( $id = null )
     {
 
         if ($id == null) {
@@ -236,6 +225,15 @@ class Teacher_m extends CI_Model
     }
 
     //--------------------------------------------------------------------
+    function deleteSubjectTeacher($subID, $teaID)
+    {
+        $this->db->where('t_id', $teaID);
+        $this->db->where('sub_id', $subID);
+        $this->db->delete('teacher_subject');
+        redirect('teacher/viewteacherdetails/'.$teaID);
+    }
+
+    //--------------------------------------------------------------------
     function sallrypersubject($t_id, $sub_id)
     {
         $this->db->select('*');
@@ -245,16 +243,19 @@ class Teacher_m extends CI_Model
         $this->db->where('class.su_id', $sub_id);
         $this->db->where('class.class_status', 1);
 
-        $query = $this->db->get();
-        $pesi = $query->result();
-        $to_be_pay = 0;
+        $query      = $this->db->get();
+        $pesi       = $query->result();
+        $total_paid = 0;
+//        echo '<pre>';
         foreach ($pesi as $rupi) {
-            $to_be_pay = $to_be_pay + $rupi->to_be_pay;
+                              $this->db->where( 'fkstudentclassfee_id', $rupi->classfee_id );
+            $query_p        = $this->db->get('student_payment');
+            $final_results  = $query_p->result();
+            foreach ( $final_results as $payments ){
+                 $total_paid    += $payments->std_paid;
+            }
         }
-
-
-//        echo '<pre>';print_r($to_be_pay);die();
-        return $to_be_pay;
+        return $total_paid;
     }
 
     //-------------------------------------------------------
@@ -395,30 +396,26 @@ class Teacher_m extends CI_Model
     //-----------------------------------------------------------
     function paysalary($id)
     {
-        $this->db->select('*');
-        $this->db->from('student_class_fee');
+        $this->db->select("*");
+        $this->db->from("student_class_fee");
+        $this->db->join("student", "student.student_id=student_class_fee.fkstudent_id");
         $this->db->join('class', 'class.cl_id = student_class_fee.fkclass_id');
-//       $this->db->join('teacher_subject','teacher_subject.sub_id=class.su_id');
-//       $this->db->join('teacher','teacher.id=class.t_id');
-        $this->db->where('class.t_id', $id);
-        $query = $this->db->get();
+        $this->db->join('teacher_subject','teacher_subject.sub_id=class.su_id');
+        $this->db->join("subject", "subject.su_id=class.su_id");
+        $this->db->where("student_class_fee.st_class_fee_status", 1);
+        $this->db->where("class.t_id", $id);
+        $this->db->where("teacher_subject.t_id", $id);
+        $query  = $this->db->get();
         $result = $query->result();
-        $sallary = 0;
-        foreach ($result as $row) {
-            $where = array(
-                'sub_id' => $row->su_id,
-                'teacher_subject.t_id' => $row->t_id
-            );
-            $this->db->where($where);
-            $query = $this->db->get('teacher_subject');
-            $comission = $query->result();
-            $comission_t = $comission[0]->comission;
-            $pay = $row->to_be_pay;
-
-            $sallary = $sallary + ($pay * $comission_t) / 100;
+        $i = 0;
+        foreach ( $result as $payment ){
+            $this->db->where('fkstudentclassfee_id',$payment->classfee_id);
+            $this->db->where('teacher_paid_status',0);
+            $this->db->where('std_paid >',0);
+            $query_payment = $this->db->get('student_payment');
+            $result[$i]->payment = $query_payment->result();
+            $i++;
         }
-        $result['salary'] = $sallary;
-        //echo '<pre>';print_r($result);die;
         return $result;
     }
 
@@ -600,5 +597,256 @@ class Teacher_m extends CI_Model
     $query = $this->db->get();
     return $query->result();
  }
-//-------------------------------------------------------------------
+ //-------------------------------------------------------------------
+ function get_classes($t_id,$role)
+ {
+    if($role!='admin'){
+    $this->db->select("*");
+    $this->db->from("class");
+      $this->db->join("teacher","teacher.id=class.t_id");
+    $this->db->join("course","course.co_id=class.co_id");
+    $this->db->join("subject","subject.su_id=class.su_id");
+    $this->db->where("teacher.id",$t_id);
+    $this->db->where("class.class_status", 1);
+     
+    $query = $this->db->get();
+    return $query->result();
+}else{
+    $this->db->select("*");
+    $this->db->from("class");
+      $this->db->join("teacher","teacher.id=class.t_id");
+    $this->db->join("course","course.co_id=class.co_id");
+    $this->db->join("subject","subject.su_id=class.su_id");
+      
+    $query = $this->db->get();
+    return $query->result();
+}
+ }
+ //-------------------------------------------------------------------
+ function get_syllabus($cls_id)
+ {
+    $this->db->select("*");
+    $this->db->from("syllabus");
+    
+    $this->db->where("fkclass_id",$cls_id);
+    
+    $query = $this->db->get();
+    return $query->result();
+ }
+ //-------------------------------------------------------------------
+ function insert_syllabus($data)
+ {
+ 
+    $this->db->insert('syllabus',$data);
+      
+ }
+ //-------------------------------------------------------------------
+ function get_sts()
+ {
+ 
+     $this->db->select("*");
+    $this->db->from("syllabus");
+     
+    //$this->db->join("syllabus","syllabus.syllabus_id=class.su_id");
+    //$this->db->where("teach",$);
+     
+    $query = $this->db->get();
+    return $query->result();
+      
+ }
+  //-----------------------------------------------------------------
+    function take_student_attendance($cl_id)
+
+
+    {
+
+        $this->db->select("*");
+        $this->db->from("student_class_fee");
+        $this->db->where("student_class_fee.fkclass_id", $cl_id);
+        $this->db->join("class", "class.cl_id=student_class_fee.fkclass_id");
+        $this->db->join("student", "student.student_id=student_class_fee.fkstudent_id");
+        $this->db->join("teacher", "teacher.id=class.t_id");
+        $this->db->where("student_class_fee.st_class_fee_status", '1');
+        
+        $query = $this->db->get();
+        $num = $query->num_rows();
+        if ($num == 0) {
+            return 0;
+        } else {
+            return $query->result();
+        }
+    }
+    //-----------------------------------------------------------------
+    function view_student_attendance($cl_id, $t_id)
+
+
+    {
+        // echo date('d-M-Y');
+        // die;
+      $this->db->select("*");
+        $this->db->from("student_attendance");
+        $this->db->where("fkclass_id", $cl_id);
+       
+        $this->db->order_by("st_attendance_id", "desc");
+        $this->db->join("student", "student.student_id=student_attendance.fkstudent_id");
+        $this->db->join("class", "class.cl_id=student_attendance.fkclass_id");
+        $this->db->join("subject", "subject.su_id=class.su_id");
+       $this->db->join("course","course.co_id=class.co_id");
+       $this->db->join("teacher","teacher.id=class.t_id");
+        $this->db->where("id", $t_id);
+        $this->db->where("att_date", date('d-M-Y'));
+        $query = $this->db->get();
+        return $query->result();
+
+       
+    }
+     //-----------------------------------------------------------------
+    function search_student_attendance($cl_id, $t_id, $new_date)
+
+
+    {
+          $this->db->select("*");
+        $this->db->from("student_attendance");
+        $this->db->where("fkclass_id", $cl_id);
+        $this->db->where("att_date", $new_date);
+        $this->db->order_by("st_attendance_id", "desc");
+        $this->db->join("student", "student.student_id=student_attendance.fkstudent_id");
+        $this->db->join("class", "class.cl_id=student_attendance.fkclass_id");
+        $this->db->join("subject", "subject.su_id=class.su_id");
+       $this->db->join("course","course.co_id=class.co_id");
+       $this->db->join("teacher","teacher.id=class.t_id");
+        $this->db->where("id", $t_id);
+        $query = $this->db->get();
+        return $query->result();
+
+       
+    }
+
+    // -------------------------------------------------------------------
+    
+    public function editSubjectTeacher( $teacher_subject_id, $teacher_id ){
+        
+        $this->db->from('teacher_subject');
+        $this->db->join('subject', 'subject.su_id = teacher_subject.sub_id');
+        $this->db->where( 'teacher_subject.sub_id', $teacher_subject_id );
+        $this->db->where( 'teacher_subject.t_id', $teacher_id );
+        $query = $this->db->get()->result();
+        return $query[0];
+    }  
+
+    // --------------------------------------------------------------------
+
+    public function editSubjectTeacherpro($tea_id, $sub_id)
+    {
+        $comm = $this->input->post('comission');
+        $sub = $this->input->post('subject');
+        
+        $this->db->where('t_id', $tea_id);
+        $this->db->where('sub_id', $sub_id);
+
+        $updateData = array('t_id' => $tea_id, 'sub_id' => $sub, 'comission' => $comm);
+        $this->db->update('teacher_subject', $updateData);
+        redirect('teacher/viewteacherdetails/' . $tea_id);
+    }
+
+    //---------------------------------------------------------------------
+    
+    public function teacher_payments(){
+        $array_ids = [];
+        $paid_amount_teacher = 0;
+        $data = [
+                    'teacher_paid_status'  => '1'
+                ];
+        $i = 0;        
+        foreach( $this->input->post('student') as $student ){
+            //echo '<pre>';print_r($student);die;
+            foreach ($student['payment'] as $payment) {
+                
+                if( !isset( $payment['amount_paid'] ) ){
+                    continue;
+                }
+
+                $session_data[$i]['student_name'] = $student['student_name'];
+                $session_data[$i]['subject_name'] = $student['subject_name'];
+                $session_data[$i]['amount_paid']  = $payment['amount_to_paid'];
+                $session_data[$i]['level_id']     = $student['std_cls_fee_id'];
+                $session_data[$i]['payment_id']   = $payment['amount_paid'];
+
+                $result = $this->db->update('student_payment',$data,['p_id' => $payment['amount_paid'] ]);
+                $array_ids[] = $payment['amount_paid'];
+                if( $result ){
+                    $paid_amount_teacher += $payment['amount_to_paid'];
+                    
+                }
+
+                $i++;
+
+            }
+        }
+        $teacher_data = [
+            
+            'fkteacher_id'        => $this->input->post('t_id'),
+            'total_salary'        => $this->input->post('total'),
+            'paid_salary'         => $paid_amount_teacher,
+            'remaining_salary'    => $this->input->post('total') - $paid_amount_teacher,
+            'amount_reason'       => 'Paid To Teacher',
+            'paid_month'          => date('m'),
+            'salary_year'         => date('Y'),
+            'created_date'        => date("d-M-Y"),
+            'created_time'        => date("h:i:sa")
+        ];
+        $result = $this->db->insert('teacher_salaries',$teacher_data);
+        $insert_id = $this->db->insert_id();
+        $this->session->set_userdata('student',$session_data);
+        $data_new = [ 'teacher_salary_id' => $insert_id ];
+        foreach( $array_ids as $id ){
+            $this->db->update('student_payment', $data_new, ['p_id' => $id ]);
+        }
+        if($result){
+            return 1;
+        }
+        return 0;
+    }
+
+    // ------------------------------------------------------------
+
+    public function paymentslip( $array ){
+        $i = 0;
+        foreach( $array as $element ){
+                      $this->db->select('*');
+                      $this->db->from('student_class_fee');
+                      $this->db->join('class','student_class_fee.fkclass_id=class.cl_id');
+                      $this->db->join('teacher','teacher.id=class.t_id');
+                      $this->db->join('course','class.co_id=course.co_id');  
+                      $this->db->where('classfee_id',$element['level_id']);
+            $query  = $this->db->get();
+            $result = $query->result();
+            $array[$i]['level']        = $result[0]->co_name;
+            $array[$i]['teacher_name'] = $result[0]->name;
+            $i++;
+        }
+        return $array;
+    }
+
+    // ------------------------------------------------------------
+    
+    public function get_teacher_futherdetails( $id ){
+        
+                  $this->db->select('*');
+                  $this->db->from( 'student_payment' );
+                  $this->db->join( 'student_class_fee', 'student_class_fee.classfee_id=student_payment.fkstudentclassfee_id' );
+                  $this->db->join( 'student', 'student.student_id=student_class_fee.fkstudent_id' );
+                  $this->db->join( 'class', 'class.cl_id=student_class_fee.fkclass_id' );
+                  $this->db->join( 'course', 'class.co_id=course.co_id' );
+                  $this->db->join( 'subject', 'subject.su_id=class.su_id' );
+                  $this->db->join( 'teacher_subject', 'class.su_id=teacher_subject.sub_id AND class.t_id=teacher_subject.t_id' );
+                  $this->db->where('student_payment.teacher_salary_id', $id);
+        $query  = $this->db->get();
+        $result = $query->result();
+        return $result;
+        
+    }
+    
+    // ------------------------------------------------------------
+    
 }

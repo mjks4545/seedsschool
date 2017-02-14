@@ -23,7 +23,8 @@ var Home = function(){
     // -------------------------------------------------------------------------
 
     var add_montly_fee = function(){
-        var url = 'http://' + location.hostname + '/seeds/admin/add_auto_montly_fee';
+        var url = 'http://' + location.hostname + '/seedsschool/admin/add_auto_montly_fee';
+        console.log(url);
         $.get( url,'',function(o){
         } );
     };

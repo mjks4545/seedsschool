@@ -14,7 +14,7 @@ class Class_c extends CI_Controller{
     
     function index( $id = null ){
 	
-	$data['result'] = $this->class_m->get( $id );
+		$data['result'] = $this->class_m->get( $id );
         $this->load->view('include/header');
         $this->load->view('include/sidebar');
         $this->load->view('class/class_view',$data);

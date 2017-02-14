@@ -66,7 +66,7 @@
                                                value="<?= $data[0]->student_id;?>">
                                         <label for="exampleInputEmail1">Student Name</label>
                                         <input type="text" name="student_name" readonly class="form-control"
-                                               maxlength="50" minlength="3" id="exampleInputEmail1"
+                                               maxlength="50" minlength="1" id="exampleInputEmail1"
                                                value="<?= $data[0]->student_name;?>" required/>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"
                                               style="margin-right: 20px;"></span>
@@ -76,7 +76,7 @@
                                         <label for="exampleInputEmail1">Subject Fee</label>
                                         <input type="text" id="subject_fee_<?= $i ?>"
                                                name="subject_fee_<?php echo $i; ?>" class="form-control" readonly
-                                               maxlength="50" minlength="3" value="<?= $proted_std['class'][0]->fee?>" required/>
+                                               maxlength="50" minlength="1" value="<?= $proted_std['class'][0]->fee?>" required/>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"
                                               style="margin-right: 20px;"></span>
                                         <span class="help-block with-errors" style="margin-left:10px; "></span>

@@ -9,19 +9,21 @@
               Admin Dashboard
             <small><a href="<?= site_url() ?>visitor/">Visitor</a>
                 <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                Add Visitor
+                Add Visitor &nbsp;&nbsp;&nbsp;<h3><span class="alert-danger"><?php echo $this->session->userdata('visitor_exist');?>
             </small>
             <?php } elseif($role=="gatekeeper"){?>
-            Gatekeeper Dashboard
+            Gatekeeper Dashboard 
+                 
+                </span></h3>
                     <small>
-                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                     <a href="<?php echo base_url('gatekeeper/index');?>">GateKeeper</a>
+                    Add Visitor  <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                    <a href="<?php echo base_url('gatekeeper/index');?>">GateKeeper</a>&nbsp;&nbsp;&nbsp;<h3><span class="alert-danger"><?php echo $this->session->userdata('visitor_exist');?>
                      </small>
             <?php } elseif($role=="receptionist") {?>
             Receptionist Dashboard
                     <small>
                      <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                     <a href="<?php echo base_url('visitor');?>">Visitors</a>
+                    Add Visitor   <a href="<?php echo base_url('visitor');?>">Visitors</a>&nbsp;&nbsp;&nbsp;<h3><span class="alert-danger"><?php echo $this->session->userdata('visitor_exist');?>
                      </small>
                   <?php }?>   
           </h1>
@@ -44,14 +46,14 @@
                              <div class="col-md-12">
                                  <div class="form-group has-feedback col-md-6">
                                      <label for="exampleInputEmail1">Name</label>
-                                     <input type="text" name="name" class="form-control" maxlength="50" minlength="3" id="exampleInputEmail1" placeholder="Enter Name" required/>
+                                     <input type="text" name="name" class="form-control" maxlength="50" minlength="1" id="exampleInputEmail1" placeholder="Enter Name" required/>
                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                      <span class="help-block with-errors" style="margin-left:10px; "></span>
                                  </div>
 
                                  <div class="form-group has-feedback col-md-6">
                                      <label for="exampleInputEmail1">Contact</label>
-                                     <input type="text" name="contact"  pattern="(?=.*\d).{10,15}"  class="form-control" id="exampleInputEmail1" placeholder="Enter Contact Number" required />
+                                     <input type="text" name="contact"    class="form-control" id="exampleInputEmail1" placeholder="Enter Contact Number" required />
                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                      <span class="help-block with-errors" style="margin-left:10px; "></span>
                                  </div>
@@ -68,8 +70,8 @@
                                      <span class="help-block with-errors" style="margin-left:10px; "></span>
                                  </div>
                                  <div class="form-group has-feedback col-md-6">
-                                     <label for="exampleInputEmail1">Address</label>
-                                     <input type="text" name="address"  class="form-control" minlength="3" maxlength="100" id="exampleInputEmail1" placeholder="Enter Address" required />
+                                     <label for="exampleInputEmail1">Address(Optional)</label>
+                                     <input type="text" name="address"  class="form-control" minlength="1" maxlength="100" id="exampleInputEmail1" placeholder="Enter Address">
                                      <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                      <span class="help-block with-errors" style="margin-left:10px; "></span>
                                  </div>
@@ -90,30 +92,14 @@
                                      <span class="help-block with-errors" style="margin-left:10px; "></span>
                                  </div>
                                  <div class="form-group has-feedback col-md-6">
-                                     <label for="exampleInputEmail1">Gender</label>
-                                     <select  name="gender"  class="form-control"  required>
-                                         <option value="">Select Gender</option>
-                                         <option value="male">Male</option>
-                                         <option value="female">Female</option>
-                                     </select>
-                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
-                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
-                                 </div>
-
-                             </div>
-                             <div class="col-md-12">
-                                 <div class="form-group has-feedback col-md-6">
-                                     <label for="exampleInputEmail1">CNIC</label>
-                                     <input type="text" name="cnic"  class="form-control" pattern="[0-9]{13,13}" minlength="13" maxlength="13" id="exampleInputEmail1" placeholder="Enter CNIC" required />
-                                     <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
-                                     <span class="help-block with-errors" style="margin-left:10px; "></span>
-                                 </div>
-                              <div class="form-group has-feedback col-md-6">
-                                 <label for="exampleInputEmail1" > Note </label>
-                                 <textarea name="note" placeholder="Note Here" class="form-control" rows="6" style="resize:none;" required /></textarea>
+                                 <label for="exampleInputEmail1" > Note (Optional) </label>
+                                 <textarea name="note" placeholder="Note Here" class="form-control" rows="6" style="resize:none;"></textarea>
                                  <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right: 20px;"></span>
                                  <span class="help-block with-errors" style="margin-left:10px; "></span>
                               </div>
+
+                             </div>
+                              
                                  <!--for gender-->
                          </div><!-- /.box-body -->
                          <div class="box-footer">
